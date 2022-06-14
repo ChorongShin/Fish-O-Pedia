@@ -1,20 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
   <link rel="icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-  <header>
-  </header>
   <main>
+    <div class="view" data-view="show-case">
+      <section class="showcase">
+        <header class="home-header">
+          <h2 class="logo">What's Your Fish</h2>
+          <button class="toggle">
+          </button>
+        </header>
+        <video src="images/Home.mp4" muted loop autoplay></video>
+        <div class="overlay"></div>
+        <div class="text">
+          <h2>Never Stop</h2>
+          <h3>Exploring The Sea</h3>
+          <button type="button" class="explore">Explore</button>
+        </div>
+      </section>
+      <div class="menu">
+        <ul class="menu-one">
+          <li><a class="home-click" href="#">HOME</a></li>
+          <li><a class="search-click" href="#">SEARCH</a></li>
+          <li><a class="list-click" href="#">LIST</a></li>
+          <li><a class="fish-click" href="#">FISH OF THE DAY</a></li>
+        </ul>
+      </div>
+    </div>
   </main>
+
+  <header class="header">
+    <div class="container">
+      <div class="row showcase-two">
+        <div class="column-one-eighths">
+          <a class="back-home" href="#"">
+            <img class=" logo-img" src="images/Logo.jpg" alt="image-logo">
+          </a>
+        </div>
+        <div class="column-one-fourth">
+          <p class="logo">What's your Fish</p>
+        </div>
+        <div class="column-one-fourth"> </div>
+        <div class="column-different">
+          <button type="button" class="button-toggle"></button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="row">
+    <div class="column-full">
+      <div class="menu-toggle hidden">
+        <ul class="menu-two">
+          <li><a class="home-click" href="#">HOME</a></li>
+          <li><a class="search-click" href="#">SEARCH</a></li>
+          <li><a class="list-click" href="#">LIST</a></li>
+          <li><a class="fish-click" href="#">FISH OF THE DAY</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="hidden" data-view="list">
+    <div class="container">
+      <div class="first-row row">
+        <div class="column-half">
+          <video class="intro-video" src="images/fish 2.mp4" muted loop autoplay></video>
+        </div>
+        <div class="column-half background-color">
+          <figure>
+            <h2 class="fish-head">FISH</h2>
+            <blockquote cite="">
+              <p>Fish are vertebrates (vertebrates have backbones) that live in water.
+                <br>They breathe using special organs called gills.
+              </p>
+            </blockquote>
+            <figcaption>—NATIONAL GEOGRAPHIC KIDS</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="row fish-cards">
+        <ul class="fish-list">
+          <!-- <li id="1">
+            <div class="fish-column">
+              <div class="fish-card">
+                <img src="images/Royal Blue Tang.jpg" alt="royal blue tang">
+                <p class="fish-name">Royal Blue Tang</p>
+                <div class="learn-more-card">
+                  <a class="learn-text" href="#"><i class="fa-solid fa-circle-info"></i> LEARN MORE</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li id="2">
+            <div class="fish-column">
+              <div class="fish-card">
+                <img src="images/Royal Blue Tang.jpg" alt="royal blue tang">
+                <p class="fish-name">Royal Blue Tang</p>
+                <div class="learn-more-card">
+                  <a class="learn-text" href="#"><i class="fa-solid fa-circle-info"></i> LEARN MORE</a> -->
+          <!-- </div>
+    </div>
+  </div>
+  </li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--
+  <div class="view" data-view="fish">
+    <div class="container">
+      <div class="row">
+        <div class="column-one-sixth"></div>
+        <div class="column-two-third">
+          <div class="title-div">
+            <p class="title">Red Snapper</p>
+          </div>
+        </div>
+        <div class="column-one-sixth"></div>
+      </div>
+      <div class="view-container">
+        <div class="row">
+          <div class="column-angle-div">
+            <span class="angle"><i class="fa-solid fa-angle-left fa-2xl"></i></span>
+          </div>
+          <div class="column-two-fourths">
+            <div class="fish-div">
+              <img class="fish-img" src="images/Royal Blue Tang.jpg" alt="">
+            </div>
+          </div>
+          <div class="column-angle-div">
+            <span class="angle"><i class="fa-solid fa-angle-right fa-2xl"></i></span>
+          </div>
+        </div>
+      </div> -->
+
+  <!-- <div class="row">
+        <div class="column-one-third"></div>
+        <div class="column-one-third">
+          <span class="heart"><i class="fa fa-heart" style="font-size:48px;color:blue;"></i></span>
+          <span><i class="fa fa-heart" style="font-size:48px;color:red"></i></span>
+
+        </div>
+        <div class="column-one-third"></div>
+      </div> -->
+
+  <!--end of container and data-view-->
+  <!-- </div>
+  </div> -->
+
+
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>

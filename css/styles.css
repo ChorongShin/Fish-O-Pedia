@@ -1,0 +1,526 @@
+* {
+  font-family: Poppins, sans-serif;
+}
+
+header .logo {
+  font-size: 1.4em;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1em;
+  margin-top: 1.4rem;
+  text-transform: uppercase;
+}
+
+.logo-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 15px solid #0073c9;
+}
+
+.header {
+  height: 70px;
+  background-color: #0073c9;
+}
+
+.home-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 100px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: url("https://i.ibb.co/HrfVRcx/menu.png");
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center;
+  cursor: pointer;
+  border: none;
+}
+
+button.toggle.active {
+  background: url("https://i.ibb.co/rt3HybH/close.png");
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position: center;
+  cursor: pointer;
+  border: none;
+}
+
+button.button-toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: url("https://i.ibb.co/HrfVRcx/menu.png");
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center;
+  cursor: pointer;
+  border: none;
+}
+
+button.button-toggle.active {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: url("https://i.ibb.co/HrfVRcx/menu.png");
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center;
+  cursor: pointer;
+  border: none;
+}
+
+.showcase {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111;
+  transition: 0.5s;
+  z-index: 2;
+}
+
+.showcase.active {
+  right: 300px;
+}
+
+.showcase video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #03a9f4;
+  mix-blend-mode: overlay;
+}
+
+.text {
+  position: relative;
+  z-index: 10;
+}
+
+.text h2 {
+  font-size: 5em;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.text h3 {
+  margin-top: 0;
+  font-size: 4em;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+
+.explore {
+  display: inline-block;
+  font-size: 1em;
+  background: #fff;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-weight: 500;
+  margin-top: 3rem;
+  color: #111;
+  letter-spacing: 2px;
+  transition: 0.2s;
+}
+
+.explore:hover {
+  letter-spacing: 6px;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-toggle {
+  position: relative;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.menu-toggle ul li {
+  list-style: none;
+  margin-top: 1rem;
+  border: 1px solid black;
+  padding: 0.3rem 0.5rem;
+  width: 160px;
+  text-align: center;
+}
+
+.menu-toggle ul li a {
+  text-decoration: none;
+  font-size: 15px;
+  color: #111;
+}
+
+.menu-toggle ul.open {
+  visibility: visible;
+  margin-top: 48px;
+  display: flex;
+  justify-content: center;
+}
+
+.menu ul {
+  position: relative;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.menu ul li {
+  list-style: none;
+  margin-top: 1rem;
+  border: 1px solid black;
+  padding: 2rem;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  font-size: 24px;
+  color: #111;
+}
+
+.menu ul.open {
+  visibility: visible;
+}
+
+.first-row {
+  margin-top: 3rem;
+}
+
+.intro-video {
+  width: 475px;
+}
+
+.fish-head {
+  margin-left: 2.2rem;
+  letter-spacing: 0.5rem;
+}
+
+.background-color {
+  background-color: #0e345a;
+  color: white;
+  height: 267px;
+  padding-top: 2rem;
+}
+
+blockquote p::before {
+  content: "\201C";
+}
+
+blockquote p::after {
+  content: "\201D";
+}
+
+figcaption {
+  margin-left: 2.2rem;
+}
+
+.fish-card {
+  margin-bottom: 1rem;
+  border: 1px solid rgb(199 199 199);
+  border-radius: 0.25rem;
+  box-shadow: 0 6px 6px -4px rgb(0 0 0 / 30%);
+}
+
+.fish-card > img {
+  width: 100%;
+  height: 281.8px;
+  background-color: rgb(210 210 210);
+}
+
+.fish-name {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.learn-more-card {
+  background-color: #e5e5e5;
+  border-radius: 20px;
+  padding: 0.5rem;
+  margin: 1rem 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.learn-text {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #111;
+  margin-left: 0.8rem;
+}
+
+.fish-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul.fish-list > li {
+  display: inline-block;
+  width: 400px;
+  margin-left: 50px;
+}
+
+ul.fish-list > li::after {
+  cursor: pointer;
+}
+
+div.title-div {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  background-color: #018a99;
+  height: 5rem;
+}
+
+p.title {
+  font-size: 2rem;
+  color: white;
+  margin-top: 20px;
+}
+
+.view-container {
+  width: 600px;
+  height: 350px;
+  margin-left: 180px;
+
+  /* border: solid;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem; */
+
+  /* background-color: white;
+  box-shadow: 0 6px 8px -6px rgb(0 0 0 / 40%); */
+}
+
+.fish-div {
+  margin-top: 3.5rem;
+  margin-left: 20px;
+  width: 350px;
+}
+
+img.fish-img {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.angle > i {
+  position: relative;
+}
+
+.fa-angle-left {
+  top: 150px;
+  left: 40px;
+}
+
+.fa-angle-right {
+  top: 150px;
+  left: 72px;
+}
+
+ion-icon.active {
+  animation: like 0.5s 1;
+  fill: red;
+  stroke: none;
+}
+
+ion-icon {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 30;
+  transition: all 0.5s;
+}
+
+@media only screen and (min-width: 414px)and (max-width: 576px) {
+  .container {
+    max-width: 900px;
+  }
+
+  .column-half {
+    width: 100%;
+    background-color: #0e345a;
+  }
+
+  .column-one-third, {
+    width: 100%;
+  }
+
+  .column-one-eights {
+    width: 10%;
+  }
+
+  .column-one-fourth {
+    width: 20%;
+  }
+
+  header .logo {
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1em;
+    text-transform: uppercase;
+  }
+
+  .text h2 {
+    font-size: 4.5em;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .text h3 {
+    margin-top: 0;
+    font-size: 3em;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1em;
+    text-transform: uppercase;
+  }
+
+  .logo-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 8px solid #0073c9;
+  }
+
+  .header {
+    height: 70px;
+    background-color: #0073c9;
+  }
+
+  .home-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 100px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  button.toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+
+    /* background: url(https://i.ibb.co/HrfVRcx/menu.png); */
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: center;
+    cursor: pointer;
+    border: none;
+    left: 50px;
+  }
+
+  .menu-toggle ul li {
+    list-style: none;
+    margin-top: 1rem;
+    border: 1px solid black;
+    padding: 0.3rem;
+    width: 200px;
+    text-align: center;
+  }
+
+  .menu-toggle ul li a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #111;
+  }
+
+  .menu-toggle ul.open {
+    visibility: visible;
+    margin-top: 48px;
+    margin-left: 111px;
+  }
+
+  .intro-video {
+    width: 452px;
+  }
+
+  blockquote p {
+    font-size: 1.25rem;
+  }
+
+  .fish-head {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .background-color {
+    background-color: #0e345a;
+    color: white;
+    height: 256.5px;
+    padding: 0;
+  }
+
+  ul.fish-list > li {
+    margin-left: 13px;
+  }
+
+  .column-angle-div {
+    width: 100%;
+  }
+
+  .fish-div {
+    width: 200px;
+  }
+
+  .view-container {
+    width: 500px;
+    height: 350px;
+    margin-left: 140px;
+  }
+
+  .fa-angle-left {
+    top: 114px;
+    left: 80px;
+  }
+
+  .fa-angle-right {
+    top: 113px;
+    left: 42px;
+  }
+}

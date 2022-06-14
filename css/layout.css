@@ -1,0 +1,73 @@
+.view {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column-one-fourth {
+  width: calc(100%/4);
+}
+
+.column-different {
+  width: 38.2%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fish-column {
+  margin-top: 3rem;
+  width: 400px;
+  display: inline-block;
+  margin-right: 0;
+}
+
+.column-full {
+  width: 100%;
+}
+
+.column-half {
+  width: 50%;
+}
+
+.column-one-third {
+  width: calc(100%/3);
+}
+
+.column-two-third {
+  width: calc(200%/3);
+}
+
+.column-angle-div {
+  width: 15%;
+}
+
+.column-two-fourth {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.column-one-sixth {
+  width: calc(100%/6);
+}
+
+.column-one-eights {
+  width: calc(100%/8);
+}
+
+.empty {
+  height: 30px;
+}
