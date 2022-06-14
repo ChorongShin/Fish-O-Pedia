@@ -1,0 +1,50 @@
+.view {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column-one-fourth {
+  width: calc(100%/4);
+}
+
+.column-different {
+  width: 38.2%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.column-one-third {
+  padding-left: 1.6rem;
+  margin-top: 3rem;
+  width: 32.5%;
+}
+
+.column-full {
+  width: 100%;
+}
+
+.column-half {
+  width: 50%;
+}
+
+.column-one-eights {
+  width: calc(100%/8);
+}
+
+.empty {
+  height: 30px;
+}
