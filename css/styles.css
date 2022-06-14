@@ -39,8 +39,7 @@ button.toggle {
   position: relative;
   width: 60px;
   height: 60px;
-
-  /* background: url(https://i.ibb.co/HrfVRcx/menu.png); */
+  background: url("https://i.ibb.co/HrfVRcx/menu.png");
   background-repeat: no-repeat;
   background-size: 30px;
   background-position: center;
@@ -49,7 +48,7 @@ button.toggle {
 }
 
 button.toggle.active {
-  /* background: url(https://i.ibb.co/rt3HybH/close.png); */
+  background: url("https://i.ibb.co/rt3HybH/close.png");
   background-repeat: no-repeat;
   background-size: 25px;
   background-position: center;
@@ -61,8 +60,7 @@ button.button-toggle {
   position: relative;
   width: 60px;
   height: 60px;
-
-  /* background: url(https://i.ibb.co/HrfVRcx/menu.png); */
+  background: url("https://i.ibb.co/HrfVRcx/menu.png");
   background-repeat: no-repeat;
   background-size: 30px;
   background-position: center;
@@ -74,8 +72,7 @@ button.button-toggle.active {
   position: relative;
   width: 60px;
   height: 60px;
-
-  /* background: url(https://i.ibb.co/HrfVRcx/menu.png); */
+  background: url("https://i.ibb.co/HrfVRcx/menu.png");
   background-repeat: no-repeat;
   background-size: 30px;
   background-position: center;
@@ -298,6 +295,10 @@ ul.fish-list > li {
   display: inline-block;
   width: 400px;
   margin-left: 50px;
+}
+
+ul.fish-list > li::after {
+  cursor: pointer;
 }
 
 div.title-div {
