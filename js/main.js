@@ -19,8 +19,8 @@ function getFishData() {
   xhr.addEventListener('load', function () {
     // console.log(xhr.status);
     // console.log(xhr.response[0]['Species Name']);
-    for (var fishId = 0; fishId < 20; fishId++) {
-      if (xhr.response[fishId]['Image Gallery'] !== null) {
+    for (var fishId = 0; fishId < 18; fishId++) {
+      if (fishId === 6) {
         var columnThird = document.createElement('div');
         columnThird.setAttribute('class', 'column-one-third');
 
@@ -28,8 +28,8 @@ function getFishData() {
         fishCard.setAttribute('class', 'fish-card');
 
         var fishImage = document.createElement('img');
-        fishImage.setAttribute('src', xhr.response[fishId]['Image Gallery'][0].src);
-        fishImage.setAttribute('alt', xhr.response[fishId]['Image Gallery'][0].alt);
+        fishImage.setAttribute('src', xhr.response[fishId]['Image Gallery'].src);
+        fishImage.setAttribute('alt', xhr.response[fishId]['Image Gallery'].alt);
 
         var fishName = document.createElement('p');
         fishName.setAttribute('class', 'fish-name');
@@ -52,7 +52,44 @@ function getFishData() {
         fishCard.append(learnMoreCard);
         learnMoreCard.append(learnText);
         learnText.append(icon);
+        // renderFishCards(xhr.response[6]);
+        // fishCards.append(renderFishCards(xhr.response[6]));
+      } else if (xhr.response[fishId]['Image Gallery'] !== null) {
+        columnThird = document.createElement('div');
+        columnThird.setAttribute('class', 'column-one-third');
+
+        fishCard = document.createElement('div');
+        fishCard.setAttribute('class', 'fish-card');
+
+        fishImage = document.createElement('img');
+        fishImage.setAttribute('src', xhr.response[fishId]['Image Gallery'][0].src);
+        fishImage.setAttribute('alt', xhr.response[fishId]['Image Gallery'][0].alt);
+
+        fishName = document.createElement('p');
+        fishName.setAttribute('class', 'fish-name');
+        fishName.textContent = xhr.response[fishId]['Species Name'];
+
+        learnMoreCard = document.createElement('div');
+        learnMoreCard.setAttribute('class', 'learn-more-card');
+
+        learnText = document.createElement('a');
+        learnText.setAttribute('class', 'learn-text');
+        learnText.setAttribute('href', '#');
+        learnText.textContent = 'LEARN MORE';
+
+        icon = document.createElement('i');
+        icon.setAttribute('class', 'fa-solid fa-circle-info');
+
+        columnThird.append(fishCard);
+        fishCard.append(fishImage);
+        fishCard.append(fishName);
+        fishCard.append(learnMoreCard);
+        learnMoreCard.append(learnText);
+        learnText.append(icon);
         fishCards.append(columnThird);
+        // renderFishCards(xhr.response[fishId]);
+        // fishCards.append(renderFishCards(xhr.response[fishId]));
+
       } else {
         columnThird = document.createElement('div');
         columnThird.setAttribute('class', 'column-one-third');
@@ -86,6 +123,8 @@ function getFishData() {
         learnMoreCard.append(learnText);
         learnText.append(icon);
         fishCards.append(columnThird);
+        // renderFishCards(xhr.response[fishId]);
+        // fishCards.append(renderFishCards(xhr.response[fishId]));
       }
     }
 
@@ -145,10 +184,10 @@ function handleView(viewData) {
 </div> */
 
 // function renderFishCards(card) {
-//   var xhr = new XMLHttpRequest(name);
-//   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
-//   xhr.responseType = 'json';
-//   xhr.reponse = card;
+//   // var xhr = new XMLHttpRequest(name);
+//   // xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
+//   // xhr.responseType = 'json';
+//   // xhr.reponse = card;
 //   var fishId = 0;
 //   var columnThird = document.createElement('div');
 //   columnThird.setAttribute('class', 'column-one-third');
@@ -156,9 +195,15 @@ function handleView(viewData) {
 //   var fishCard = document.createElement('div');
 //   fishCard.setAttribute('class', 'fish-card');
 
-//   var fishImage = document.createElement('img');
-//   fishImage.setAttribute('src', card[fishId]['Image Gallery'][0].src);
-//   fishImage.setAttribute('alt', card[fishId]['Image Gallery'][0].alt);
+//   if (fishId === 6) {
+//     var fishImage = document.createElement('img');
+//     fishImage.setAttribute('src', card[fishId]['Image Gallery'].src);
+//     fishImage.setAttribute('alt', card[fishId]['Image Gallery'].alt);
+//   } else {
+//     fishImage = document.createElement('img');
+//     fishImage.setAttribute('src', card[fishId]['Image Gallery'][0].src);
+//     fishImage.setAttribute('alt', card[fishId]['Image Gallery'][0].alt);
+//   }
 
 //   var fishName = document.createElement('p');
 //   fishName.setAttribute('class', 'fish-name');
