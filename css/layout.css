@@ -27,10 +27,11 @@
   justify-content: flex-end;
 }
 
-.column-one-third {
-  padding-left: 1.6rem;
+.fish-column {
   margin-top: 3rem;
-  width: 32.5%;
+  width: 400px;
+  display: inline-block;
+  margin-right: 0;
 }
 
 .column-full {
@@ -39,6 +40,28 @@
 
 .column-half {
   width: 50%;
+}
+
+.column-one-third {
+  width: calc(100%/3);
+}
+
+.column-two-third {
+  width: calc(200%/3);
+}
+
+.column-angle-div {
+  width: 15%;
+}
+
+.column-two-fourth {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.column-one-sixth {
+  width: calc(100%/6);
 }
 
 .column-one-eights {

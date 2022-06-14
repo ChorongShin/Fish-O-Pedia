@@ -8,124 +8,84 @@ var $header = document.querySelector('.header');
 var menu = document.querySelector('ul.menu-one');
 var menuTwo = document.querySelector('ul.menu-two');
 var menuToggleDiv = document.querySelector('div.menu-toggle');
-var fishCards = document.querySelector('.fish-cards');
+var $fishList = document.querySelector('ul.fish-list');
 
 var targetUrl = encodeURIComponent('https://www.fishwatch.gov/api/species');
 
-function getFishData() {
+$fishList.addEventListener('click', function (event) {
+
+  var closest = event.target.closest('ul > li');
+  var closestId = parseInt(closest.getAttribute('id'), 10);
+
+  for (var i = 0; i < $fishList.length; i++) {
+    if ($fishList[i] === closestId) {
+      handleView(data.fishList.id);
+      break;
+    }
+  }
+
+});
+
+function getFishDataList() {
   var xhr = new XMLHttpRequest(name);
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    // console.log(xhr.status);
-    // console.log(xhr.response[0]['Species Name']);
-    for (var fishId = 0; fishId < 18; fishId++) {
-      if (fishId === 6) {
-        var columnThird = document.createElement('div');
-        columnThird.setAttribute('class', 'column-one-third');
+    for (var fishId = 0; fishId < 30; fishId++) {
 
-        var fishCard = document.createElement('div');
-        fishCard.setAttribute('class', 'fish-card');
+      // var oneFish = {
+      //   title: null,
+      //   photo: null,
+      //   population: null,
+      //   biology: null,
+      //   location: null,
+      //   id: fishId
+      // };
 
-        var fishImage = document.createElement('img');
-        fishImage.setAttribute('src', xhr.response[fishId]['Image Gallery'].src);
-        fishImage.setAttribute('alt', xhr.response[fishId]['Image Gallery'].alt);
+      // oneFish.title = xhr.response[fishId]['Species Name'];
+      // oneFish.photo = xhr.response[fishId]['Species Illustration Photo'];
+      // oneFish.populatopn = xhr.response[fishId].population;
+      // oneFish.biology = xhr.response[fishId].biology;
+      // oneFish.location = xhr.response[fishId].Location;
+      // data.fishList.unshift(oneFish);
 
-        var fishName = document.createElement('p');
-        fishName.setAttribute('class', 'fish-name');
-        fishName.textContent = xhr.response[fishId]['Species Name'];
+      // fishList.append(renderFishCards(xhr.response[fishId]));
+      var $fish = document.createElement('li');
+      $fish.setAttribute('id', fishId);
 
-        var learnMoreCard = document.createElement('div');
-        learnMoreCard.setAttribute('class', 'learn-more-card');
+      var fishColumn = document.createElement('div');
+      fishColumn.setAttribute('class', 'fish-column');
 
-        var learnText = document.createElement('a');
-        learnText.setAttribute('class', 'learn-text');
-        learnText.setAttribute('href', '#');
-        learnText.textContent = 'LEARN MORE';
+      var fishCard = document.createElement('div');
+      fishCard.setAttribute('class', 'fish-card');
 
-        var icon = document.createElement('i');
-        icon.setAttribute('class', 'fa-solid fa-circle-info');
+      var fishImage = document.createElement('img');
+      fishImage.setAttribute('src', xhr.response[fishId]['Species Illustration Photo'].src);
+      fishImage.setAttribute('alt', xhr.response[fishId]['Species Illustration Photo'].title);
 
-        columnThird.append(fishCard);
-        fishCard.append(fishImage);
-        fishCard.append(fishName);
-        fishCard.append(learnMoreCard);
-        learnMoreCard.append(learnText);
-        learnText.append(icon);
-        // renderFishCards(xhr.response[6]);
-        // fishCards.append(renderFishCards(xhr.response[6]));
-      } else if (xhr.response[fishId]['Image Gallery'] !== null) {
-        columnThird = document.createElement('div');
-        columnThird.setAttribute('class', 'column-one-third');
+      var fishName = document.createElement('p');
+      fishName.setAttribute('class', 'fish-name');
+      fishName.textContent = xhr.response[fishId]['Species Name'];
 
-        fishCard = document.createElement('div');
-        fishCard.setAttribute('class', 'fish-card');
+      var learnMoreCard = document.createElement('div');
+      learnMoreCard.setAttribute('class', 'learn-more-card');
 
-        fishImage = document.createElement('img');
-        fishImage.setAttribute('src', xhr.response[fishId]['Image Gallery'][0].src);
-        fishImage.setAttribute('alt', xhr.response[fishId]['Image Gallery'][0].alt);
+      var learnText = document.createElement('a');
+      learnText.setAttribute('class', 'learn-text');
+      learnText.setAttribute('href', '#');
+      learnText.textContent = 'LEARN MORE';
 
-        fishName = document.createElement('p');
-        fishName.setAttribute('class', 'fish-name');
-        fishName.textContent = xhr.response[fishId]['Species Name'];
+      var icon = document.createElement('i');
+      icon.setAttribute('class', 'fa-solid fa-circle-info');
 
-        learnMoreCard = document.createElement('div');
-        learnMoreCard.setAttribute('class', 'learn-more-card');
-
-        learnText = document.createElement('a');
-        learnText.setAttribute('class', 'learn-text');
-        learnText.setAttribute('href', '#');
-        learnText.textContent = 'LEARN MORE';
-
-        icon = document.createElement('i');
-        icon.setAttribute('class', 'fa-solid fa-circle-info');
-
-        columnThird.append(fishCard);
-        fishCard.append(fishImage);
-        fishCard.append(fishName);
-        fishCard.append(learnMoreCard);
-        learnMoreCard.append(learnText);
-        learnText.append(icon);
-        fishCards.append(columnThird);
-        // renderFishCards(xhr.response[fishId]);
-        // fishCards.append(renderFishCards(xhr.response[fishId]));
-
-      } else {
-        columnThird = document.createElement('div');
-        columnThird.setAttribute('class', 'column-one-third');
-
-        fishCard = document.createElement('div');
-        fishCard.setAttribute('class', 'fish-card');
-
-        fishImage = document.createElement('img');
-        fishImage.setAttribute('src', 'images/fish icon.png');
-        fishImage.setAttribute('alt', 'none');
-
-        fishName = document.createElement('p');
-        fishName.setAttribute('class', 'fish-name');
-        fishName.textContent = xhr.response[fishId]['Species Name'];
-
-        learnMoreCard = document.createElement('div');
-        learnMoreCard.setAttribute('class', 'learn-more-card');
-
-        learnText = document.createElement('a');
-        learnText.setAttribute('class', 'learn-text');
-        learnText.setAttribute('href', '#');
-        learnText.textContent = 'LEARN MORE';
-
-        icon = document.createElement('i');
-        icon.setAttribute('class', 'fa-solid fa-circle-info');
-
-        columnThird.append(fishCard);
-        fishCard.append(fishImage);
-        fishCard.append(fishName);
-        fishCard.append(learnMoreCard);
-        learnMoreCard.append(learnText);
-        learnText.append(icon);
-        fishCards.append(columnThird);
-        // renderFishCards(xhr.response[fishId]);
-        // fishCards.append(renderFishCards(xhr.response[fishId]));
-      }
+      $fish.append(fishColumn);
+      fishColumn.append(fishCard);
+      fishCard.append(fishImage);
+      fishCard.append(fishName);
+      fishCard.append(learnMoreCard);
+      learnMoreCard.append(icon);
+      icon.append(learnText);
+      $fishList.append($fish);
     }
 
   });
@@ -133,10 +93,7 @@ function getFishData() {
   xhr.send();
 }
 
-getFishData();
-
 $menuToggle.addEventListener('click', function (event) {
-  // console.log('working');
   $menuToggle.classList.toggle('active');
   $showcase.classList.toggle('active');
   menu.classList.toggle('open');
@@ -144,7 +101,6 @@ $menuToggle.addEventListener('click', function (event) {
 });
 
 $headToggle.addEventListener('click', function (event) {
-  // console.log('working111');
   $headToggle.classList.toggle('active');
   menuTwo.classList.toggle('open');
   menuToggleDiv.classList.toggle('hidden');
@@ -155,6 +111,7 @@ $exploreButton.addEventListener('click', function (event) {
   handleView('list');
   $header.classList.remove('hidden');
   $header.classList.add('view');
+  getFishDataList();
 });
 
 $backHome.addEventListener('click', function () {
@@ -173,41 +130,28 @@ function handleView(viewData) {
   }
 }
 
-/* <div class="column-one-thirds">
-  <div class="fish-card">
-    <img src="images/Royal Blue Tang.jpg" alt="royal blue tang">
-      <p class="fish-name">Royal Blue Tang</p>
-      <div class="learn-more-card">
-        <a class="learn-text" href="#"><i class="fa-solid fa-circle-info"></i>       LEARN MORE</a>
-      </div>
-  </div>
-</div> */
-
 // function renderFishCards(card) {
 //   // var xhr = new XMLHttpRequest(name);
 //   // xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
 //   // xhr.responseType = 'json';
-//   // xhr.reponse = card;
-//   var fishId = 0;
-//   var columnThird = document.createElement('div');
-//   columnThird.setAttribute('class', 'column-one-third');
+//   // xhr.reponse = card
+
+//   var $fish = document.createElement('li');
+//   $fish.setAttribute('id', card.id);
+
+//   var fishColumn = document.createElement('div');
+//   fishColumn.setAttribute('class', 'fish-column');
 
 //   var fishCard = document.createElement('div');
 //   fishCard.setAttribute('class', 'fish-card');
 
-//   if (fishId === 6) {
-//     var fishImage = document.createElement('img');
-//     fishImage.setAttribute('src', card[fishId]['Image Gallery'].src);
-//     fishImage.setAttribute('alt', card[fishId]['Image Gallery'].alt);
-//   } else {
-//     fishImage = document.createElement('img');
-//     fishImage.setAttribute('src', card[fishId]['Image Gallery'][0].src);
-//     fishImage.setAttribute('alt', card[fishId]['Image Gallery'][0].alt);
-//   }
+//   var fishImage = document.createElement('img');
+//   fishImage.setAttribute('src', card.id['Species Illustration Photo'].src);
+//   fishImage.setAttribute('alt', card.id['Species Illustration Photo'].title);
 
 //   var fishName = document.createElement('p');
 //   fishName.setAttribute('class', 'fish-name');
-//   fishName.textContent = card[fishId]['Species Name'];
+//   fishName.textContent = card.id['Species Name'];
 
 //   var learnMoreCard = document.createElement('div');
 //   learnMoreCard.setAttribute('class', 'learn-more-card');
@@ -220,14 +164,13 @@ function handleView(viewData) {
 //   var icon = document.createElement('i');
 //   icon.setAttribute('class', 'fa-solid fa-circle-info');
 
-//   columnThird.append(fishCard);
+//   $fish.append(fishColumn);
+//   fishColumn.append(fishCard);
 //   fishCard.append(fishImage);
 //   fishCard.append(fishName);
 //   fishCard.append(learnMoreCard);
-//   learnMoreCard.append(learnText);
-//   learnText.append(icon);
+//   learnMoreCard.append(icon);
+//   icon.append(learnText);
 
-//   fishId++;
-//   return columnThird;
-
+//   return $fish;
 // }

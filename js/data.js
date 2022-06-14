@@ -1,6 +1,8 @@
 /* exported data */
 var data = {
-  view: 'show-case'
+  view: 'show-case',
+  fishList: [],
+  nextId: 1
 };
 
 var previousDataJSON = localStorage.getItem('entry-local-storage');
