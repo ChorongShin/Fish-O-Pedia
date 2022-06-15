@@ -1,3 +1,5 @@
+// var targetUrl = encodeURIComponent('https://www.fishwatch.gov/api/species');
+
 var $menuToggle = document.querySelector('button.toggle');
 var $showcase = document.querySelector('.showcase');
 var $exploreButton = document.querySelector('.explore');
@@ -9,26 +11,89 @@ var menu = document.querySelector('ul.menu-one');
 var menuTwo = document.querySelector('ul.menu-two');
 var menuToggleDiv = document.querySelector('div.menu-toggle');
 var $fishList = document.querySelector('ul.fish-list');
+var $fishIcon = document.querySelector('img.plain-fish');
+var $fishName = document.querySelector('p.title');
+var $fishImage = document.querySelector('img.fish-img');
+// var $previousIcon = document.querySelector('.fa-angle-left');
+// var $nextIcon = document.querySelector('.fa-angle-right');
 
-var targetUrl = encodeURIComponent('https://www.fishwatch.gov/api/species');
+// Image carousel
 
-$fishList.addEventListener('click', function (event) {
+// function getFishPhotos(fish) {
+//   var fishId = 0;
+//   var count = 0;
 
-  var closest = event.target.closest('ul > li');
-  var closestId = parseInt(closest.getAttribute('id'), 10);
+//   var fishImages = fish[fishId]['Image Gallery'];
 
-  for (var i = 0; i < $fishList.length; i++) {
-    if ($fishList[i] === closestId) {
-      handleView(data.fishList.id);
-      break;
-    }
+//   if (fishImages !== null) {
+//     for (fishId = 0; fishId < 30; fishId++) {
+//       for (count; count < fishImages.length; count++) {
+//         $fishImage.setAttribute('src', fishImages[count].src);
+//       }
+//     }
+//   } else {
+//     $fishImage.setAttribute('src', 'images/empty fish.png');
+//   }
+
+//   function previous() {
+//     if (count <= 0) {
+//       count = fishImages.length;
+//     }
+//     count--;
+//     return setImg();
+//   }
+
+//   function next() {
+//     if (count >= fishImages.length - 1) {
+//       count--;
+//     }
+//     count++;
+//     return setImg();
+//   }
+
+//   function setImg() {
+//     if (fishImages !== null) {
+//       $fishImage.setAttribute('src', fishImages[count].src);
+//       $fishImage.setAttribute('alt', fishImages[count].title);
+//     } else {
+//       $fishImage.setAttribute('src', 'images/empty fish.png');
+//       $fishImage.setAttribute('alt', 'No fish');
+//       var paragraph = document.createElement('p');
+//       paragraph.textContent = 'Sorry, we don\'t  have a picture';
+//       $fishImage.append(paragraph);
+//     }
+//   }
+//   $previousIcon.addEventListener('click', previous);
+//   $nextIcon.addEventListener('click', next);
+
+// }
+
+// getFishPhotos();
+
+// var fish = {
+//   views: ['Royal Blue Tang', 'Clownfish', 'white fish', 'blue fish'],
+//   images: ['Royal Blue Tang.jpg', 'Logo.jpg', 'empty fish.png', 'fish icon.png']
+// };
+
+// Press like click event
+var on = 'images/fish-hook.png';
+var off = 'images/fish icon.png';
+var state = false;
+$fishIcon.addEventListener('click', function (event) {
+
+  if (state) {
+    $fishIcon.src = on;
+    state = false;
+  } else {
+    $fishIcon.src = off;
+    state = true;
   }
-
 });
 
+// fish list
 function getFishDataList() {
   var xhr = new XMLHttpRequest(name);
-  xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
+  // xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     for (var fishId = 0; fishId < 30; fishId++) {
@@ -93,6 +158,51 @@ function getFishDataList() {
   xhr.send();
 }
 
+function fishDetails(event) {
+  // console.log('working');
+  var closest = event.target.closest('ul > li');
+  // console.log(closest);
+  var $fishId = parseInt(closest.getAttribute('id'), 10);
+  // console.log($fishId);
+
+  var xhr = new XMLHttpRequest();
+  // xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    // for (var id = 0; id < 30; id++) {
+    // if ($fishId === xhr.response[id]) {
+    // console.log('are they the same id number?', $fishId);
+    $fishName.textContent = xhr.response[$fishId]['Species Name'];
+    if (xhr.response[$fishId]['Image Gallery'] === null) {
+      $fishImage.setAttribute('src', 'images/empty fish.png');
+    }
+    if (xhr.response[$fishId]['Image Gallery'] !== null) {
+      for (var number = 0; number < xhr.response[$fishId]['Image Gallery'].length; number++) {
+        $fishImage.setAttribute('src', xhr.response[$fishId]['Image Gallery'][number].src);
+      }
+    }
+    // getFishPhotos(xhr.response[$fishId]['Image Gallery']);
+    handleView('fish');
+    // }
+    // }
+  });
+  xhr.send();
+}
+
+$fishList.addEventListener('click', fishDetails);
+
+// $fishList.addEventListener('click', function (event) {
+//   console.log('working');
+//   var closest = event.target.closest('ul > li');
+//   console.log(closest);
+//   var closestId = parseInt(closest.getAttribute('id'), 10);
+//   console.log(closestId);
+
+//   xhr.response;
+//   handleView('fish');
+
+// });
+
 $menuToggle.addEventListener('click', function (event) {
   $menuToggle.classList.toggle('active');
   $showcase.classList.toggle('active');
@@ -119,13 +229,17 @@ $backHome.addEventListener('click', function () {
   $header.classList.add('hidden');
 });
 
+window.addEventListener('DOMContentLoaded', function (event) {
+
+});
+
 function handleView(viewData) {
   data.view = viewData;
   for (var i = 0; i < $views.length; i++) {
     if ($views[i].getAttribute('data-view') === viewData) {
       $views[i].className = 'view';
     } else {
-      $views[i].className = 'hidden';
+      $views[i].className = 'view hidden';
     }
   }
 }
