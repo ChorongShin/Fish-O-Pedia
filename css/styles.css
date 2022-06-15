@@ -224,19 +224,30 @@ button.button-toggle.active {
   margin-top: 3rem;
 }
 
-.intro-video {
-  width: 475px;
+.intro-video-div {
+  background-color: #0e345a;
+  height: 450px;
 }
 
-.fish-head {
+.intro-video {
+  width: 800px;
+}
+
+h2.fish-head {
   margin-left: 2.2rem;
   letter-spacing: 0.5rem;
+  font-size: 4rem;
+  margin-bottom: 0;
+}
+
+p.quote {
+  font-size: 1.5rem;
 }
 
 .background-color {
   background-color: #0e345a;
   color: white;
-  height: 267px;
+  height: 450px;
   padding-top: 2rem;
 }
 
@@ -315,23 +326,9 @@ p.title {
   margin-top: 20px;
 }
 
-.view-container {
-  width: 600px;
-  height: 350px;
-  margin-left: 180px;
-
-  /* border: solid;
-  border-top-right-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem; */
-
-  /* background-color: white;
-  box-shadow: 0 6px 8px -6px rgb(0 0 0 / 40%); */
-}
-
 .fish-div {
-  margin-top: 3.5rem;
-  width: 350px;
+  margin-top: 2rem;
+  width: 400px;
   height: 300px;
 }
 
@@ -341,18 +338,22 @@ img.fish-img {
   background-color: white;
 }
 
+.angle {
+  color: orange;
+}
+
 .angle > i {
   position: relative;
 }
 
 .fa-angle-left {
   top: 150px;
-  left: 140px;
+  left: 293px;
 }
 
 .fa-angle-right {
   top: 150px;
-  left: 60;
+  right: 89px;
 }
 
 .press-like {
@@ -371,6 +372,7 @@ img.fish-img {
 
 div.fish-icon {
   width: 180px;
+  height: 150px;
   position: relative;
   bottom: 2px;
   left: 15px;
@@ -381,12 +383,42 @@ img.plain-fish {
   height: 100%;
 }
 
+div.table-row {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  justify-content: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin-left: 9.5rem;
+  margin-right: 9.5rem;
+  border: 2px solid #2085c5;
+  border-top: 10px solid #2085c5;
+  width: 800px;
+}
+
+tr {
+  height: 70px;
+}
+
 th {
   width: 30%;
 }
 
 td {
   width: 70%;
+  border: none;
+  padding: 20px;
+  margin: 0;
+}
+
+td.have-li {
+  padding: 0 0 20px;
+}
+
+tr:nth-child(odd) {
+  background-color: #d9eaec;
 }
 
 ul.fish-icon-list {
@@ -396,12 +428,12 @@ ul.fish-icon-list {
 
 .list-item {
   margin: 0;
-  padding: 20px;
+  padding: 20px 27px 0 22px;
   list-style: none;
-  background-image: url("../images/fish\ icon.png");
+  background-image: url("../images/orange.png");
   background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 40px;
+  background-position: 1px 1.4em;
+  background-size: 13px;
 }
 
 @media only screen and (min-width: 414px)and (max-width: 576px) {
@@ -411,7 +443,6 @@ ul.fish-icon-list {
 
   .column-half {
     width: 100%;
-    background-color: #0e345a;
   }
 
   .column-one-third, {
@@ -424,6 +455,10 @@ ul.fish-icon-list {
 
   .column-one-fourth {
     width: 20%;
+  }
+
+  .column-different {
+    width: 36.2%;
   }
 
   header .logo {
@@ -491,10 +526,11 @@ ul.fish-icon-list {
   .menu-toggle ul li {
     list-style: none;
     margin-top: 1rem;
-    border: 1px solid black;
     padding: 0.3rem;
-    width: 200px;
+    width: 150px;
     text-align: center;
+    padding-top: 3rem;
+    border: none;
   }
 
   .menu-toggle ul li a {
@@ -504,29 +540,33 @@ ul.fish-icon-list {
   }
 
   .menu-toggle ul.open {
-    visibility: visible;
-    margin-top: 48px;
-    margin-left: 111px;
+    margin: 0 2.5rem 0 0;
+  }
+
+  .intro-video-div {
+    background-color: #0e345a;
+    height: 237.5px;
   }
 
   .intro-video {
-    width: 452px;
+    width: 414px;
   }
 
-  blockquote p {
+  p.quote {
     font-size: 1.25rem;
+    text-align: center;
   }
 
-  .fish-head {
-    font-size: 2rem;
-    margin-top: 0;
-    margin-bottom: 0;
+  h2.fish-head {
+    font-size: 3rem;
+    margin: 0;
+    text-align: center;
   }
 
   .background-color {
     background-color: #0e345a;
     color: white;
-    height: 256.5px;
+    height: 278.5px;
     padding: 0;
   }
 
@@ -539,17 +579,18 @@ ul.fish-icon-list {
   }
 
   .fish-div {
-    width: 200px;
+    height: auto;
+    width: 260px;
   }
 
   .fa-angle-left {
-    top: 124px;
-    left: 67px;
+    top: 113px;
+    left: 40px;
   }
 
   .fa-angle-right {
-    top: 124px;
-    left: 0;
+    top: 113px;
+    left: 16px;
   }
 
   .column-half.press-like-div {
@@ -563,14 +604,32 @@ ul.fish-icon-list {
     justify-content: center;
   }
 
+  div.fish-image-row {
+    justify-content: center;
+  }
+
   div.fish-icon {
-    width: 153px;
-    left: 150px;
+    width: 100px;
+    height: 100px;
     top: 50px;
   }
 
   div.press-like {
     left: 3px;
   }
-}";
+
+  .like {
+    padding-top: 0;
+  }
+
+  table {
+    margin-left: 0;
+    margin-right: 0;
+    width: 88%;
+  }
+
+  div.table-row {
+    margin-top: 4rem;
+    justify-content: center;
+  }
 }
