@@ -374,8 +374,8 @@ div.fish-icon {
   width: 180px;
   height: 150px;
   position: relative;
-  bottom: 2px;
-  left: 15px;
+  top: 13px;
+  right: 55px;
 }
 
 img.plain-fish {
@@ -399,11 +399,12 @@ table {
 }
 
 tr {
-  height: 70px;
+  height: 80px;
 }
 
 th {
   width: 30%;
+  font-size: 1.2rem;
 }
 
 td {
@@ -411,9 +412,15 @@ td {
   border: none;
   padding: 20px;
   margin: 0;
+  font-size: 1.1rem;
 }
 
-td.have-li {
+td.no-li {
+  padding: 20px;
+}
+
+td.location-li,
+td.biology-li {
   padding: 0 0 20px;
 }
 
@@ -421,12 +428,18 @@ tr:nth-child(odd) {
   background-color: #d9eaec;
 }
 
-ul.fish-icon-list {
+td.scientific-name {
+  font-style: italic;
+}
+
+ul.fish-location-list,
+ul.fish-biology-list {
   margin: 0;
   padding: 0;
 }
 
-.list-item {
+ul.fish-location-list > li,
+ul.fish-biology-list > li {
   margin: 0;
   padding: 20px 27px 0 22px;
   list-style: none;
@@ -459,6 +472,10 @@ ul.fish-icon-list {
 
   .column-different {
     width: 36.2%;
+  }
+
+  .fish-column {
+    padding: 0 1.3rem;
   }
 
   header .logo {
@@ -612,6 +629,7 @@ ul.fish-icon-list {
     width: 100px;
     height: 100px;
     top: 50px;
+    left: 10px;
   }
 
   div.press-like {

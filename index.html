@@ -16,7 +16,7 @@
 
 <body>
   <main>
-    <div class="hidden" data-view="show-case">
+    <div class="view" data-view="show-case">
       <section class="showcase">
         <header class="home-header">
           <h2 class="logo">What's Your Fish</h2>
@@ -121,13 +121,13 @@
     </div>
   </div>
 
-  <div class="view" data-view="fish">
+  <div class="hidden" data-view="fish">
     <div class="container">
       <div class="row">
         <!-- <div class="column-one-sixth"></div> -->
         <div class="column-full">
           <div class="title-div">
-            <p class="title">Red Snapper</p>
+            <p class="title">Crimson Jobfish</p>
           </div>
         </div>
         <!-- <div class="column-one-sixth"></div> -->
@@ -138,7 +138,7 @@
         </div>
         <div class="column-two-third fish-image-div">
           <div class="fish-div">
-            <img class="fish-img" src="images/Royal Blue Tang.jpg" alt="no fish">
+            <img class="fish-img" src="" alt="fish">
           </div>
         </div>
         <div class="column-one-sixth">
@@ -162,19 +162,41 @@
         <table>
           <tbody>
             <tr>
-              <th>Species Name</th>
-              <td>Red Snapper</td>
+              <th>Scientific Name</th>
+              <td class="scientific-name">Pristipomoides filamentosus</td>
+            </tr>
+            <tr>
+              <th>Location</th>
+              <td class="location-li">
+                <ul class="fish-location-list">
+                  <!-- <li class="location list-item">According to the 2019 stock assessment, white hake is
+                    overfished&nbsp;but&nbsp;not subject to overfishing.
+                    Summary stock assessment information can be found on <a href="https://www.st.nmfs.noaa.gov/stocksmart?app=browse_by_stock&amp;stockid=10518\">Stock
+                      SMART</a>.</li> -->
+                </ul>
+              </td>
             </tr>
             <tr>
               <th>Population</th>
-              <td>Below target level in the Gulf of Mexico but fishing rate promotes population growth. Significantly
-                below target
-                population levels in the South Atlantic. Rebuilding plans are in place for both stocks.</td>
+              <td class="population">
+                <!-- The population level is unknown, but the stock is contained in 5 bottomfish complexes whose status ranges from
+              overfished to not overfished to unknown. -->
+              </td>
             </tr>
             <tr>
               <th>Biology</th>
-              <td class="have-li">
-                <ul class="fish-icon-list">
+              <td class="biology-li">
+                <ul class="fish-biology-list">
+                  <!-- <li class="biology list-item">Crimson jobfish reach sexual maturity around 1.8
+                    years of age.</li>
+                  <li class="biology list-item">Spawning occurs between June and
+                    December with a peak in August.</li>
+                  <li class="biology list-item">Large fish reach about 20 lb and 3 feet
+                    long.</li>
+                  <li class="biology list-item">They feed on
+                    shrimps, squids, and small fishes.</li> -->
+                </ul>
+                <!-- <ul class="fish-icon-list">
                   <li class="list-item">Red snapper grow at a moderate rate, and may reach 40 inches long and 50 pounds.
                   </li>
                   <li class="list-item">They can live a long time—red snapper as old as 57 years have been reported in
@@ -182,13 +204,11 @@
                     and as old as 51 years
                     in the South Atlantic.</li>
                   <li class="list-item">Females are able to reproduce as early as age 2.</li>
-                  <li class="list-item">Males and females spawn from May to October, depending on their location.</li>
-                </ul>
+                  <li class="list-item">Males and females spawn from May to October, depending on their location.</li> -->
+                <!-- </ul> -->
               </td>
             </tr>
-            <tr>
-              <th></th>
-            </tr>
+
           </tbody>
         </table>
       </div>
@@ -200,6 +220,7 @@
 
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
+  <!-- <script src="js/testing.js"></script> -->
 </body>
 
 </html>

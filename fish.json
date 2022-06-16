@@ -1,0 +1,123 @@
+
+fish: [
+  {
+    'Habitat Impacts': 'Bottomfish fishing operations, typically using weighted lines and baited hooks, do not have adverse impacts to the habitat.',
+    'Image Gallery': [
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/4_9.jpg',
+        alt: 'Crimson jobfish on measuring board.  Photo credit: Pacific Islands Fisheries Group',
+        title: 'Crimson jobfish on measuring board.  Photo credit: Pacific Islands Fisheries Group'
+      },
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/2_7.jpg',
+        alt: 'Crimson jobfish aboard fishing vessel.  Photo credit: Pacific Islands Fisheries Group',
+        title: 'Crimson jobfish aboard fishing vessel.  Photo credit: Pacific Islands Fisheries Group'
+      },
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/iStock-496376114%20-%20small_1.jpg',
+        alt: 'Pan-seared crispy crimson jobfish with kiawe smoked chili pepper honey.  Photo credit: iStock',
+        title: 'Pan-seared crispy crimson jobfish with kiawe smoked chili pepper honey.  Photo credit: iStock'
+      },
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/1_10.jpg',
+        alt: 'Fishing for crimson jobfish.  Photo credit: Pacific Islands Fisheries Group',
+        title: 'Fishing for crimson jobfish.  Photo credit: Pacific Islands Fisheries Group'
+      }
+    ],
+    Location: '<ul>\n<li>Crimson jobfish are distributed throughout the Indo-Pacific region.</li>\n<li>They inhabit hard bottoms at depths from 40 to 120 fathoms.</li>\n</ul>\n',
+    'NOAA Fisheries Region': 'Pacific Islands',
+    Population: 'The population level is unknown, but the stock is contained in 5 bottomfish complexes whose status ranges from overfished to not overfished to unknown.',
+    'Population Status': '<ul>\n<li>There are five stocks of crimson jobfish&nbsp;within a bottomfish complex in each of American Samoa, Guam, Main Hawaiian Islands, Northern Mariana Islands, and Northwestern Hawaiian Islands.&nbsp; According to the most recent stock assessments:\n<ul>\n<li>The population status of the American Samoa Bottomfish Multi-species Complex, which includes crimson jobfish, is overfished and subject to overfishing (2019 stock assessment).&nbsp; Summary stock assessment information can be found on <a href="https://www.st.nmfs.noaa.gov/stocksmart?stockname=American%20Samoa%20Bottomfish%20Multi-species%20Complex&amp;stockid=11695">Stock SMART</a>.</li>\n<li>The population status of the Guam Bottomfish Multi-species Complex, which includes crimson jobfish, is overfished but not subject to overfishing (2019 stock assessment).&nbsp; Summary stock assessment information can be found on <a href="https://www.st.nmfs.noaa.gov/stocksmart?stockname=Guam%20Bottomfish%20Multi-species%20Complex&amp;stockid=11696">Stock SMART</a>.</li>\n<li>The population status of the Main Hawaiian Islands Deep 7 Bottomfish Multi-species Complex, which includes crimson jobfish, is not overfished and is not subject to overfishing (2021 stock assessment).&nbsp; Summary stock assessment information can be found on <a href="https://www.st.nmfs.noaa.gov/stocksmart?stockname=Main%20Hawaiian%20Islands%20Deep%207%20Bottomfish%20Multi-species%20Complex&amp;stockid=11827">Stock SMART</a>.</li>\n<li>The population status of the Northern Mariana Islands Bottomfish Multi-species Complex, which includes crimson jobfish, is not overfished and is not subject to overfishing (2019 stock assessment).&nbsp; Summary stock assessment information can be found on <a href="https://www.st.nmfs.noaa.gov/stocksmart?stockname=Northern%20Mariana%20Islands%20Bottomfish%20Multi-species%20Complex&amp;stockid=11731">Stock SMART</a>.</li>\n<li>The population status of the Northwestern Hawaiian Islands Bottomfish Multi-species Complex, which includes crimson jobfish, is unknown. This stock complex occurs within the Papahanaumokuakea Marine National Monument where commercial fishing is prohibited.</li>\n</ul>\n</li>\n</ul>\n',
+    'Scientific Name': 'Pristipomoides filamentosus',
+    'Species Illustration Photo': {
+      src: 'https://www.fishwatch.gov/sites/default/files/Pink_snapper_NB_W_0.png',
+      alt: 'Pink snapper',
+      title: 'Pink snapper'
+    },
+    'Species Name': 'Crimson Jobfish',
+    Biology: '<ul>\n<li>Crimson jobfish reach sexual maturity around 1.8 years of age.</li>\n<li>Spawning occurs between June and December with a peak in August.</li>\n<li>Large fish reach about 20 lb and 3 feet long.</li>\n<li>They feed on shrimps, squids, and small fishes.</li>\n</ul>\n'
+  },
+  {
+    'Habitat Impacts': 'Area closures and gear restrictions protect habitats that are affected by some kinds of trawl gear.',
+    'Image Gallery': [
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/white%20hake_Calvin%20Alexander_1.jpg',
+        alt: 'White hake in sampling basket aboard research vessel',
+        title: 'White hake in sampling basket. Photo credit: Calvin Alexander'
+      },
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/white%20hake_Dave%20McElroy.jpg',
+        alt: 'Scientist measuring white hake on research vessel',
+        title: 'White hake on measuring board. Photo credit: Dave McElroy'
+      },
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/White%20hake%20MD%20Dept%20Natural%20Resources.jpg',
+        alt: 'Recreational angler aboard boat with white hake',
+        title: 'Recreational angler with white hake. Photo credit: MD Dept. of Natural Resources'
+      },
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/White%20Hake%20Dish%20-%20iStock.jpg',
+        alt: 'White hake dish with tomato sauce',
+        title: 'White hake dish.  Photo credit: iStock'
+      },
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/White%20Hake_Stephen%20Luk_New%20England%20Aquarium.jpg',
+        alt: 'White hake in a tank at the New England Aquarium',
+        title: 'White hake at New England Aquarium. Photo credit: Stephen Luk'
+      }
+    ],
+    Location: '<ul>\n<li>White hake are found in the northwest Atlantic Ocean from Newfoundland to southern New England.</li>\n</ul>\n',
+
+    'NOAA Fisheries Region': 'Greater Atlantic',
+    Population: 'Significantly below target population level. A rebuilding plan is in place.',
+    'Scientific Name': 'Urophycis tenuis',
+    'Species Illustration Photo': {
+      src: 'https://www.fishwatch.gov/sites/default/files/Hake_White_NB_W_0.png',
+      alt: 'Illustration of white hake. Credit: Jack Hornady.',
+      title: ''
+    },
+    'Species Name': 'White Hake',
+    Biology: '<ul>\n<li>White hake can grow up to 53 inches and weigh up to 49 pounds.</li>\n<li>White hake eggs are buoyant, and larval and early juvenile fish live higher in the water column than adult fish.</li>\n<li>White hake settle to the bottom when they are about 2 months old.</li>\n<li>Adult white hake typically prefer deeper water than juveniles.</li>\n<li>White hake move inshore to shallower waters in the summer and move offshore to deeper waters during the winter.</li>\n<li>Male white hake are usually smaller than females.</li>\n<li>Adult white hake primarily prey on other bottom-dwelling organisms, such as squid, crustaceans, and small bony fish.</li>\n</ul>\n'
+  },
+  {
+    'Habitat Impacts': 'Area closures and gear restrictions protect habitat that are affected by some types of trawl gear.',
+    'Image Gallery': [
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/Atlantic%20Chub%20Mackerel_Alessandro%20Duci.jpg',
+        alt: 'Atlantic chub mackerel swimming along bottom habitat',
+        title: 'Atlantic chub mackerel.  Photo credit: Alessandro Duci'
+      },
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/Atlantic%20Chub%20Mackerel_Vasco%20Ferreira.jpg',
+        alt: 'A school of Atlantic chub mackerel.  ',
+        title: 'Atlantic chub mackerel.  Photo credit: Vasco Ferreira'
+      },
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/Atlantic%20Chub%20Mackerel%20Lunds%20Fisheries.jpg',
+        alt: 'Atlantic chub mackerel at the fish market.  ',
+        title: 'Atlantic chub mackerel at the fish market.  Photo credit: Lund&#039;s Fisheries'
+      },
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/Atlantic%20Chub%20Mackerel%20Jim%20Hutchinson%20Jr%20Compressed.jpg',
+        alt: 'Recreational angler on a boat with Atlantic chub mackerel',
+        title: 'Recreational angler with Atlantic chub mackerel.  Photo credit Jim Hutchinson, Jr.'
+      },
+      {
+        src: 'https://www.fishwatch.gov/sites/default/files/Smoked%20mackerel%20-%20istock.jpg',
+        alt: 'Smoked Atlantic chub mackerel atop a bed of greens',
+        title: 'Smoked Atlantic chub mackerel.  Photo credit: iStock'
+      }
+    ],
+    Location: '<ul>\n<li>Atlantic chub mackerel in the western Atlantic Ocean range from Nova Scotia (where they are rare) through Argentina, including the Gulf of Mexico.&nbsp;&nbsp;</li>\n<li>They are a schooling pelagic species that are found on the continental shelf to depths of about 250–300 meters throughout much of the western and eastern Atlantic Ocean.</li>\n</ul>\n',
+    'NOAA Fisheries Region': 'Greater Atlantic',
+    Population: ' The stock has never been assessed. The population level is unknown but presumed stable.',
+    'Scientific Name': 'Scomber colias',
+    'Species Illustration Photo': {
+      src: 'https://www.fishwatch.gov/sites/default/files/Atlantic-chub-mackerel-FNL_NB_W.png',
+      alt: 'Illustration of Atlantic chub mackerel',
+      title: 'Atlantic chub mackerel'
+    },
+    'Species Name': 'Atlantic Chub Mackerel',
+    Biology: '<ul>\n<li>Atlantic chub mackerel grow up to 22 inches long and 3.5 pounds.</li>\n<li>They have a life span of up to about 7 years.</li>\n<li>They mainly feed on small crustaceans called copepods and tiny aquatic animals known as wheel animals or rotifers.</li>\n</ul>\n'
+  }
+];
