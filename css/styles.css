@@ -263,49 +263,72 @@ figcaption {
   margin-left: 2.2rem;
 }
 
+.aquatic-life {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 3rem;
+}
+
+.fish-cards {
+  background-color: #f2f2f2;
+  justify-content: center;
+}
+
 .fish-card {
+  width: 300px;
+  height: 500px;
   margin-bottom: 1rem;
   border: 1px solid rgb(199 199 199);
   border-radius: 0.25rem;
   box-shadow: 0 6px 6px -4px rgb(0 0 0 / 30%);
+  background-color: #f4f4fa;
 }
 
-.fish-card > img {
-  width: 100%;
+.fish-card-image {
   height: 281.8px;
+}
+
+.fish-card-image > img {
+  width: 100%;
+  height: 100%;
   background-color: rgb(210 210 210);
+  object-fit: contain;
 }
 
 .fish-name {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   text-align: center;
+  margin-top: 3rem;
 }
 
 .learn-more-card {
-  background-color: #e5e5e5;
-  border-radius: 20px;
-  padding: 0.5rem;
-  margin: 1rem 5rem;
   display: flex;
   justify-content: center;
+  margin-bottom: 3rem;
 }
 
 .learn-text {
   text-decoration: none;
   font-size: 1rem;
-  color: #111;
-  margin-left: 0.8rem;
+  color: white;
+  background-color: black;
+  margin-top: 1rem;
+  padding: 1rem;
 }
 
 .fish-list {
   list-style-type: none;
-  padding-left: 0;
+  max-width: 1200px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  padding-right: 40px;
 }
 
 ul.fish-list > li {
   display: inline-block;
-  width: 400px;
-  margin-left: 50px;
+  width: 300px;
+  margin-left: 2rem;
 }
 
 ul.fish-list > li::after {
@@ -338,20 +361,22 @@ img.fish-img {
   background-color: white;
 }
 
-.angle {
+.angle-left,
+.angle-right {
   color: orange;
 }
 
-.angle > i {
+.angle-left > i,
+.angle-right > i {
   position: relative;
 }
 
-.fa-angle-left {
+span.angle-left > .fa-angle-left {
   top: 150px;
   left: 293px;
 }
 
-.fa-angle-right {
+span.angle-right > .fa-angle-right {
   top: 150px;
   right: 89px;
 }
@@ -449,6 +474,41 @@ ul.fish-biology-list > li {
   background-size: 13px;
 }
 
+div.list-button-div {
+  justify-content: center;
+  display: flex;
+  margin-bottom: 3rem;
+}
+
+ul.fish-location-list > p {
+  padding-left: 20px;
+}
+
+td.biology-li > ul > li > ul > li > ul {
+  margin: 0;
+  padding: 20px 27px 0 22px;
+  list-style: none;
+  background-image: url("../images/orange.png");
+  background-repeat: no-repeat;
+  background-position: 1px 1.4em;
+  background-size: 13px;
+}
+
+button.back-to-list {
+  padding: 1.5rem;
+  font-size: 2rem;
+  border-radius: 20px;
+  border-style: none;
+  background-color: #0073c9;
+  color: white;
+}
+
+button.back-to-list:hover {
+  cursor: pointer;
+  background-color: #c4ff02;
+  color: red;
+}
+
 @media only screen and (min-width: 414px)and (max-width: 576px) {
   .container {
     max-width: 900px;
@@ -475,7 +535,7 @@ ul.fish-biology-list > li {
   }
 
   .fish-column {
-    padding: 0 1.3rem;
+    padding: 0;
   }
 
   header .logo {
@@ -588,7 +648,7 @@ ul.fish-biology-list > li {
   }
 
   ul.fish-list > li {
-    margin-left: 13px;
+    margin-left: 7px;
   }
 
   .column-angle-div {

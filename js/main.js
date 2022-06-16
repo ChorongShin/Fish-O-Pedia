@@ -22,64 +22,11 @@ var $fishBiology = document.querySelector('td.biology-li');
 var $fishBiologyList = document.querySelector('ul.fish-biology-list');
 var $previousIcon = document.querySelector('.fa-angle-left');
 var $nextIcon = document.querySelector('.fa-angle-right');
-
-// Image carousel
-
-// function getFishPhotos(fish) {
-//   var fishId = 0;
-//   var count = 0;
-
-//   var fishImages = fish[fishId]['Image Gallery'];
-
-//   if (fishImages !== null) {
-//     for (fishId = 0; fishId < 30; fishId++) {
-//       for (count; count < fishImages.length; count++) {
-//         $fishImage.setAttribute('src', fishImages[count].src);
-//       }
-//     }
-//   } else {
-//     $fishImage.setAttribute('src', 'images/empty fish.png');
-//   }
-
-//   function previous() {
-//     if (count <= 0) {
-//       count = fishImages.length;
-//     }
-//     count--;
-//     return setImg();
-//   }
-
-//   function next() {
-//     if (count >= fishImages.length - 1) {
-//       count--;
-//     }
-//     count++;
-//     return setImg();
-//   }
-
-//   function setImg() {
-//     if (fishImages !== null) {
-//       $fishImage.setAttribute('src', fishImages[count].src);
-//       $fishImage.setAttribute('alt', fishImages[count].title);
-//     } else {
-//       $fishImage.setAttribute('src', 'images/empty fish.png');
-//       $fishImage.setAttribute('alt', 'No fish');
-//       var paragraph = document.createElement('p');
-//       paragraph.textContent = 'Sorry, we don\'t  have a picture';
-//       $fishImage.append(paragraph);
-//     }
-//   }
-//   $previousIcon.addEventListener('click', previous);
-//   $nextIcon.addEventListener('click', next);
-
-// }
-
-// getFishPhotos();
-
-// var fish = {
-//   views: ['Royal Blue Tang', 'Clownfish', 'white fish', 'blue fish'],
-//   images: ['Royal Blue Tang.jpg', 'Logo.jpg', 'empty fish.png', 'fish icon.png']
-// };
+// var $angleLeft = document.querySelector('span.angle-left');
+// var $angleRight = document.querySelector('span.angle-right');
+var $backToList = document.querySelector('button.back-to-list');
+var $homeClick = document.querySelector('a.home-click');
+var $listClick = document.querySelector('a.list-click');
 
 // Press like click event
 var on = 'images/fish-hook.png';
@@ -113,6 +60,9 @@ function getFishDataList() {
       var fishCard = document.createElement('div');
       fishCard.setAttribute('class', 'fish-card');
 
+      var fishCardImage = document.createElement('div');
+      fishCardImage.setAttribute('class', 'fish-card-image');
+
       var fishImage = document.createElement('img');
       fishImage.setAttribute('src', xhr.response[fishId]['Species Illustration Photo'].src);
       fishImage.setAttribute('alt', xhr.response[fishId]['Species Illustration Photo'].title);
@@ -129,16 +79,13 @@ function getFishDataList() {
       learnText.setAttribute('href', '#');
       learnText.textContent = 'LEARN MORE';
 
-      var icon = document.createElement('i');
-      icon.setAttribute('class', 'fa-solid fa-circle-info');
-
       $fish.append(fishColumn);
       fishColumn.append(fishCard);
-      fishCard.append(fishImage);
+      fishCard.append(fishCardImage);
+      fishCardImage.append(fishImage);
       fishCard.append(fishName);
       fishCard.append(learnMoreCard);
-      learnMoreCard.append(icon);
-      icon.append(learnText);
+      learnMoreCard.append(learnText);
       $fishList.append($fish);
     }
 
@@ -147,12 +94,14 @@ function getFishDataList() {
   xhr.send();
 }
 
+var count = 0;
+var imageList = [];
+
 function fishDetails(event) {
-  // console.log('working');
+
   var closest = event.target.closest('ul > li');
-  // console.log(closest);
+
   var $fishId = parseInt(closest.getAttribute('id'), 10);
-  // console.log($fishId);
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
@@ -163,7 +112,7 @@ function fishDetails(event) {
     $fishScientificName.textContent = xhr.response[$fishId]['Scientific Name'];
 
     if (xhr.response[$fishId].Location === null) {
-      $fishLocation.textContent = 'Unknown Location';
+      $fishLocation.textContent = 'No Data Available';
       $fishLocation.setAttribute('class', 'no-li');
     } else {
       var locationUL = xhr.response[$fishId].Location.trim();
@@ -177,44 +126,109 @@ function fishDetails(event) {
       $fishLocationList.innerHTML = locationString;
     }
 
-    if (xhr.response[$fishId].biology === null) {
-      $fishBiology.textContent = 'No Description';
+    if (xhr.response[$fishId].Biology === null) {
+      $fishBiology.textContent = 'No Data Available';
       $fishBiology.setAttribute('class', 'no-li');
-    } else {
-      var BiologyUL = xhr.response[$fishId].Biology.trim();
-      var biologyArray = BiologyUL.split('\n');
+    } else if (xhr.response[$fishId].Biology !== null) {
+      var biologyUL = xhr.response[$fishId].Biology.trim();
+      var biologyArray = biologyUL.split('\n');
       for (var j = 0; j < biologyArray.length; j++) {
-        if (biologyArray[j] === '<ul>' || biologyArray[j] === '</ul>') {
+        if (biologyArray[j] === ' <ul>' || biologyArray[j] === ' </ul>') {
           biologyArray.splice(j, 1);
         }
+
       }
+
       var biologyString = biologyArray.join(' ');
       $fishBiologyList.innerHTML = biologyString;
+      var uls = document.querySelectorAll('ul.fish-biology-list > ul');
+      uls.forEach(ul => ul.classList.add('fish-biology-list'));
     }
 
     if (xhr.response[$fishId].Population === null) {
-      $fishPopulation.textContent = 'Unknown Population';
+      $fishPopulation.textContent = 'No Data Available';
       $fishPopulation.setAttribute('class', 'population');
     } else {
       $fishPopulation.textContent = xhr.response[$fishId].Population;
       $fishPopulation.setAttribute('class', 'population');
     }
+    // console.log(xhr.response[$fishId]['Species Name']);
+    // console.log(xhr.response[$fishId]['Image Gallery']);
+    // console.log(xhr.response[0]['Image Gallery'].length);
 
-    if (xhr.response[$fishId]['Image Gallery'] === null) {
+    // var previousIcon = document.querySelector('i.fa-angle-left');
+    // var nextIcon = document.querySelector('i.fa-angle-right');
+
+    if (xhr.response[$fishId]['Image Gallery'].length > 1) {
+      // var $previousIcon = document.createElement('i');
+      // $previousIcon.setAttribute('class', 'fa-solid fa-angle-left fa-2xl');
+      // $angleLeft.append($previousIcon);
+
+      // var $nextIcon = document.createElement('i');
+      // $nextIcon.setAttribute('class', 'fa-solid fa-angle-right fa-2xl');
+      // $angleRight.append($nextIcon);
+
+      imageList = xhr.response[$fishId]['Image Gallery'];
+      // var $fishImage3 = document.createElement('img');
+      // $fishImage.setAttribute('class', 'fish-img');
+      $fishImage.setAttribute('src', imageList[0].src);
+      $fishImage.setAttribute('alt', imageList[0].alt);
+      // $fishDiv.append($fishImage3);
+      $previousIcon.addEventListener('click', previous);
+      $nextIcon.addEventListener('click', next);
+    } else if (xhr.response[$fishId]['Image Gallery'] === null) {
+      // var $fishImage = document.createElement('img');
+      // $fishImage.setAttribute('class', 'fish-img');
       $fishImage.setAttribute('src', xhr.response[$fishId]['Species Illustration Photo'].src);
       $fishImage.setAttribute('alt', xhr.response[$fishId]['Species Illustration Photo'].alt);
-      $previousIcon.remove();
-      $nextIcon.remove();
 
-    } else if (xhr.response[$fishId]['Image Gallery'].length === 1) {
-      $fishImage.setAttribute('src', xhr.response[$fishId]['Image Gallery'].src);
-      $previousIcon.remove();
-      $nextIcon.remove();
+      // $previousIcon.remove();
 
-    } else if (xhr.response[$fishId]['Image Gallery'].length > 1) {
-      for (var number = 0; number < xhr.response[$fishId]['Image Gallery'].length; number++) {
-        $fishImage.setAttribute('src', xhr.response[$fishId]['Image Gallery'][number].src);
+      // $nextIcon.remove();
+      // $fishDiv.append($fishImage);
+
+      // } else if (xhr.response[$fishId]['Image Gallery'].length === undefined) {
+      //   // var $fishImage2 = document.createElement('img');
+      //   // $fishImage2.setAttribute('class', 'fish-img');
+      //   $fishImage.setAttribute('src', xhr.response[$fishId]['Image Gallery'].src);
+      //   $fishImage.setAttribute('alt', xhr.response[$fishId]['Image Gallery'].alt);
+      //   // $fishDiv.append($fishImage2);
+      //   $previousIcon.remove();
+      //   $nextIcon.remove();
+
+      // var $previousIcon = document.querySelector('.fa-angle-left');
+      // var $nextIcon = document.querySelector('.fa-angle-right');
+
+    } else if (xhr.response[7]['Image Gallery']) {
+      $fishImage.setAttribute('src', xhr.response[7]['Image Gallery'].src);
+      $fishImage.setAttribute('alt', xhr.response[7]['Image Gallery'].alt);
+      // $previousIcon.remove();
+      // $nextIcon.remove();
+    }
+
+    function previous() {
+      if (count <= 0) {
+        count = imageList.length;
       }
+      count--;
+      // console.log('previous count:', count);
+      return setImg();
+    }
+
+    function next() {
+      if (count >= imageList.length - 1) {
+        count = -1;
+      }
+      count++;
+      // console.log('next count:', count);
+      return setImg();
+
+    }
+
+    function setImg(number) {
+      number = count;
+      $fishImage.setAttribute('src', imageList[number].src);
+      $fishImage.setAttribute('alt', imageList[number].alt);
     }
 
     handleView('fish');
@@ -225,17 +239,21 @@ function fishDetails(event) {
 
 $fishList.addEventListener('click', fishDetails);
 
-// $fishList.addEventListener('click', function (event) {
-//   console.log('working');
-//   var closest = event.target.closest('ul > li');
-//   console.log(closest);
-//   var closestId = parseInt(closest.getAttribute('id'), 10);
-//   console.log(closestId);
+$homeClick.addEventListener('click', function () {
+  // console.log('working');
+  handleView('show-case');
+});
 
-//   xhr.response;
-//   handleView('fish');
+$listClick.addEventListener('click', function () {
+  // console.log('working');
+  // $menuToggle.classList.toggle('active');
+  // $showcase.classList.toggle('active');
+  handleView('list');
+});
 
-// });
+$backToList.addEventListener('click', function (event) {
+  handleView('list');
+});
 
 $menuToggle.addEventListener('click', function (event) {
   $menuToggle.classList.toggle('active');
