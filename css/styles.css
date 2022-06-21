@@ -497,16 +497,28 @@ td.biology-li > ul > li > ul > li > ul {
   background-size: 13px;
 }
 
-button.back-to-list {
+button.back-to-list,
+button.back-to-search {
   padding: 1.5rem;
   font-size: 2rem;
   border-radius: 20px;
   border-style: none;
   background-color: #0073c9;
+}
+
+button.back-to-list {
+  background-color: #0073c9;
   color: white;
 }
 
-button.back-to-list:hover {
+button.back-to-search {
+  background-color: rgb(217, 233, 236);
+  color: black;
+  margin-left: 5rem;
+}
+
+button.back-to-list:hover,
+button.back-to-search:hover {
   cursor: pointer;
   background-color: #c4ff02;
   color: red;

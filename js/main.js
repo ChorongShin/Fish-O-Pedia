@@ -28,7 +28,9 @@ var $listClick = document.querySelector('a.list-click');
 var $searchInput = document.querySelector('input.search-input');
 var $resultList = document.querySelector('ul.result-list');
 var $searchForm = document.querySelector('.search-form');
-// var searchResultView = document.querySelector('div[data-view="search-result"]');
+var searchResultView = document.querySelector('div[data-view="search-result"]');
+var $fishResult = document.querySelector('ul.result-list');
+var $backToSearch = document.querySelector('button.back-to-search');
 
 var count = 0;
 var imageList = [];
@@ -121,7 +123,7 @@ $searchForm.addEventListener('submit', function (event) {
         learnMoreCard.append(learnText);
         $resultList.append($fish);
 
-        // handleView('search-result');
+        searchResultView.className = 'view';
       }
     }
 
@@ -134,6 +136,8 @@ $searchForm.addEventListener('submit', function (event) {
 });
 
 // var error;
+
+$fishResult.addEventListener('click', fishDetails);
 
 function clearList() {
   while ($resultList.firstChild) {
@@ -441,6 +445,10 @@ $listClick.addEventListener('click', function () {
 
 $backToList.addEventListener('click', function (event) {
   handleView('list');
+});
+
+$backToSearch.addEventListener('click', function (event) {
+  handleView('search');
 });
 
 $menuToggle.addEventListener('click', function (event) {
