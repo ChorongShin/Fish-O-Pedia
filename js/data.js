@@ -2,7 +2,7 @@
 var data = {
   view: 'show-case',
   fishList: [],
-  nextId: 1
+  likes: []
 };
 
 var previousDataJSON = localStorage.getItem('entry-local-storage');
@@ -12,7 +12,7 @@ if (previousDataJSON !== null) {
 
 window.addEventListener('beforeunload', function (event) {
   var dataJSON = JSON.stringify(data);
-  this.localStorage.setItem('entry-local-storage', dataJSON);
+  this.localStorage.setItem('javascript-local-storage', dataJSON);
 });
 
 // var oneFish = {

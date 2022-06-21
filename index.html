@@ -16,7 +16,7 @@
 
 <body>
   <main>
-    <div class="view" data-view="show-case">
+    <div class="hidden" data-view="show-case">
       <section class="showcase">
         <header class="home-header">
           <h2 class="logo">What's Your Fish</h2>
@@ -65,7 +65,7 @@
       <div class="menu-toggle hidden">
         <ul class="menu-two">
           <li><a class="home-click" href="#">HOME</a></li>
-          <li><a class="search-click" href="#">SEARCH</a></li>
+          <li><a class="search-click-two" href="#">SEARCH</a></li>
           <li><a class="list-click" href="#">LIST</a></li>
           <li><a class="fish-click" href="#">FISH OF THE DAY</a></li>
         </ul>
@@ -74,7 +74,7 @@
   </div>
 
 
-  <div class="hidden" data-view="list">
+  <div class="view" data-view="list">
     <div class="container">
       <div class="first-row row">
         <div class="column-half intro-video-div">
@@ -185,7 +185,7 @@
         </div>
         <div class="column-one-third fish-icon-div">
           <div class="fish-icon">
-            <img class="plain-fish" src="images/fish icon.png" alt="plain fish">
+            <input type="image" class="plain-fish" src="images/fish icon.png">
           </div>
         </div>
       </div>
@@ -238,10 +238,36 @@
           <button class="back-to-list" type="button">Back to Fish List</button>
         </div>
       </div>
-      <!--end of container and data-view-->
     </div>
   </div>
 
+  <div class="hidden" data-view="search">
+    <div class="container">
+      <div class="row first-row">
+        <div class="column-full">
+          <div class="search-bar">
+            <form class="search-form">
+              <input type="text" class="search-input" placeholder="SEARCH">
+              <button class="search-button" type="submit" value="search">
+                <span class="search-icon">
+                  <i class="fas fa-search fa-2xl"></i>
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="hidden" data-view="search-result">
+        <div class="row fish-cards">
+          <ul class="result-list">
+
+          </ul>
+        </div>
+      </div>
+
+      <!--end of view and container-->
+    </div>
+  </div>
 
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

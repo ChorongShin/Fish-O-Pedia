@@ -11,7 +11,7 @@ var menu = document.querySelector('ul.menu-one');
 var menuTwo = document.querySelector('ul.menu-two');
 var menuToggleDiv = document.querySelector('div.menu-toggle');
 var $fishList = document.querySelector('ul.fish-list');
-var $fishIcon = document.querySelector('img.plain-fish');
+// var $fishIcon = document.querySelector('input.plain-fish');
 var $fishName = document.querySelector('p.title');
 var $fishImage = document.querySelector('img.fish-img');
 var $fishScientificName = document.querySelector('td.scientific-name');
@@ -22,33 +22,167 @@ var $fishBiology = document.querySelector('td.biology-li');
 var $fishBiologyList = document.querySelector('ul.fish-biology-list');
 var $previousIcon = document.querySelector('.fa-angle-left');
 var $nextIcon = document.querySelector('.fa-angle-right');
-// var $angleLeft = document.querySelector('span.angle-left');
-// var $angleRight = document.querySelector('span.angle-right');
 var $backToList = document.querySelector('button.back-to-list');
 var $homeClick = document.querySelector('a.home-click');
 var $listClick = document.querySelector('a.list-click');
+var $searchInput = document.querySelector('input.search-input');
+var $resultList = document.querySelector('ul.result-list');
+var $searchForm = document.querySelector('.search-form');
+// var searchResultView = document.querySelector('div[data-view="search-result"]');
 
-// Press like click event
-var on = 'images/fish-hook.png';
-var off = 'images/fish icon.png';
-var state = false;
-$fishIcon.addEventListener('click', function (event) {
+var count = 0;
+var imageList = [];
+var $fishId;
+var liked;
 
-  if (state) {
-    $fishIcon.src = on;
-    state = false;
-  } else {
-    $fishIcon.src = off;
-    state = true;
-  }
+// $searchForm.addEventListener('submit', event => {
+//   event.preventDefault();
+//   var value = $searchInput.value;
+//   console.log(value);
+
+// });
+
+// $searchInput.addEventListener('input', function (event) {
+//   var value = event.target.value;
+//   console.log('value', value);
+
+//   if (value && value.trim().length > 0) {
+//     value = value.trim().toLowerCase();
+//     setList(fishObjects.filter(fish => {
+//       return fish['Species Name'].include(value);
+//     }));
+//   }
+// });
+
+var searchClick = document.querySelector('a.search-click-two');
+
+searchClick.addEventListener('click', function (event) {
+  handleView('search');
 });
 
+$searchForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  var searchValue = $searchInput.value;
+
+  var xhr = new XMLHttpRequest(name);
+  xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    var results = data.fishList;
+    // console.log('searchValue.value', searchValue.value);
+    // if (searchValue.value === undefined) {
+    //   console.log('searchValue.value', searchValue.value);
+    //   searchResultView.className = 'hidden';
+    // }
+
+    for (var fishId = 0; fishId < 30; fishId++) {
+      var name = results[fishId]['Species Name'].toLowerCase();
+      // console.log(name);
+      // console.log('typeof name', typeof name);
+      // console.log('value ', searchValue);
+      // console.log('typeof value', typeof value);
+      if (name.includes(searchValue)) {
+
+        var $fish = document.createElement('li');
+        $fish.setAttribute('id', fishId);
+
+        var fishColumn = document.createElement('div');
+        fishColumn.setAttribute('class', 'fish-column');
+
+        var fishCard = document.createElement('div');
+        fishCard.setAttribute('class', 'fish-card');
+
+        var fishCardImage = document.createElement('div');
+        fishCardImage.setAttribute('class', 'fish-card-image');
+
+        var fishImage = document.createElement('img');
+        fishImage.setAttribute('src', xhr.response[fishId]['Species Illustration Photo'].src);
+        fishImage.setAttribute('alt', xhr.response[fishId]['Species Illustration Photo'].title);
+
+        var fishName = document.createElement('p');
+        fishName.setAttribute('class', 'fish-name');
+        fishName.textContent = xhr.response[fishId]['Species Name'];
+
+        var learnMoreCard = document.createElement('div');
+        learnMoreCard.setAttribute('class', 'learn-more-card');
+
+        var learnText = document.createElement('a');
+        learnText.setAttribute('class', 'learn-text');
+        learnText.setAttribute('href', '#');
+        learnText.textContent = 'LEARN MORE';
+
+        $fish.append(fishColumn);
+        fishColumn.append(fishCard);
+        fishCard.append(fishCardImage);
+        fishCardImage.append(fishImage);
+        fishCard.append(fishName);
+        fishCard.append(learnMoreCard);
+        learnMoreCard.append(learnText);
+        $resultList.append($fish);
+
+        // handleView('search-result');
+      }
+    }
+
+    $searchForm.reset();
+    searchValue.value = '';
+
+  });
+  xhr.send();
+  clearList();
+});
+
+// var error;
+
+function clearList() {
+  while ($resultList.firstChild) {
+    $resultList.removeChild($resultList.firstChild);
+  }
+}
+// function noResults() {
+//   error = document.createElement('li');
+//   error.classList.add('error-message');
+
+//   // var text = document.createTextNode('No results found. Sorry!');
+//   var text = document.createElement('p');
+//   text.textContent = 'No Results Found. Sorry! Try it again!';
+//   error.append(text);
+//   $resultList.append(error);
+// }
+
+$previousIcon.addEventListener('click', previous);
+$nextIcon.addEventListener('click', next);
+
+//   if (state) {
+
+//     $fishIcon.src = on;
+//     localStorage.setItem('liked', 'on');
+//   } else {
+//     $fishIcon.src = off;
+//     localStorage.setItem('liked', 'off');
+// }
+
+// function liked() {
+//   if (state) {
+//     $fishIcon.src = on;
+//     localStorage.setItem('liked', 'on');
+//   } else {
+//     $fishIcon.src = off;
+//     localStorage.setItem('liked', 'off');
+
+//   }
+// }
+
 // fish list
+
 function getFishDataList() {
   var xhr = new XMLHttpRequest(name);
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+
+    data.fishList = xhr.response;
     for (var fishId = 0; fishId < 30; fishId++) {
 
       var $fish = document.createElement('li');
@@ -94,19 +228,30 @@ function getFishDataList() {
   xhr.send();
 }
 
-var count = 0;
-var imageList = [];
-
 function fishDetails(event) {
 
   var closest = event.target.closest('ul > li');
 
-  var $fishId = parseInt(closest.getAttribute('id'), 10);
+  $fishId = parseInt(closest.getAttribute('id'), 10);
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+    data.fishList = xhr.response;
+    liked = {
+      fishId: $fishId,
+      like: false,
+      image: 'images/fish icon.png'
+    };
+
+    for (var index = 0; index < data.fishList.length; index++) {
+      data.fishList[index].liked = liked;
+    }
+
+    // data.liked.push(liked);
+
+    // $fishIcon.setAttribute('id', $fishId);
 
     $fishName.textContent = xhr.response[$fishId]['Species Name'];
     $fishScientificName.textContent = xhr.response[$fishId]['Scientific Name'];
@@ -154,81 +299,40 @@ function fishDetails(event) {
     }
     // console.log(xhr.response[$fishId]['Species Name']);
     // console.log(xhr.response[$fishId]['Image Gallery']);
-    // console.log(xhr.response[0]['Image Gallery'].length);
 
-    // var previousIcon = document.querySelector('i.fa-angle-left');
-    // var nextIcon = document.querySelector('i.fa-angle-right');
+    if (xhr.response[$fishId]['Image Gallery'] === null) {
 
-    if (xhr.response[$fishId]['Image Gallery'].length > 1) {
-      // var $previousIcon = document.createElement('i');
-      // $previousIcon.setAttribute('class', 'fa-solid fa-angle-left fa-2xl');
-      // $angleLeft.append($previousIcon);
-
-      // var $nextIcon = document.createElement('i');
-      // $nextIcon.setAttribute('class', 'fa-solid fa-angle-right fa-2xl');
-      // $angleRight.append($nextIcon);
-
-      imageList = xhr.response[$fishId]['Image Gallery'];
-      // var $fishImage3 = document.createElement('img');
-      // $fishImage.setAttribute('class', 'fish-img');
-      $fishImage.setAttribute('src', imageList[0].src);
-      $fishImage.setAttribute('alt', imageList[0].alt);
-      // $fishDiv.append($fishImage3);
-      $previousIcon.addEventListener('click', previous);
-      $nextIcon.addEventListener('click', next);
-    } else if (xhr.response[$fishId]['Image Gallery'] === null) {
-      // var $fishImage = document.createElement('img');
-      // $fishImage.setAttribute('class', 'fish-img');
+      imageList = [];
       $fishImage.setAttribute('src', xhr.response[$fishId]['Species Illustration Photo'].src);
       $fishImage.setAttribute('alt', xhr.response[$fishId]['Species Illustration Photo'].alt);
 
-      // $previousIcon.remove();
+      $previousIcon.classList.remove('view');
+      $nextIcon.classList.remove('view');
+      $previousIcon.classList.add('hidden');
+      $nextIcon.classList.add('hidden');
 
-      // $nextIcon.remove();
-      // $fishDiv.append($fishImage);
+    } else if (xhr.response[$fishId]['Image Gallery'].length === undefined) {
+      imageList = [];
+      $fishImage.setAttribute('src', xhr.response[$fishId]['Image Gallery'].src);
+      $fishImage.setAttribute('alt', xhr.response[$fishId]['Image Gallery'].alt);
 
-      // } else if (xhr.response[$fishId]['Image Gallery'].length === undefined) {
-      //   // var $fishImage2 = document.createElement('img');
-      //   // $fishImage2.setAttribute('class', 'fish-img');
-      //   $fishImage.setAttribute('src', xhr.response[$fishId]['Image Gallery'].src);
-      //   $fishImage.setAttribute('alt', xhr.response[$fishId]['Image Gallery'].alt);
-      //   // $fishDiv.append($fishImage2);
-      //   $previousIcon.remove();
-      //   $nextIcon.remove();
+      $previousIcon.classList.remove('view');
+      $nextIcon.classList.remove('view');
+      $previousIcon.classList.add('hidden');
+      $nextIcon.classList.add('hidden');
 
-      // var $previousIcon = document.querySelector('.fa-angle-left');
-      // var $nextIcon = document.querySelector('.fa-angle-right');
+    } else if (xhr.response[$fishId]['Image Gallery'].length > 1) {
 
-    } else if (xhr.response[7]['Image Gallery']) {
-      $fishImage.setAttribute('src', xhr.response[7]['Image Gallery'].src);
-      $fishImage.setAttribute('alt', xhr.response[7]['Image Gallery'].alt);
-      // $previousIcon.remove();
-      // $nextIcon.remove();
-    }
+      imageList = xhr.response[$fishId]['Image Gallery'];
 
-    function previous() {
-      if (count <= 0) {
-        count = imageList.length;
-      }
-      count--;
-      // console.log('previous count:', count);
-      return setImg();
-    }
+      $fishImage.setAttribute('src', imageList[0].src);
+      $fishImage.setAttribute('alt', imageList[0].alt);
 
-    function next() {
-      if (count >= imageList.length - 1) {
-        count = -1;
-      }
-      count++;
-      // console.log('next count:', count);
-      return setImg();
+      $previousIcon.classList.remove('hidden');
+      $nextIcon.classList.remove('hidden');
+      $previousIcon.classList.add('view');
+      $nextIcon.classList.add('view');
 
-    }
-
-    function setImg(number) {
-      number = count;
-      $fishImage.setAttribute('src', imageList[number].src);
-      $fishImage.setAttribute('alt', imageList[number].alt);
     }
 
     handleView('fish');
@@ -236,6 +340,90 @@ function fishDetails(event) {
   });
   xhr.send();
 }
+
+function previous() {
+  if (count <= 0) {
+    count = imageList.length;
+  }
+  count--;
+  return setImg();
+}
+
+function next() {
+  if (count >= imageList.length - 1) {
+    count = -1;
+  }
+  count++;
+  return setImg();
+
+}
+
+function setImg() {
+  imageList = data.fishList[$fishId]['Image Gallery'];
+  if (data.fishList[$fishId]['Image Gallery'] === null) {
+    imageList = [];
+    $fishImage.setAttribute('src', data.fishList[$fishId]['Species Illustration Photo'].src);
+    $fishImage.setAttribute('alt', data.fishList[$fishId]['Species Illustration Photo'].alt);
+
+  } else if (data.fishList[$fishId]['Image Gallery'].length === undefined) {
+    imageList = [];
+    $fishImage.setAttribute('src', data.fishList[$fishId]['Image Gallery'].src);
+    $fishImage.setAttribute('alt', data.fishList[$fishId]['Image Gallery'].alt);
+
+  } else if (imageList.length > 1) {
+    $fishImage.setAttribute('src', imageList[count].src);
+    $fishImage.setAttribute('alt', imageList[count].alt);
+  }
+}
+
+// Press like click event
+// var on = 'images/fish-hook.png';
+// var off = 'images/fish icon.png';
+
+// $fishIcon.addEventListener('click', function (event) {
+
+//   console.log('event.target', event.target);
+//   console.log('$fishIcon.src', $fishIcon.src);
+//   console.log('fishId', $fishId);
+//   var icon = event.target.getAttribute('id');
+//   var iconId = parseInt(icon, 10);
+//   console.log(iconId);
+//   if (iconId === data.fishList[$fishId].liked.fishId) {
+
+//     var likesObject = {
+//       fishId: $fishId,
+//       like: true,
+//       image: 'images/fish-hook.png'
+//     };
+//     data.likes.push(likesObject);
+//     console.log('event.target.id', event.target.id);
+//     console.log('same id?', iconId === data.fishList[$fishId].liked.fishId);
+//     // console.log(data.fishList);
+//     // data.fistList[$fishId].liked.like = true;
+//     // data.fistList[$fishId].liked.source = on;
+//     data.fishList[$fishId].liked.like = true;
+//     event.target.src = on;
+//     console.log(event.target.src);
+//     data.fishList[$fishId].liked.source = on;
+
+//     // } else {
+
+//     //   //   // data.fistList[$fishId].liked.like = false;
+//     //   //   // data.fistList[$fishId].liked.source = off;
+//     //   //   // $fishIcon.src = off;
+//     //   data.fishList[$fishId].liked.like = false;
+//     //   $fishIcon.src = 'http://localhost:53137/' + off;
+//     //   data.fishList[$fishId].liked.source = off;
+
+//   // } else if (iconId !== data.fishList[$fishId].liked.fishId) {
+//   //   data.fishList[$fishId].liked.like = false;
+//   //   $fishIcon.src = 'http://localhost:53137/' + off;
+//   //   data.fishList[$fishId].liked.source = off;
+//   // }
+//   }
+//   $fishIcon.src = off;
+
+// });
 
 $fishList.addEventListener('click', fishDetails);
 
@@ -295,48 +483,3 @@ function handleView(viewData) {
     }
   }
 }
-
-// function renderFishCards(card) {
-//   // var xhr = new XMLHttpRequest(name);
-//   // xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
-//   // xhr.responseType = 'json';
-//   // xhr.reponse = card
-
-//   var $fish = document.createElement('li');
-//   $fish.setAttribute('id', card.id);
-
-//   var fishColumn = document.createElement('div');
-//   fishColumn.setAttribute('class', 'fish-column');
-
-//   var fishCard = document.createElement('div');
-//   fishCard.setAttribute('class', 'fish-card');
-
-//   var fishImage = document.createElement('img');
-//   fishImage.setAttribute('src', card.id['Species Illustration Photo'].src);
-//   fishImage.setAttribute('alt', card.id['Species Illustration Photo'].title);
-
-//   var fishName = document.createElement('p');
-//   fishName.setAttribute('class', 'fish-name');
-//   fishName.textContent = card.id['Species Name'];
-
-//   var learnMoreCard = document.createElement('div');
-//   learnMoreCard.setAttribute('class', 'learn-more-card');
-
-//   var learnText = document.createElement('a');
-//   learnText.setAttribute('class', 'learn-text');
-//   learnText.setAttribute('href', '#');
-//   learnText.textContent = 'LEARN MORE';
-
-//   var icon = document.createElement('i');
-//   icon.setAttribute('class', 'fa-solid fa-circle-info');
-
-//   $fish.append(fishColumn);
-//   fishColumn.append(fishCard);
-//   fishCard.append(fishImage);
-//   fishCard.append(fishName);
-//   fishCard.append(learnMoreCard);
-//   learnMoreCard.append(icon);
-//   icon.append(learnText);
-
-//   return $fish;
-// }
