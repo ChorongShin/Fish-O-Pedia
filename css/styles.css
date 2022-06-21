@@ -269,9 +269,14 @@ figcaption {
   font-size: 3rem;
 }
 
-.fish-cards {
+.fish-cards,
+.fish-cards-two {
   background-color: #f2f2f2;
   justify-content: center;
+}
+
+.fish-cards-two {
+  margin-top: 3rem;
 }
 
 .fish-card {
@@ -497,6 +502,16 @@ td.biology-li > ul > li > ul > li > ul {
   background-size: 13px;
 }
 
+td.biology-li > ul ul > li {
+  margin: 0;
+  padding: 20px 27px 0 22px;
+  list-style: none;
+  background-image: url("../images/orange.png");
+  background-repeat: no-repeat;
+  background-position: 1px 1.4em;
+  background-size: 13px;
+}
+
 button.back-to-list,
 button.back-to-search {
   padding: 1.5rem;
@@ -614,7 +629,7 @@ button.back-to-search:hover {
     background-color: #0073c9;
   }
 
-  .home-header {
+  .home-header, {
     position: absolute;
     top: 0;
     left: 0;
@@ -748,5 +763,23 @@ button.back-to-search:hover {
   div.table-row {
     margin-top: 4rem;
     justify-content: center;
+  }
+
+  .aquatic-life {
+    font-size: 2.3rem;
+  }
+
+  .search-input {
+    width: 200px;
+  }
+
+  button.back-to-list,
+  button.back-to-search {
+    padding: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  button.back-to-search {
+    margin-left: 2rem;
   }
 }

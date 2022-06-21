@@ -37,25 +37,6 @@ var imageList = [];
 var $fishId;
 var liked;
 
-// $searchForm.addEventListener('submit', event => {
-//   event.preventDefault();
-//   var value = $searchInput.value;
-//   console.log(value);
-
-// });
-
-// $searchInput.addEventListener('input', function (event) {
-//   var value = event.target.value;
-//   console.log('value', value);
-
-//   if (value && value.trim().length > 0) {
-//     value = value.trim().toLowerCase();
-//     setList(fishObjects.filter(fish => {
-//       return fish['Species Name'].include(value);
-//     }));
-//   }
-// });
-
 var searchClick = document.querySelector('a.search-click-two');
 
 searchClick.addEventListener('click', function (event) {
@@ -71,6 +52,7 @@ $searchForm.addEventListener('submit', function (event) {
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+
     var results = data.fishList;
     // console.log('searchValue.value', searchValue.value);
     // if (searchValue.value === undefined) {
@@ -78,12 +60,10 @@ $searchForm.addEventListener('submit', function (event) {
     //   searchResultView.className = 'hidden';
     // }
 
-    for (var fishId = 0; fishId < 30; fishId++) {
+    for (var fishId = 0; fishId < 100; fishId++) {
+
       var name = results[fishId]['Species Name'].toLowerCase();
-      // console.log(name);
-      // console.log('typeof name', typeof name);
-      // console.log('value ', searchValue);
-      // console.log('typeof value', typeof value);
+
       if (name.includes(searchValue)) {
 
         var $fish = document.createElement('li');
@@ -123,7 +103,9 @@ $searchForm.addEventListener('submit', function (event) {
         learnMoreCard.append(learnText);
         $resultList.append($fish);
 
-        searchResultView.className = 'view';
+        searchResultView.classList.remove('hidden');
+        searchResultView.classList.add('view');
+
       }
     }
 
@@ -135,8 +117,6 @@ $searchForm.addEventListener('submit', function (event) {
   clearList();
 });
 
-// var error;
-
 $fishResult.addEventListener('click', fishDetails);
 
 function clearList() {
@@ -144,14 +124,15 @@ function clearList() {
     $resultList.removeChild($resultList.firstChild);
   }
 }
-// function noResults() {
-//   error = document.createElement('li');
-//   error.classList.add('error-message');
+// function noResults(trueError) {
+//   error = trueError;
+//   trueError = document.createElement('li');
+//   trueError.classList.add('error-message');
 
 //   // var text = document.createTextNode('No results found. Sorry!');
 //   var text = document.createElement('p');
 //   text.textContent = 'No Results Found. Sorry! Try it again!';
-//   error.append(text);
+//   trueError.append(text);
 //   $resultList.append(error);
 // }
 
@@ -187,7 +168,7 @@ function getFishDataList() {
   xhr.addEventListener('load', function () {
 
     data.fishList = xhr.response;
-    for (var fishId = 0; fishId < 30; fishId++) {
+    for (var fishId = 0; fishId < 100; fishId++) {
 
       var $fish = document.createElement('li');
       $fish.setAttribute('id', fishId);
@@ -252,10 +233,6 @@ function fishDetails(event) {
     for (var index = 0; index < data.fishList.length; index++) {
       data.fishList[index].liked = liked;
     }
-
-    // data.liked.push(liked);
-
-    // $fishIcon.setAttribute('id', $fishId);
 
     $fishName.textContent = xhr.response[$fishId]['Species Name'];
     $fishScientificName.textContent = xhr.response[$fishId]['Scientific Name'];
@@ -448,6 +425,9 @@ $backToList.addEventListener('click', function (event) {
 });
 
 $backToSearch.addEventListener('click', function (event) {
+  $headToggle.classList.toggle('active');
+  menuTwo.classList.toggle('open');
+  menuToggleDiv.classList.toggle('hidden');
   handleView('search');
 });
 
@@ -455,10 +435,16 @@ $menuToggle.addEventListener('click', function (event) {
   $menuToggle.classList.toggle('active');
   $showcase.classList.toggle('active');
   menu.classList.toggle('open');
+  $header.classList.add('hidden');
 
 });
 
 $headToggle.addEventListener('click', function (event) {
+
+  if (event.target !== $headToggle) {
+    return;
+  }
+
   $headToggle.classList.toggle('active');
   menuTwo.classList.toggle('open');
   menuToggleDiv.classList.toggle('hidden');
@@ -475,10 +461,6 @@ $exploreButton.addEventListener('click', function (event) {
 $backHome.addEventListener('click', function () {
   handleView('show-case');
   $header.classList.add('hidden');
-});
-
-window.addEventListener('DOMContentLoaded', function (event) {
-
 });
 
 function handleView(viewData) {

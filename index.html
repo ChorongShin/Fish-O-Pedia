@@ -16,10 +16,10 @@
 
 <body>
   <main>
-    <div class="hidden" data-view="show-case">
+    <div class="view" data-view="show-case">
       <section class="showcase">
         <header class="home-header">
-          <h2 class="logo">What's Your Fish</h2>
+          <h2 class="logo">Virtual Aquarium</h2>
           <button class="toggle">
           </button>
         </header>
@@ -51,10 +51,11 @@
           </a>
         </div>
         <div class="column-one-fourth">
-          <p class="logo">What's your Fish</p>
+          <p class="logo">Virtual Aquarium</p>
         </div>
         <div class="column-one-fourth"> </div>
         <div class="column-different">
+
           <button type="button" class="button-toggle"></button>
         </div>
       </div>
@@ -74,7 +75,7 @@
   </div>
 
 
-  <div class="view" data-view="list">
+  <div class="hidden" data-view="list">
     <div class="container">
       <div class="first-row row">
         <div class="column-half intro-video-div">
@@ -94,7 +95,7 @@
       </div>
       <div class="row">
         <div class="column-full">
-          <p class="aquatic-life">Aquatic Life</p>
+          <p class="aquatic-life">Explore Aquatic Life</p>
         </div>
       </div>
       <div class="row fish-cards">
@@ -248,7 +249,7 @@
         <div class="column-full">
           <div class="search-bar">
             <form class="search-form">
-              <input type="text" class="search-input" placeholder="SEARCH">
+              <input type="text" class="search-input" placeholder="SEARCH" required>
               <button class="search-button" type="submit" value="search">
                 <span class="search-icon">
                   <i class="fas fa-search fa-2xl"></i>
@@ -258,10 +259,10 @@
           </div>
         </div>
       </div>
-      <div class="hidden" data-view="search-result">
-        <div class="row fish-cards">
-          <ul class="result-list">
 
+      <div class="hidden" data-view="search-result">
+        <div class="row fish-cards-two">
+          <ul class="result-list" data-view="search-result">
           </ul>
         </div>
       </div>
