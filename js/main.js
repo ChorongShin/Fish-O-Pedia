@@ -1,17 +1,11 @@
 var targetUrl = encodeURIComponent('https://www.fishwatch.gov/api/species');
 
-var $menuToggle = document.querySelector('button.toggle');
-var $showcase = document.querySelector('.showcase');
 var $exploreButton = document.querySelector('.explore');
 var $views = document.querySelectorAll('div[data-view]');
 var $backHome = document.querySelector('a.back-home');
-var $headToggle = document.querySelector('button.button-toggle');
 var $header = document.querySelector('.header');
-var menu = document.querySelector('ul.menu-one');
-var menuTwo = document.querySelector('ul.menu-two');
-var menuToggleDiv = document.querySelector('div.menu-toggle');
 var $fishList = document.querySelector('ul.fish-list');
-// var $fishIcon = document.querySelector('input.plain-fish');
+var $fishIcons = document.querySelectorAll('input.plain-fish');
 var $fishName = document.querySelector('p.title');
 var $fishImage = document.querySelector('img.fish-img');
 var $fishScientificName = document.querySelector('td.scientific-name');
@@ -23,7 +17,6 @@ var $fishBiologyList = document.querySelector('ul.fish-biology-list');
 var $previousIcon = document.querySelector('.fa-angle-left');
 var $nextIcon = document.querySelector('.fa-angle-right');
 var $backToList = document.querySelector('button.back-to-list');
-var $homeClick = document.querySelector('a.home-click');
 var $listClick = document.querySelector('a.list-click');
 var $searchInput = document.querySelector('input.search-input');
 var $resultList = document.querySelector('ul.result-list');
@@ -35,8 +28,6 @@ var $backToSearch = document.querySelector('button.back-to-search');
 var count = 0;
 var imageList = [];
 var $fishId;
-var liked;
-
 var searchClick = document.querySelector('a.search-click-two');
 
 searchClick.addEventListener('click', function (event) {
@@ -54,11 +45,6 @@ $searchForm.addEventListener('submit', function (event) {
   xhr.addEventListener('load', function () {
 
     var results = data.fishList;
-    // console.log('searchValue.value', searchValue.value);
-    // if (searchValue.value === undefined) {
-    //   console.log('searchValue.value', searchValue.value);
-    //   searchResultView.className = 'hidden';
-    // }
 
     for (var fishId = 0; fishId < 100; fishId++) {
 
@@ -139,28 +125,7 @@ function clearList() {
 $previousIcon.addEventListener('click', previous);
 $nextIcon.addEventListener('click', next);
 
-//   if (state) {
-
-//     $fishIcon.src = on;
-//     localStorage.setItem('liked', 'on');
-//   } else {
-//     $fishIcon.src = off;
-//     localStorage.setItem('liked', 'off');
-// }
-
-// function liked() {
-//   if (state) {
-//     $fishIcon.src = on;
-//     localStorage.setItem('liked', 'on');
-//   } else {
-//     $fishIcon.src = off;
-//     localStorage.setItem('liked', 'off');
-
-//   }
-// }
-
 // fish list
-
 function getFishDataList() {
   var xhr = new XMLHttpRequest(name);
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
@@ -217,22 +182,17 @@ function fishDetails(event) {
 
   var closest = event.target.closest('ul > li');
 
-  $fishId = parseInt(closest.getAttribute('id'), 10);
+  var $fishId = parseInt(closest.getAttribute('id'), 10);
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     data.fishList = xhr.response;
-    liked = {
-      fishId: $fishId,
-      like: false,
-      image: 'images/fish icon.png'
-    };
 
-    for (var index = 0; index < data.fishList.length; index++) {
-      data.fishList[index].liked = liked;
-    }
+    var fishIcon = document.querySelector('input.plain-fish');
+    fishIcon.setAttribute('id', $fishId);
+    fishIcon.setAttribute('src', 'images/fish icon.png');
 
     $fishName.textContent = xhr.response[$fishId]['Species Name'];
     $fishScientificName.textContent = xhr.response[$fishId]['Scientific Name'];
@@ -278,8 +238,6 @@ function fishDetails(event) {
       $fishPopulation.textContent = xhr.response[$fishId].Population;
       $fishPopulation.setAttribute('class', 'population');
     }
-    // console.log(xhr.response[$fishId]['Species Name']);
-    // console.log(xhr.response[$fishId]['Image Gallery']);
 
     if (xhr.response[$fishId]['Image Gallery'] === null) {
 
@@ -358,65 +316,62 @@ function setImg() {
 }
 
 // Press like click event
-// var on = 'images/fish-hook.png';
-// var off = 'images/fish icon.png';
+$fishIcons.forEach($fishIcon => $fishIcon.addEventListener('click', function (event) {
+  event.preventDefault();
 
-// $fishIcon.addEventListener('click', function (event) {
+  data.liked.push({
+    fishId: $fishId,
+    isLiked: false,
+    image: 'images/fish icon.png'
+  });
 
-//   console.log('event.target', event.target);
-//   console.log('$fishIcon.src', $fishIcon.src);
-//   console.log('fishId', $fishId);
-//   var icon = event.target.getAttribute('id');
-//   var iconId = parseInt(icon, 10);
-//   console.log(iconId);
-//   if (iconId === data.fishList[$fishId].liked.fishId) {
+  // console.log('event.target', event.target);
 
-//     var likesObject = {
-//       fishId: $fishId,
-//       like: true,
-//       image: 'images/fish-hook.png'
-//     };
-//     data.likes.push(likesObject);
-//     console.log('event.target.id', event.target.id);
-//     console.log('same id?', iconId === data.fishList[$fishId].liked.fishId);
-//     // console.log(data.fishList);
-//     // data.fistList[$fishId].liked.like = true;
-//     // data.fistList[$fishId].liked.source = on;
-//     data.fishList[$fishId].liked.like = true;
-//     event.target.src = on;
-//     console.log(event.target.src);
-//     data.fishList[$fishId].liked.source = on;
+  for (var i = 0; i < data.liked.length; i++) {
+    var state = data.liked[i].isLiked;
+    // console.log('state', state);
+    if (state === false) {
+      data.liked[i].isLiked = true;
+      data.liked[i].image = 'images/fish-hook.png';
+      $fishIcon.src = 'images/fish-hook.png';
+      state = true;
+    } else if (state === true) {
+      data.liked[i].isLiked = false;
+      data.liked[i].image = 'images/fish icon.png';
+      $fishIcon.src = 'images/fish icon.png';
+      state = false;
+    }
 
-//     // } else {
+  }
+})
+);
 
-//     //   //   // data.fistList[$fishId].liked.like = false;
-//     //   //   // data.fistList[$fishId].liked.source = off;
-//     //   //   // $fishIcon.src = off;
-//     //   data.fishList[$fishId].liked.like = false;
-//     //   $fishIcon.src = 'http://localhost:53137/' + off;
-//     //   data.fishList[$fishId].liked.source = off;
+// window.addEventListener('DOMContentLoaded', function (event) {
+//   $fishIcons.forEach($fishIcon => $fishIcon.addEventListener('click', function (event) {
+//     event.preventDefault();
+//     console.log('working');
 
-//   // } else if (iconId !== data.fishList[$fishId].liked.fishId) {
-//   //   data.fishList[$fishId].liked.like = false;
-//   //   $fishIcon.src = 'http://localhost:53137/' + off;
-//   //   data.fishList[$fishId].liked.source = off;
-//   // }
-//   }
-//   $fishIcon.src = off;
-
+//     for (var i = 0; i < data.liked.length; i++) {
+//       var state = data.liked[i].isLiked;
+//       console.log('state', state);
+//       if (state === false) {
+//         data.liked[i].isLiked = true;
+//         data.liked[i].image = 'images/fish-hook.png';
+//         $fishIcon.src = 'images/fish-hook.png';
+//         state = true;
+//       } else if (state === true) {
+//         data.liked[i].isLiked = false;
+//         data.liked[i].image = 'images/fish icon.png';
+//         $fishIcon.src = 'images/fish icon.png';
+//         state = false;
+//       }
+//     }
+//   })
+//   );
 // });
 
 $fishList.addEventListener('click', fishDetails);
-
-$homeClick.addEventListener('click', function () {
-  // console.log('working');
-  handleView('show-case');
-});
-
 $listClick.addEventListener('click', function () {
-  // console.log('working');
-  // $menuToggle.classList.toggle('active');
-  // $showcase.classList.toggle('active');
   handleView('list');
 });
 
@@ -425,30 +380,7 @@ $backToList.addEventListener('click', function (event) {
 });
 
 $backToSearch.addEventListener('click', function (event) {
-  $headToggle.classList.toggle('active');
-  menuTwo.classList.toggle('open');
-  menuToggleDiv.classList.toggle('hidden');
   handleView('search');
-});
-
-$menuToggle.addEventListener('click', function (event) {
-  $menuToggle.classList.toggle('active');
-  $showcase.classList.toggle('active');
-  menu.classList.toggle('open');
-  $header.classList.add('hidden');
-
-});
-
-$headToggle.addEventListener('click', function (event) {
-
-  if (event.target !== $headToggle) {
-    return;
-  }
-
-  $headToggle.classList.toggle('active');
-  menuTwo.classList.toggle('open');
-  menuToggleDiv.classList.toggle('hidden');
-
 });
 
 $exploreButton.addEventListener('click', function (event) {

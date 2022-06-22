@@ -7,7 +7,7 @@ header .logo {
   font-weight: 800;
   color: #fff;
   line-height: 1em;
-  margin-top: 1.4rem;
+  margin-top: 1.5rem;
   text-transform: uppercase;
 }
 
@@ -167,6 +167,24 @@ button.button-toggle.active {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.menu-two {
+  list-style-type: none;
+  margin-top: 1.5rem;
+}
+
+.nav {
+  display: inline;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.search-click-two,
+.list-click,
+.fish-click {
+  text-decoration: none;
+  color: white;
 }
 
 .menu-toggle {
@@ -563,7 +581,8 @@ button.back-to-search:hover {
 }
 
 @media only screen and (min-width: 414px)and (max-width: 576px) {
-  .container {
+  .container,
+  .fish-container {
     max-width: 900px;
   }
 
@@ -781,5 +800,15 @@ button.back-to-search:hover {
 
   button.back-to-search {
     margin-left: 2rem;
+  }
+
+  .menu-two {
+    padding-left: 0;
+  }
+
+  .nav {
+    margin-left: 0;
+    margin-right: 1rem;
+    font-size: 1rem;
   }
 }

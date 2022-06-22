@@ -6,11 +6,13 @@
   display: none;
 }
 
-.container {
+.container,
+.fish-container {
   margin: 0 auto;
 }
 
-.row {
+.row,
+.fish-row {
   display: flex;
   flex-wrap: wrap;
 }

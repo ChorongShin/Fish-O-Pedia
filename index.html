@@ -20,8 +20,6 @@
       <section class="showcase">
         <header class="home-header">
           <h2 class="logo">Virtual Aquarium</h2>
-          <button class="toggle">
-          </button>
         </header>
         <video src="images/Home.mp4" muted loop autoplay></video>
         <div class="overlay"></div>
@@ -31,14 +29,6 @@
           <button type="button" class="explore">Explore</button>
         </div>
       </section>
-      <div class="menu">
-        <ul class="menu-one">
-          <li><a class="home-click" href="#">HOME</a></li>
-          <li><a class="search-click" href="#">SEARCH</a></li>
-          <li><a class="list-click" href="#">LIST</a></li>
-          <li><a class="fish-click" href="#">FISH OF THE DAY</a></li>
-        </ul>
-      </div>
     </div>
   </main>
 
@@ -55,26 +45,16 @@
         </div>
         <div class="column-one-fourth"> </div>
         <div class="column-different">
-
-          <button type="button" class="button-toggle"></button>
+          <nav>
+            <ul class="menu-two">
+              <li class="nav"><a class="search-click-two" href="#">SEARCH</a></li>
+              <li class="nav"><a class="list-click" href="#">LIST</a></li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
   </header>
-  <div class="row">
-    <div class="column-full">
-      <div class="menu-toggle hidden">
-        <ul class="menu-two">
-          <li><a class="home-click" href="#">HOME</a></li>
-          <li><a class="search-click-two" href="#">SEARCH</a></li>
-          <li><a class="list-click" href="#">LIST</a></li>
-          <li><a class="fish-click" href="#">FISH OF THE DAY</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-
   <div class="hidden" data-view="list">
     <div class="container">
       <div class="first-row row">
@@ -100,60 +80,14 @@
       </div>
       <div class="row fish-cards">
         <ul class="fish-list">
-          <!-- <li id="1">
-            <div class="fish-column">
-              <div class="fish-card">
-                <img src="images/Royal Blue Tang.jpg" alt="royal blue tang">
-                <p class="fish-name">Royal Blue Tang</p>
-                <div class="learn-more-card">
-                  <a class="learn-text" href="#">LEARN MORE</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li id="2">
-            <div class="fish-column">
-              <div class="fish-card">
-                <div class= "fish-card-image">
-                <img src="images/Royal Blue Tang.jpg" alt="royal blue tang">
-                </div>
-                <p class="fish-name">ROYAL BLUE</p>
-                <div class="learn-more-card">
-                  <a class="learn-text" href="#">LEARN MORE</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li id="3">
-            <div class="fish-column">
-              <div class="fish-card">
-                <img src="images/Royal Blue Tang.jpg" alt="royal blue tang">
-                <p class="fish-name">Royal Blue Tang</p>
-                <div class="learn-more-card">
-                  <a class="learn-text" href="#">LEARN MORE</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li id="4">
-            <div class="fish-column">
-              <div class="fish-card">
-                <img src="images/Royal Blue Tang.jpg" alt="royal blue tang">
-                <p class="fish-name">Royal Blue Tang</p>
-                <div class="learn-more-card">
-                  <a class="learn-text" href="#">LEARN MORE</a>
-                </div>
-              </div>
-            </div>
-          </li> -->
         </ul>
       </div>
     </div>
   </div>
 
   <div class="hidden" data-view="fish">
-    <div class="container">
-      <div class="row">
+    <div class="fish-container">
+      <div class="fish-row">
         <div class="column-full">
           <div class="title-div">
             <p class="title">Crimson Jobfish</p>
@@ -181,12 +115,12 @@
         <div class="column-one-sixth"></div>
         <div class="column-half press-like-div">
           <div class="press-like">
-            <p class="like">&ldquo;If you like the fish, quick, <br>catch it before it runs away!&rdquo;</p>
+            <p class="like">&ldquo;If you like the fish, <br>click it to express like!&rdquo;</p>
           </div>
         </div>
         <div class="column-one-third fish-icon-div">
           <div class="fish-icon">
-            <input type="image" class="plain-fish" src="images/fish icon.png">
+            <input type="image" class="plain-fish">
           </div>
         </div>
       </div>
@@ -201,39 +135,24 @@
               <th>Location</th>
               <td class="location-li">
                 <ul class="fish-location-list">
-                  <!-- <li class="location list-item">According to the 2019 stock assessment, white hake is
-                    overfished&nbsp;but&nbsp;not subject to overfishing.
-                    Summary stock assessment information can be found on <a href="https://www.st.nmfs.noaa.gov/stocksmart?app=browse_by_stock&amp;stockid=10518\">Stock
-                      SMART</a>.</li> -->
                 </ul>
               </td>
             </tr>
             <tr>
               <th>Population</th>
               <td class="population">
-                <!-- The population level is unknown, but the stock is contained in 5 bottomfish complexes whose status ranges from
-              overfished to not overfished to unknown. -->
               </td>
             </tr>
             <tr>
               <th>Biology</th>
               <td class="biology-li">
                 <ul class="fish-biology-list">
-                  <!-- <li class="biology list-item">Crimson jobfish reach sexual maturity around 1.8
-                    years of age.</li>
-                  <li class="biology list-item">Spawning occurs between June and
-                    December with a peak in August.</li>
-                  <li class="biology list-item">Large fish reach about 20 lb and 3 feet
-                    long.</li>
-                  <li class="biology list-item">They feed on
-                    shrimps, squids, and small fishes.</li> -->
                 </ul>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-
       <div class="row">
         <div class="column-full list-button-div">
           <button class="back-to-list" type="button">Go to Fish List</button>
@@ -259,21 +178,18 @@
           </div>
         </div>
       </div>
-
       <div class="hidden" data-view="search-result">
         <div class="row fish-cards-two">
           <ul class="result-list" data-view="search-result">
           </ul>
         </div>
       </div>
-
-      <!--end of view and container-->
     </div>
   </div>
 
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
-  <!-- <script src="js/testing.js"></script> -->
+
 </body>
 
 </html>
