@@ -5,7 +5,7 @@ var $views = document.querySelectorAll('div[data-view]');
 var $backHome = document.querySelector('a.back-home');
 var $header = document.querySelector('.header');
 var $fishList = document.querySelector('ul.fish-list');
-var $fishIcons = document.querySelectorAll('input.plain-fish');
+var $fishIcon = document.querySelector('img.fish');
 var $fishName = document.querySelector('p.title');
 var $fishImage = document.querySelector('img.fish-img');
 var $fishScientificName = document.querySelector('td.scientific-name');
@@ -20,107 +20,15 @@ var $backToList = document.querySelector('button.back-to-list');
 var $listClick = document.querySelector('a.list-click');
 var $searchInput = document.querySelector('input.search-input');
 var $resultList = document.querySelector('ul.result-list');
-var $searchForm = document.querySelector('.search-form');
-var searchResultView = document.querySelector('div[data-view="search-result"]');
 var $fishResult = document.querySelector('ul.result-list');
 var $backToSearch = document.querySelector('button.back-to-search');
+var searchClick = document.querySelector('a.search-click-two');
 
 var count = 0;
 var imageList = [];
 var $fishId;
-var searchClick = document.querySelector('a.search-click-two');
-
-searchClick.addEventListener('click', function (event) {
-  handleView('search');
-});
-
-$searchForm.addEventListener('submit', function (event) {
-  event.preventDefault();
-
-  var searchValue = $searchInput.value;
-
-  var xhr = new XMLHttpRequest(name);
-  xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-
-    var results = data.fishList;
-
-    for (var fishId = 0; fishId < 100; fishId++) {
-
-      var name = results[fishId]['Species Name'].toLowerCase();
-
-      if (name.includes(searchValue)) {
-
-        var $fish = document.createElement('li');
-        $fish.setAttribute('id', fishId);
-
-        var fishColumn = document.createElement('div');
-        fishColumn.setAttribute('class', 'fish-column');
-
-        var fishCard = document.createElement('div');
-        fishCard.setAttribute('class', 'fish-card');
-
-        var fishCardImage = document.createElement('div');
-        fishCardImage.setAttribute('class', 'fish-card-image');
-
-        var fishImage = document.createElement('img');
-        fishImage.setAttribute('src', xhr.response[fishId]['Species Illustration Photo'].src);
-        fishImage.setAttribute('alt', xhr.response[fishId]['Species Illustration Photo'].title);
-
-        var fishName = document.createElement('p');
-        fishName.setAttribute('class', 'fish-name');
-        fishName.textContent = xhr.response[fishId]['Species Name'];
-
-        var learnMoreCard = document.createElement('div');
-        learnMoreCard.setAttribute('class', 'learn-more-card');
-
-        var learnText = document.createElement('a');
-        learnText.setAttribute('class', 'learn-text');
-        learnText.setAttribute('href', '#');
-        learnText.textContent = 'LEARN MORE';
-
-        $fish.append(fishColumn);
-        fishColumn.append(fishCard);
-        fishCard.append(fishCardImage);
-        fishCardImage.append(fishImage);
-        fishCard.append(fishName);
-        fishCard.append(learnMoreCard);
-        learnMoreCard.append(learnText);
-        $resultList.append($fish);
-
-        searchResultView.classList.remove('hidden');
-        searchResultView.classList.add('view');
-
-      }
-    }
-
-    $searchForm.reset();
-    searchValue.value = '';
-
-  });
-  xhr.send();
-  clearList();
-});
 
 $fishResult.addEventListener('click', fishDetails);
-
-function clearList() {
-  while ($resultList.firstChild) {
-    $resultList.removeChild($resultList.firstChild);
-  }
-}
-// function noResults(trueError) {
-//   error = trueError;
-//   trueError = document.createElement('li');
-//   trueError.classList.add('error-message');
-
-//   // var text = document.createTextNode('No results found. Sorry!');
-//   var text = document.createElement('p');
-//   text.textContent = 'No Results Found. Sorry! Try it again!';
-//   trueError.append(text);
-//   $resultList.append(error);
-// }
 
 $previousIcon.addEventListener('click', previous);
 $nextIcon.addEventListener('click', next);
@@ -182,17 +90,19 @@ function fishDetails(event) {
 
   var closest = event.target.closest('ul > li');
 
-  var $fishId = parseInt(closest.getAttribute('id'), 10);
+  $fishId = parseInt(closest.getAttribute('id'), 10);
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     data.fishList = xhr.response;
+    // var $fishIcon = document.querySelector('img.fish');
+    // var inputFishId = parseInt($fishIcon.getAttribute('id'), 10);
 
-    var fishIcon = document.querySelector('input.plain-fish');
-    fishIcon.setAttribute('id', $fishId);
-    fishIcon.setAttribute('src', 'images/fish icon.png');
+    data.fishList[$fishId].liked = { fishId: $fishId, isLiked: false };
+
+    $fishIcon.setAttribute('id', $fishId);
 
     $fishName.textContent = xhr.response[$fishId]['Species Name'];
     $fishScientificName.textContent = xhr.response[$fishId]['Scientific Name'];
@@ -276,6 +186,34 @@ function fishDetails(event) {
 
     handleView('fish');
 
+    $fishIcon.addEventListener('click', function (event) {
+
+      var inputFishId = parseInt($fishIcon.getAttribute('id'), 10);
+
+      // var pressedLiked = {
+      //   fishId: inputFishId,
+      //   isLiked: false,
+      //   image: 'blue'
+      // };
+
+      if (inputFishId === data.fishList[inputFishId].liked.fishId && data.fishList[inputFishId].liked.isLiked === false) {
+
+        $fishIcon.className = 'fish orange';
+        $fishIcon.src = 'images/fish-hook.png';
+        data.fishList[inputFishId].liked.isLiked = true;
+
+      } else if (inputFishId === data.fishList[inputFishId].liked.fishId && data.fishList[inputFishId].liked.isLiked === true) {
+
+        // data.liked[like].isLike = false;
+        // data.liked[like].image = 'images/fish icon.png';
+        $fishIcon.className = 'fish blue';
+        $fishIcon.src = 'images/fish icon.png';
+        data.fishList[inputFishId].liked = false;
+
+      }
+
+    });
+
   });
   xhr.send();
 }
@@ -315,61 +253,6 @@ function setImg() {
   }
 }
 
-// Press like click event
-$fishIcons.forEach($fishIcon => $fishIcon.addEventListener('click', function (event) {
-  event.preventDefault();
-
-  data.liked.push({
-    fishId: $fishId,
-    isLiked: false,
-    image: 'images/fish icon.png'
-  });
-
-  // console.log('event.target', event.target);
-
-  for (var i = 0; i < data.liked.length; i++) {
-    var state = data.liked[i].isLiked;
-    // console.log('state', state);
-    if (state === false) {
-      data.liked[i].isLiked = true;
-      data.liked[i].image = 'images/fish-hook.png';
-      $fishIcon.src = 'images/fish-hook.png';
-      state = true;
-    } else if (state === true) {
-      data.liked[i].isLiked = false;
-      data.liked[i].image = 'images/fish icon.png';
-      $fishIcon.src = 'images/fish icon.png';
-      state = false;
-    }
-
-  }
-})
-);
-
-// window.addEventListener('DOMContentLoaded', function (event) {
-//   $fishIcons.forEach($fishIcon => $fishIcon.addEventListener('click', function (event) {
-//     event.preventDefault();
-//     console.log('working');
-
-//     for (var i = 0; i < data.liked.length; i++) {
-//       var state = data.liked[i].isLiked;
-//       console.log('state', state);
-//       if (state === false) {
-//         data.liked[i].isLiked = true;
-//         data.liked[i].image = 'images/fish-hook.png';
-//         $fishIcon.src = 'images/fish-hook.png';
-//         state = true;
-//       } else if (state === true) {
-//         data.liked[i].isLiked = false;
-//         data.liked[i].image = 'images/fish icon.png';
-//         $fishIcon.src = 'images/fish icon.png';
-//         state = false;
-//       }
-//     }
-//   })
-//   );
-// });
-
 $fishList.addEventListener('click', fishDetails);
 $listClick.addEventListener('click', function () {
   handleView('list');
@@ -381,6 +264,9 @@ $backToList.addEventListener('click', function (event) {
 
 $backToSearch.addEventListener('click', function (event) {
   handleView('search');
+  $header.classList.remove('hidden');
+  $header.classList.add('view');
+
 });
 
 $exploreButton.addEventListener('click', function (event) {
@@ -405,3 +291,74 @@ function handleView(viewData) {
     }
   }
 }
+
+searchClick.addEventListener('click', function (event) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    data.fishList = xhr.response;
+
+    for (var fishId = 0; fishId < 100; fishId++) {
+
+      var $fish = document.createElement('li');
+      $fish.setAttribute('id', fishId);
+
+      var fishColumn = document.createElement('div');
+      fishColumn.setAttribute('class', 'fish-column');
+
+      var fishCard = document.createElement('div');
+      fishCard.setAttribute('class', 'fish-card');
+
+      var fishCardImage = document.createElement('div');
+      fishCardImage.setAttribute('class', 'fish-card-image');
+
+      var fishImage = document.createElement('img');
+      fishImage.setAttribute('src', xhr.response[fishId]['Species Illustration Photo'].src);
+      fishImage.setAttribute('alt', xhr.response[fishId]['Species Illustration Photo'].title);
+
+      var fishName = document.createElement('p');
+      fishName.setAttribute('class', 'fish-name');
+      fishName.textContent = xhr.response[fishId]['Species Name'];
+
+      var learnMoreCard = document.createElement('div');
+      learnMoreCard.setAttribute('class', 'learn-more-card');
+
+      var learnText = document.createElement('a');
+      learnText.setAttribute('class', 'learn-text');
+      learnText.setAttribute('href', '#');
+      learnText.textContent = 'LEARN MORE';
+
+      $fish.append(fishColumn);
+      fishColumn.append(fishCard);
+      fishCard.append(fishCardImage);
+      fishCardImage.append(fishImage);
+      fishCard.append(fishName);
+      fishCard.append(learnMoreCard);
+      learnMoreCard.append(learnText);
+      $resultList.append($fish);
+    }
+
+    var list = document.querySelectorAll('ul.result-list > li');
+    $searchInput.onkeyup = () => {
+      var search = $searchInput.value.toLowerCase();
+
+      for (var i of list) {
+
+        var item = i.innerHTML.toLowerCase();
+        if (item.indexOf(search) === -1) {
+          i.classList.add('hidden');
+          i.classList.remove('view');
+        } else {
+          i.classList.remove('hidden');
+          i.classList.add('view');
+        }
+      }
+      search.value = '';
+    };
+  });
+
+  xhr.send();
+  handleView('search');
+
+});

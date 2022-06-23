@@ -361,6 +361,14 @@ ul.result-list > li::after {
   cursor: pointer;
 }
 
+ul.result-list > li.hidden {
+  display: none;
+}
+
+ul.result-list > li.view {
+  display: block;
+}
+
 div.title-div {
   margin-top: 2.5rem;
   display: flex;
@@ -429,9 +437,18 @@ div.fish-icon {
   right: 55px;
 }
 
-input.plain-fish {
+img.fish.blue {
+  border: 0;
   width: 100%;
-  height: 100%;
+  height: 100;
+  background: url("..images/fish icon.png");
+}
+
+img.fish.orange {
+  border: 0;
+  width: 100;
+  height: 100;
+  background: url("..images/fish-hook.png");
 }
 
 div.table-row {
@@ -557,7 +574,7 @@ button.back-to-search:hover {
   color: red;
 }
 
-.search-bar {
+div.search-input {
   display: flex;
   justify-content: center;
 }
@@ -566,7 +583,7 @@ button.back-to-search:hover {
   border-bottom: 2px solid black;
 }
 
-.search-input {
+input.search-input {
   width: 500px;
   height: 40px;
   border: none;
