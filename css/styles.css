@@ -547,28 +547,16 @@ td.biology-li > ul ul > li {
   background-size: 13px;
 }
 
-button.back-to-list,
-button.back-to-search {
+button.back-to-list {
   padding: 1.5rem;
   font-size: 2rem;
   border-radius: 20px;
   border-style: none;
   background-color: #0073c9;
-}
-
-button.back-to-list {
-  background-color: #0073c9;
   color: white;
 }
 
-button.back-to-search {
-  background-color: rgb(217, 233, 236);
-  color: black;
-  margin-left: 5rem;
-}
-
-button.back-to-list:hover,
-button.back-to-search:hover {
+button.back-to-list:hover {
   cursor: pointer;
   background-color: #c4ff02;
   color: red;
@@ -579,15 +567,16 @@ div.search-input {
   justify-content: center;
 }
 
-.search-form {
-  border-bottom: 2px solid black;
-}
-
 input.search-input {
   width: 500px;
   height: 40px;
-  border: none;
+  border: 1px solid #0073c9;
   font-size: 1.5rem;
+  text-align: center;
+}
+
+input.search-input:focus {
+  border: 1px solid yellow;
 }
 
 .search-button {
@@ -805,18 +794,14 @@ input.search-input {
     font-size: 2.3rem;
   }
 
-  .search-input {
-    width: 200px;
+  input.search-input {
+    width: 300px;
+    height: 50px;
   }
 
-  button.back-to-list,
-  button.back-to-search {
+  button.back-to-list {
     padding: 1.5rem;
     font-size: 1.2rem;
-  }
-
-  button.back-to-search {
-    margin-left: 2rem;
   }
 
   .menu-two {

@@ -21,8 +21,8 @@ var $listClick = document.querySelector('a.list-click');
 var $searchInput = document.querySelector('input.search-input');
 var $resultList = document.querySelector('ul.result-list');
 var $fishResult = document.querySelector('ul.result-list');
-var $backToSearch = document.querySelector('button.back-to-search');
 var searchClick = document.querySelector('a.search-click-two');
+var listClick = document.querySelector('a.list-click');
 
 var count = 0;
 var imageList = [];
@@ -262,23 +262,18 @@ $backToList.addEventListener('click', function (event) {
   handleView('list');
 });
 
-$backToSearch.addEventListener('click', function (event) {
-  handleView('search');
-  $header.classList.remove('hidden');
-  $header.classList.add('view');
-
-});
-
 $exploreButton.addEventListener('click', function (event) {
   handleView('list');
-  $header.classList.remove('hidden');
-  $header.classList.add('view');
   getFishDataList();
 });
 
 $backHome.addEventListener('click', function () {
   handleView('show-case');
   $header.classList.add('hidden');
+});
+
+listClick.addEventListener('click', function (event) {
+  handleView('list');
 });
 
 function handleView(viewData) {
