@@ -6,13 +6,13 @@
   display: none;
 }
 
-.container {
-  max-width: 1000px;
+.container,
+.fish-container {
   margin: 0 auto;
-  padding: 0 1.5rem;
 }
 
-.row {
+.row,
+.fish-row {
   display: flex;
   flex-wrap: wrap;
 }
@@ -29,9 +29,7 @@
 
 .fish-column {
   margin-top: 3rem;
-  width: 400px;
   display: inline-block;
-  margin-right: 0;
 }
 
 .column-full {

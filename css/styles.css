@@ -7,7 +7,7 @@ header .logo {
   font-weight: 800;
   color: #fff;
   line-height: 1em;
-  margin-top: 1.4rem;
+  margin-top: 1.5rem;
   text-transform: uppercase;
 }
 
@@ -169,6 +169,24 @@ button.button-toggle.active {
   align-items: center;
 }
 
+.menu-two {
+  list-style-type: none;
+  margin-top: 1.5rem;
+}
+
+.nav {
+  display: inline;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.search-click-two,
+.list-click,
+.fish-click {
+  text-decoration: none;
+  color: white;
+}
+
 .menu-toggle {
   position: relative;
   overflow: hidden;
@@ -224,19 +242,30 @@ button.button-toggle.active {
   margin-top: 3rem;
 }
 
-.intro-video {
-  width: 475px;
+.intro-video-div {
+  background-color: #0e345a;
+  height: 450px;
 }
 
-.fish-head {
+.intro-video {
+  width: 800px;
+}
+
+h2.fish-head {
   margin-left: 2.2rem;
   letter-spacing: 0.5rem;
+  font-size: 4rem;
+  margin-bottom: 0;
+}
+
+p.quote {
+  font-size: 1.5rem;
 }
 
 .background-color {
   background-color: #0e345a;
   color: white;
-  height: 267px;
+  height: 450px;
   padding-top: 2rem;
 }
 
@@ -252,53 +281,92 @@ figcaption {
   margin-left: 2.2rem;
 }
 
+.aquatic-life {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 3rem;
+}
+
+.fish-cards,
+.fish-cards-two {
+  background-color: #f2f2f2;
+  justify-content: center;
+}
+
+.fish-cards-two {
+  margin-top: 3rem;
+}
+
 .fish-card {
+  width: 300px;
+  height: 500px;
   margin-bottom: 1rem;
   border: 1px solid rgb(199 199 199);
   border-radius: 0.25rem;
   box-shadow: 0 6px 6px -4px rgb(0 0 0 / 30%);
+  background-color: #f4f4fa;
 }
 
-.fish-card > img {
-  width: 100%;
+.fish-card-image {
   height: 281.8px;
+}
+
+.fish-card-image > img {
+  width: 100%;
+  height: 100%;
   background-color: rgb(210 210 210);
+  object-fit: contain;
 }
 
 .fish-name {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   text-align: center;
+  margin-top: 3rem;
 }
 
 .learn-more-card {
-  background-color: #e5e5e5;
-  border-radius: 20px;
-  padding: 0.5rem;
-  margin: 1rem 5rem;
   display: flex;
   justify-content: center;
+  margin-bottom: 3rem;
 }
 
 .learn-text {
   text-decoration: none;
   font-size: 1rem;
-  color: #111;
-  margin-left: 0.8rem;
+  color: white;
+  background-color: black;
+  margin-top: 1rem;
+  padding: 1rem;
 }
 
-.fish-list {
+.fish-list,
+.result-list {
   list-style-type: none;
-  padding-left: 0;
+  max-width: 1200px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  padding-right: 40px;
 }
 
-ul.fish-list > li {
+ul.fish-list > li,
+ul.result-list > li {
   display: inline-block;
-  width: 400px;
-  margin-left: 50px;
+  width: 300px;
+  margin-left: 2rem;
 }
 
-ul.fish-list > li::after {
+ul.fish-list > li::after,
+ul.result-list > li::after {
   cursor: pointer;
+}
+
+ul.result-list > li.hidden {
+  display: none;
+}
+
+ul.result-list > li.view {
+  display: block;
 }
 
 div.title-div {
@@ -315,24 +383,10 @@ p.title {
   margin-top: 20px;
 }
 
-.view-container {
-  width: 600px;
-  height: 350px;
-  margin-left: 180px;
-
-  /* border: solid;
-  border-top-right-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem; */
-
-  /* background-color: white;
-  box-shadow: 0 6px 8px -6px rgb(0 0 0 / 40%); */
-}
-
 .fish-div {
-  margin-top: 3.5rem;
-  margin-left: 20px;
-  width: 350px;
+  margin-top: 2rem;
+  width: 400px;
+  height: 300px;
 }
 
 img.fish-img {
@@ -341,41 +395,211 @@ img.fish-img {
   background-color: white;
 }
 
-.angle > i {
+.angle-left,
+.angle-right {
+  color: orange;
+}
+
+.angle-left > i,
+.angle-right > i {
   position: relative;
 }
 
 .fa-angle-left {
   top: 150px;
-  left: 40px;
+  left: 293px;
 }
 
 .fa-angle-right {
   top: 150px;
-  left: 72px;
+  right: 89px;
 }
 
-ion-icon.active {
-  animation: like 0.5s 1;
-  fill: red;
-  stroke: none;
+.press-like {
+  text-align: center;
+  font-size: 1.7rem;
+  position: relative;
+  left: 30px;
+  top: 50px;
+  font-style: italic;
 }
 
-ion-icon {
-  fill: transparent;
-  stroke: black;
-  stroke-width: 30;
-  transition: all 0.5s;
+.like {
+  margin: 0;
+  padding-top: 1rem;
 }
 
-@media only screen and (min-width: 414px)and (max-width: 576px) {
-  .container {
+div.fish-icon {
+  width: 180px;
+  height: 150px;
+  position: relative;
+  top: 13px;
+  right: 55px;
+}
+
+img.fish.blue {
+  border: 0;
+  width: 100%;
+  height: 100;
+  background: url("..images/fish icon.png");
+}
+
+img.fish.orange {
+  border: 0;
+  width: 100;
+  height: 100;
+  background: url("..images/fish-hook.png");
+}
+
+div.table-row {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  justify-content: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin-left: 9.5rem;
+  margin-right: 9.5rem;
+  border: 2px solid #2085c5;
+  border-top: 10px solid #2085c5;
+  width: 800px;
+}
+
+tr {
+  height: 80px;
+}
+
+th {
+  width: 30%;
+  font-size: 1.2rem;
+}
+
+td {
+  width: 70%;
+  border: none;
+  padding: 20px;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+td.no-li {
+  padding: 20px;
+}
+
+td.location-li,
+td.biology-li {
+  padding: 0 0 20px;
+}
+
+tr:nth-child(odd) {
+  background-color: #d9eaec;
+}
+
+td.scientific-name {
+  font-style: italic;
+}
+
+ul.fish-location-list,
+ul.fish-biology-list {
+  margin: 0;
+  padding: 0;
+}
+
+ul.fish-location-list > li,
+ul.fish-biology-list > li {
+  margin: 0;
+  padding: 20px 27px 0 22px;
+  list-style: none;
+  background-image: url("../images/orange.png");
+  background-repeat: no-repeat;
+  background-position: 1px 1.4em;
+  background-size: 13px;
+}
+
+div.list-button-div {
+  justify-content: center;
+  display: flex;
+  margin-bottom: 3rem;
+}
+
+ul.fish-location-list > p {
+  padding-left: 20px;
+}
+
+td.biology-li > ul > li > ul > li > ul {
+  margin: 0;
+  padding: 20px 27px 0 22px;
+  list-style: none;
+  background-image: url("../images/orange.png");
+  background-repeat: no-repeat;
+  background-position: 1px 1.4em;
+  background-size: 13px;
+}
+
+td.biology-li > ul ul > li {
+  margin: 0;
+  padding: 20px 27px 0 22px;
+  list-style: none;
+  background-image: url("../images/orange.png");
+  background-repeat: no-repeat;
+  background-position: 1px 1.4em;
+  background-size: 13px;
+}
+
+button.back-to-list {
+  padding: 1.5rem;
+  font-size: 2rem;
+  border-radius: 20px;
+  border-style: none;
+  background-color: #0073c9;
+  color: white;
+}
+
+button.back-to-list:hover {
+  cursor: pointer;
+  background-color: #c4ff02;
+  color: red;
+}
+
+div.search-input {
+  display: flex;
+  justify-content: center;
+}
+
+input.search-input {
+  width: 500px;
+  height: 40px;
+  border: 1px solid #0073c9;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+input.search-input:focus {
+  border: 1px solid yellow;
+}
+
+.search-button {
+  width: 60px;
+  height: 40px;
+  border: none;
+  background-color: white;
+}
+
+.no-result {
+  font-size: 1.5rem;
+  text-align: center;
+  padding-top: 1.5rem;
+}
+
+@media only screen and (min-width: 414px) and (max-width: 576px) {
+  .container,
+  .fish-container {
     max-width: 900px;
   }
 
   .column-half {
     width: 100%;
-    background-color: #0e345a;
   }
 
   .column-one-third, {
@@ -388,6 +612,14 @@ ion-icon {
 
   .column-one-fourth {
     width: 20%;
+  }
+
+  .column-different {
+    width: 36.2%;
+  }
+
+  .fish-column {
+    padding: 0;
   }
 
   header .logo {
@@ -428,7 +660,7 @@ ion-icon {
     background-color: #0073c9;
   }
 
-  .home-header {
+  .home-header, {
     position: absolute;
     top: 0;
     left: 0;
@@ -444,8 +676,6 @@ ion-icon {
     position: relative;
     width: 60px;
     height: 60px;
-
-    /* background: url(https://i.ibb.co/HrfVRcx/menu.png); */
     background-repeat: no-repeat;
     background-size: 30px;
     background-position: center;
@@ -457,10 +687,11 @@ ion-icon {
   .menu-toggle ul li {
     list-style: none;
     margin-top: 1rem;
-    border: 1px solid black;
     padding: 0.3rem;
-    width: 200px;
+    width: 150px;
     text-align: center;
+    padding-top: 3rem;
+    border: none;
   }
 
   .menu-toggle ul li a {
@@ -470,34 +701,44 @@ ion-icon {
   }
 
   .menu-toggle ul.open {
-    visibility: visible;
-    margin-top: 48px;
-    margin-left: 111px;
+    margin: 0 2.5rem 0 0;
+  }
+
+  .intro-video-div {
+    background-color: #0e345a;
+    height: 237.5px;
   }
 
   .intro-video {
-    width: 452px;
+    width: 414px;
   }
 
-  blockquote p {
+  p.quote {
     font-size: 1.25rem;
+    text-align: center;
   }
 
-  .fish-head {
-    font-size: 2rem;
-    margin-top: 0;
-    margin-bottom: 0;
+  p.title {
+    font-size: 1.5rem;
+    margin-top: 26px;
+  }
+
+  h2.fish-head {
+    font-size: 3rem;
+    margin: 0;
+    text-align: center;
   }
 
   .background-color {
     background-color: #0e345a;
     color: white;
-    height: 256.5px;
+    height: 278.5px;
     padding: 0;
   }
 
-  ul.fish-list > li {
-    margin-left: 13px;
+  ul.fish-list > li,
+  ul.result-list > li {
+    margin-left: 7px;
   }
 
   .column-angle-div {
@@ -505,22 +746,82 @@ ion-icon {
   }
 
   .fish-div {
-    width: 200px;
-  }
-
-  .view-container {
-    width: 500px;
-    height: 350px;
-    margin-left: 140px;
+    height: 200px;
+    width: 260px;
   }
 
   .fa-angle-left {
-    top: 114px;
-    left: 80px;
+    top: 113px;
+    left: 40px;
   }
 
   .fa-angle-right {
     top: 113px;
-    left: 42px;
+    left: 16px;
+  }
+
+  .column-half.press-like-div {
+    background-color: white;
+    width: 100%;
+  }
+
+  .column-one-fourth.fish-icon-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  div.fish-image-row {
+    justify-content: center;
+  }
+
+  div.fish-icon {
+    width: 100px;
+    height: 100px;
+    top: 50px;
+    left: 10px;
+  }
+
+  div.press-like {
+    left: 3px;
+  }
+
+  .like {
+    padding-top: 0;
+  }
+
+  table {
+    margin-left: 0;
+    margin-right: 0;
+    width: 88%;
+  }
+
+  div.table-row {
+    margin-top: 4rem;
+    justify-content: center;
+  }
+
+  .aquatic-life {
+    font-size: 2.3rem;
+  }
+
+  input.search-input {
+    width: 300px;
+    height: 50px;
+  }
+
+  button.back-to-list {
+    padding: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .menu-two {
+    padding-left: 0;
+  }
+
+  .nav {
+    margin-left: 0;
+    margin-right: 1rem;
+    font-size: 1rem;
   }
 }

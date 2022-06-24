@@ -19,9 +19,7 @@
     <div class="view" data-view="show-case">
       <section class="showcase">
         <header class="home-header">
-          <h2 class="logo">What's Your Fish</h2>
-          <button class="toggle">
-          </button>
+          <h2 class="logo">Virtual Aquarium</h2>
         </header>
         <video src="images/Home.mp4" muted loop autoplay></video>
         <div class="overlay"></div>
@@ -31,14 +29,6 @@
           <button type="button" class="explore">Explore</button>
         </div>
       </section>
-      <div class="menu">
-        <ul class="menu-one">
-          <li><a class="home-click" href="#">HOME</a></li>
-          <li><a class="search-click" href="#">SEARCH</a></li>
-          <li><a class="list-click" href="#">LIST</a></li>
-          <li><a class="fish-click" href="#">FISH OF THE DAY</a></li>
-        </ul>
-      </div>
     </div>
   </main>
 
@@ -51,118 +41,146 @@
           </a>
         </div>
         <div class="column-one-fourth">
-          <p class="logo">What's your Fish</p>
+          <p class="logo">Virtual Aquarium</p>
         </div>
         <div class="column-one-fourth"> </div>
         <div class="column-different">
-          <button type="button" class="button-toggle"></button>
+          <nav>
+            <ul class="menu-two">
+              <li class="nav"><a class="search-click-two" href="#">SEARCH</a></li>
+              <li class="nav"><a class="list-click" href="#">LIST</a></li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
   </header>
-  <div class="row">
-    <div class="column-full">
-      <div class="menu-toggle hidden">
-        <ul class="menu-two">
-          <li><a class="home-click" href="#">HOME</a></li>
-          <li><a class="search-click" href="#">SEARCH</a></li>
-          <li><a class="list-click" href="#">LIST</a></li>
-          <li><a class="fish-click" href="#">FISH OF THE DAY</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-
   <div class="hidden" data-view="list">
     <div class="container">
       <div class="first-row row">
-        <div class="column-half">
+        <div class="column-half intro-video-div">
           <video class="intro-video" src="images/fish 2.mp4" muted loop autoplay></video>
         </div>
         <div class="column-half background-color">
           <figure>
             <h2 class="fish-head">FISH</h2>
-            <blockquote cite="">
-              <p>Fish are vertebrates (vertebrates have backbones) that live in water.
-                <br>They breathe using special organs called gills.
+            <blockquote>
+              <p class="quote">Fish are vertebrates (vertebrates have backbones) that live in water.
+                They breathe using special organs called gills.
               </p>
             </blockquote>
             <figcaption>—NATIONAL GEOGRAPHIC KIDS</figcaption>
           </figure>
         </div>
       </div>
+      <div class="row">
+        <div class="column-full">
+          <p class="aquatic-life">Explore Sea Life</p>
+        </div>
+      </div>
       <div class="row fish-cards">
         <ul class="fish-list">
-          <!-- <li id="1">
-            <div class="fish-column">
-              <div class="fish-card">
-                <img src="images/Royal Blue Tang.jpg" alt="royal blue tang">
-                <p class="fish-name">Royal Blue Tang</p>
-                <div class="learn-more-card">
-                  <a class="learn-text" href="#"><i class="fa-solid fa-circle-info"></i> LEARN MORE</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li id="2">
-            <div class="fish-column">
-              <div class="fish-card">
-                <img src="images/Royal Blue Tang.jpg" alt="royal blue tang">
-                <p class="fish-name">Royal Blue Tang</p>
-                <div class="learn-more-card">
-                  <a class="learn-text" href="#"><i class="fa-solid fa-circle-info"></i> LEARN MORE</a> -->
-          <!-- </div>
-    </div>
-  </div>
-  </li> -->
         </ul>
       </div>
     </div>
   </div>
-  <!--
-  <div class="view" data-view="fish">
-    <div class="container">
-      <div class="row">
-        <div class="column-one-sixth"></div>
-        <div class="column-two-third">
+
+  <div class="hidden" data-view="fish">
+    <div class="fish-container">
+      <div class="fish-row">
+        <div class="column-full">
           <div class="title-div">
-            <p class="title">Red Snapper</p>
+            <p class="title">Crimson Jobfish</p>
           </div>
         </div>
-        <div class="column-one-sixth"></div>
       </div>
-      <div class="view-container">
-        <div class="row">
-          <div class="column-angle-div">
-            <span class="angle"><i class="fa-solid fa-angle-left fa-2xl"></i></span>
-          </div>
-          <div class="column-two-fourths">
-            <div class="fish-div">
-              <img class="fish-img" src="images/Royal Blue Tang.jpg" alt="">
-            </div>
-          </div>
-          <div class="column-angle-div">
-            <span class="angle"><i class="fa-solid fa-angle-right fa-2xl"></i></span>
+      <div class="row">
+        <div class="column-one-sixth">
+          <span class="angle-left">
+            <i class="fa-solid fa-angle-left fa-2xl"></i>
+          </span>
+        </div>
+        <div class="column-two-third fish-image-div">
+          <div class="fish-div">
+            <img class="fish-img" src="images/empty fish.png" alt="fish">
           </div>
         </div>
-      </div> -->
-
-  <!-- <div class="row">
-        <div class="column-one-third"></div>
-        <div class="column-one-third">
-          <span class="heart"><i class="fa fa-heart" style="font-size:48px;color:blue;"></i></span>
-          <span><i class="fa fa-heart" style="font-size:48px;color:red"></i></span>
-
+        <div class="column-one-sixth">
+          <span class="angle-right">
+            <i class="fa-solid fa-angle-right fa-2xl"></i>
+          </span>
         </div>
-        <div class="column-one-third"></div>
-      </div> -->
+      </div>
+      <div class="row fish-image-row">
+        <div class="column-one-sixth"></div>
+        <div class="column-half press-like-div">
+          <div class="press-like">
+            <p class="like">&ldquo;If you like the fish, <br>click it to express like!&rdquo;</p>
+          </div>
+        </div>
+        <div class="column-one-third fish-icon-div">
+          <div class="fish-icon">
+            <img src="images/fish icon.png" alt="fish" class="fish blue">
+          </div>
+        </div>
+      </div>
+      <div class="row table-row">
+        <table>
+          <tbody>
+            <tr>
+              <th class="th-scientific-name">Scientific Name</th>
+              <td class="scientific-name">Pristipomoides filamentosus</td>
+            </tr>
+            <tr>
+              <th class="th-location">Location</th>
+              <td class="location-li">
+                <ul class="fish-location-list">
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Population</th>
+              <td class="population">
+              </td>
+            </tr>
+            <tr>
+              <th>Biology</th>
+              <td class="biology-li">
+                <ul class="fish-biology-list">
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="column-full list-button-div">
+          <button class="back-to-list" type="button">Go Back to Fish List</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!--end of container and data-view-->
-  <!-- </div>
-  </div> -->
-
-
+  <div class="hidden" data-view="search">
+    <div class="container">
+      <div class="row first-row">
+        <div class="column-full">
+          <div class="search-input">
+            <form class="form">
+              <input type="text" class="search-input" placeholder="Look Up Fish" required>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row fish-cards-two">
+        <div class="column-full">
+          <p class="no-result hidden">No Fish Available. Try It Again!</p>
+        </div>
+        <ul class="result-list">
+        </ul>
+      </div>
+    </div>
+  </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>

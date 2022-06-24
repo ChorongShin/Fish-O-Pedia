@@ -5,3 +5,8 @@
 body {
   margin: 0;
 }
+
+div.column-two-third.fish-image-div {
+  display: flex;
+  justify-content: center;
+}

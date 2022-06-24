@@ -1,8 +1,8 @@
-/* exported data */
+/* exported data fish */
 var data = {
   view: 'show-case',
   fishList: [],
-  nextId: 1
+  liked: []
 };
 
 var previousDataJSON = localStorage.getItem('entry-local-storage');
@@ -12,5 +12,5 @@ if (previousDataJSON !== null) {
 
 window.addEventListener('beforeunload', function (event) {
   var dataJSON = JSON.stringify(data);
-  this.localStorage.setItem('entry-local-storage', dataJSON);
+  this.localStorage.setItem('javascript-local-storage', dataJSON);
 });
