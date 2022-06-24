@@ -586,7 +586,13 @@ input.search-input:focus {
   background-color: white;
 }
 
-@media only screen and (min-width: 414px)and (max-width: 576px) {
+.no-result {
+  font-size: 1.5rem;
+  text-align: center;
+  padding-top: 1.5rem;
+}
+
+@media only screen and (min-width: 414px) and (max-width: 576px) {
   .container,
   .fish-container {
     max-width: 900px;
@@ -710,6 +716,11 @@ input.search-input:focus {
   p.quote {
     font-size: 1.25rem;
     text-align: center;
+  }
+
+  p.title {
+    font-size: 1.5rem;
+    margin-top: 26px;
   }
 
   h2.fish-head {

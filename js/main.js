@@ -23,10 +23,13 @@ var $resultList = document.querySelector('ul.result-list');
 var $fishResult = document.querySelector('ul.result-list');
 var searchClick = document.querySelector('a.search-click-two');
 var listClick = document.querySelector('a.list-click');
+var $noResult = document.querySelector('p.no-result');
+var $form = document.querySelector('form.form');
 
 var count = 0;
 var imageList = [];
 var $fishId;
+var fishNames = [];
 
 $fishResult.addEventListener('click', fishDetails);
 
@@ -256,48 +259,58 @@ function setImg() {
 $fishList.addEventListener('click', fishDetails);
 $listClick.addEventListener('click', function () {
   handleView('list');
+  $form.reset();
 });
 
 $backToList.addEventListener('click', function (event) {
   handleView('list');
+
 });
 
 $exploreButton.addEventListener('click', function (event) {
   handleView('list');
   getFishDataList();
+
 });
 
 $backHome.addEventListener('click', function () {
   handleView('show-case');
-  $header.classList.add('hidden');
+  $header.classList.add('view');
+
 });
 
 listClick.addEventListener('click', function (event) {
   handleView('list');
+
 });
 
-function handleView(viewData) {
-  data.view = viewData;
-  for (var i = 0; i < $views.length; i++) {
-    if ($views[i].getAttribute('data-view') === viewData) {
-      $views[i].className = 'view';
-    } else {
-      $views[i].className = 'view hidden';
-    }
-  }
-}
-
 searchClick.addEventListener('click', function (event) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    data.fishList = xhr.response;
+  $resultList.innerHTML = '';
+  handleView('search');
 
-    for (var fishId = 0; fishId < 100; fishId++) {
+  var fishData = data.fishList;
+
+  for (var i = 0; i < fishData.length; i++) {
+    var fishName = fishData[i]['Species Name'].toLowerCase();
+    fishNames.push(fishName);
+
+  }
+  // console.dir($resultList.children.length);
+
+});
+
+$form.addEventListener('submit', function (event) {
+  event.preventDefault();
+  $resultList.innerHTML = '';
+
+  var searchValue = $searchInput.value.toLowerCase();
+
+  for (var i = 0; i < 3; i++) {
+
+    if (fishNames[i].indexOf(searchValue) > -1) {
 
       var $fish = document.createElement('li');
-      $fish.setAttribute('id', fishId);
+      $fish.setAttribute('id', i);
 
       var fishColumn = document.createElement('div');
       fishColumn.setAttribute('class', 'fish-column');
@@ -309,12 +322,12 @@ searchClick.addEventListener('click', function (event) {
       fishCardImage.setAttribute('class', 'fish-card-image');
 
       var fishImage = document.createElement('img');
-      fishImage.setAttribute('src', xhr.response[fishId]['Species Illustration Photo'].src);
-      fishImage.setAttribute('alt', xhr.response[fishId]['Species Illustration Photo'].title);
+      fishImage.setAttribute('src', data.fishList[i]['Species Illustration Photo'].src);
+      fishImage.setAttribute('alt', data.fishList[i]['Species Illustration Photo'].title);
 
       var fishName = document.createElement('p');
       fishName.setAttribute('class', 'fish-name');
-      fishName.textContent = xhr.response[fishId]['Species Name'];
+      fishName.textContent = data.fishList[i]['Species Name'];
 
       var learnMoreCard = document.createElement('div');
       learnMoreCard.setAttribute('class', 'learn-more-card');
@@ -332,28 +345,30 @@ searchClick.addEventListener('click', function (event) {
       fishCard.append(learnMoreCard);
       learnMoreCard.append(learnText);
       $resultList.append($fish);
+
     }
 
-    var list = document.querySelectorAll('ul.result-list > li');
-    $searchInput.onkeyup = () => {
-      var search = $searchInput.value.toLowerCase();
+  }
 
-      for (var i of list) {
+  if ($resultList.children.length === 0) {
+    $noResult.classList.add('view');
+    $noResult.classList.remove('hidden');
+  } else {
+    $noResult.classList.remove('view');
+    $noResult.classList.add('hidden');
+  }
 
-        var item = i.innerHTML.toLowerCase();
-        if (item.indexOf(search) === -1) {
-          i.classList.add('hidden');
-          i.classList.remove('view');
-        } else {
-          i.classList.remove('hidden');
-          i.classList.add('view');
-        }
-      }
-      search.value = '';
-    };
-  });
-
-  xhr.send();
-  handleView('search');
-
+  $searchInput.value = '';
+  $form.reset();
 });
+
+function handleView(viewData) {
+  data.view = viewData;
+  for (var i = 0; i < $views.length; i++) {
+    if ($views[i].getAttribute('data-view') === viewData) {
+      $views[i].className = 'view';
+    } else {
+      $views[i].className = 'view hidden';
+    }
+  }
+}

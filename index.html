@@ -166,11 +166,16 @@
       <div class="row first-row">
         <div class="column-full">
           <div class="search-input">
-            <input type="text" class="search-input" placeholder="Look Up Fish" required>
+            <form class="form">
+              <input type="text" class="search-input" placeholder="Look Up Fish" required>
+            </form>
           </div>
         </div>
       </div>
       <div class="row fish-cards-two">
+        <div class="column-full">
+          <p class="no-result hidden">No Fish Available. Try It Again!</p>
+        </div>
         <ul class="result-list">
         </ul>
       </div>
@@ -179,4 +184,5 @@
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
