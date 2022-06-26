@@ -69,3 +69,7 @@
 .empty {
   height: 30px;
 }
+
+.column-special {
+  width: 9%;
+}

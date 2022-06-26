@@ -429,27 +429,29 @@ img.fish-img {
   padding-top: 1rem;
 }
 
-div.fish-icon {
-  width: 180px;
-  height: 150px;
-  position: relative;
-  top: 13px;
-  right: 55px;
+i.blue-heart {
+  color: blue;
+  padding-left: 30px;
+  font-size: 5em;
 }
 
-img.fish.blue {
-  border: 0;
+i.red-heart {
+  color: red;
+  padding-left: 30px;
+  font-size: 5em;
+}
+
+/* i.fish {
   width: 100%;
   height: 100;
-  background: url("..images/fish icon.png");
-}
+} */
 
-img.fish.orange {
+/* img.fish.orange {
   border: 0;
   width: 100;
   height: 100;
   background: url("..images/fish-hook.png");
-}
+} */
 
 div.table-row {
   margin-top: 2rem;
@@ -590,6 +592,23 @@ input.search-input:focus {
   font-size: 1.5rem;
   text-align: center;
   padding-top: 1.5rem;
+}
+
+div.fish-image-row {
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+p.like {
+  margin: 0;
+  text-align: center;
+  font-size: 2rem;
+}
+
+span.red-heart {
+  color: red;
 }
 
 @media only screen and (min-width: 414px) and (max-width: 576px) {
@@ -771,19 +790,33 @@ input.search-input:focus {
     justify-content: center;
   }
 
+  .column-one-third.fish-icon-div {
+    width: 100%;
+    margin-top: 30px;
+  }
+
   div.fish-image-row {
     justify-content: center;
   }
 
-  div.fish-icon {
-    width: 100px;
-    height: 100px;
-    top: 50px;
-    left: 10px;
+  i.blue-heart {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    color: blue;
+  }
+
+  i.red-heart {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    color: red;
   }
 
   div.press-like {
-    left: 3px;
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: 30px;
   }
 
   .like {

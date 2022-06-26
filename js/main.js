@@ -91,134 +91,113 @@ function getFishDataList() {
 
 function fishDetails(event) {
 
-  var closest = event.target.closest('ul > li');
+  // var closest = event.target.closest('ul > li');
 
-  $fishId = parseInt(closest.getAttribute('id'), 10);
+  // $fishId = parseInt(closest.getAttribute('id'), 10);
 
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    data.fishList = xhr.response;
-    // var $fishIcon = document.querySelector('img.fish');
-    // var inputFishId = parseInt($fishIcon.getAttribute('id'), 10);
+  // NOTE: this assumes path[4] is always the LI. Can't change the HTML
+  $fishId = event.path[4].getAttribute('id');
 
+  // if we've never visited here, then liked is undefined, then
+  // we should define with default values
+  if (data.fishList[$fishId].liked === undefined) {
     data.fishList[$fishId].liked = { fishId: $fishId, isLiked: false };
+  }
 
-    $fishIcon.setAttribute('id', $fishId);
+  // make fish orange or blue based on whether it was liked
+  if (data.fishList[$fishId].liked.isLiked) {
+    $fishIcon.className = 'fish orange';
+    $fishIcon.src = 'images/fish-hook.png';
+  } else {
+    $fishIcon.className = 'fish blue';
+    $fishIcon.src = 'images/fish icon.png';
+  }
 
-    $fishName.textContent = xhr.response[$fishId]['Species Name'];
-    $fishScientificName.textContent = xhr.response[$fishId]['Scientific Name'];
+  $fishIcon.setAttribute('id', $fishId);
 
-    if (xhr.response[$fishId].Location === null) {
-      $fishLocation.textContent = 'No Data Available';
-      $fishLocation.setAttribute('class', 'no-li');
-    } else {
-      var locationUL = xhr.response[$fishId].Location.trim();
-      var locationArray = locationUL.split('\n');
-      for (var i = 0; i < locationArray.length; i++) {
-        if (locationArray[i] === '<ul>' || locationArray[i] === '</ul>') {
-          locationArray.splice(i, 1);
-        }
+  $fishName.textContent = data.fishList[$fishId]['Species Name'];
+  $fishScientificName.textContent = data.fishList[$fishId]['Scientific Name'];
+
+  if (data.fishList[$fishId].Location === null) {
+    $fishLocation.textContent = 'No Data Available';
+    $fishLocation.setAttribute('class', 'no-li');
+  } else {
+    var locationUL = data.fishList[$fishId].Location.trim();
+    var locationArray = locationUL.split('\n');
+    for (var i = 0; i < locationArray.length; i++) {
+      if (locationArray[i] === '<ul>' || locationArray[i] === '</ul>') {
+        locationArray.splice(i, 1);
       }
-      var locationString = locationArray.join(' ');
-      $fishLocationList.innerHTML = locationString;
     }
+    var locationString = locationArray.join(' ');
+    $fishLocationList.innerHTML = locationString;
+  }
 
-    if (xhr.response[$fishId].Biology === null) {
-      $fishBiology.textContent = 'No Data Available';
-      $fishBiology.setAttribute('class', 'no-li');
-    } else if (xhr.response[$fishId].Biology !== null) {
-      var biologyUL = xhr.response[$fishId].Biology.trim();
-      var biologyArray = biologyUL.split('\n');
-      for (var j = 0; j < biologyArray.length; j++) {
-        if (biologyArray[j] === ' <ul>' || biologyArray[j] === ' </ul>') {
-          biologyArray.splice(j, 1);
-        }
-
-      }
-
-      var biologyString = biologyArray.join(' ');
-      $fishBiologyList.innerHTML = biologyString;
-      var uls = document.querySelectorAll('ul.fish-biology-list > ul');
-      uls.forEach(ul => ul.classList.add('fish-biology-list'));
-    }
-
-    if (xhr.response[$fishId].Population === null) {
-      $fishPopulation.textContent = 'No Data Available';
-      $fishPopulation.setAttribute('class', 'population');
-    } else {
-      $fishPopulation.textContent = xhr.response[$fishId].Population;
-      $fishPopulation.setAttribute('class', 'population');
-    }
-
-    if (xhr.response[$fishId]['Image Gallery'] === null) {
-
-      imageList = [];
-      $fishImage.setAttribute('src', xhr.response[$fishId]['Species Illustration Photo'].src);
-      $fishImage.setAttribute('alt', xhr.response[$fishId]['Species Illustration Photo'].alt);
-
-      $previousIcon.classList.remove('view');
-      $nextIcon.classList.remove('view');
-      $previousIcon.classList.add('hidden');
-      $nextIcon.classList.add('hidden');
-
-    } else if (xhr.response[$fishId]['Image Gallery'].length === undefined) {
-      imageList = [];
-      $fishImage.setAttribute('src', xhr.response[$fishId]['Image Gallery'].src);
-      $fishImage.setAttribute('alt', xhr.response[$fishId]['Image Gallery'].alt);
-
-      $previousIcon.classList.remove('view');
-      $nextIcon.classList.remove('view');
-      $previousIcon.classList.add('hidden');
-      $nextIcon.classList.add('hidden');
-
-    } else if (xhr.response[$fishId]['Image Gallery'].length > 1) {
-
-      imageList = xhr.response[$fishId]['Image Gallery'];
-
-      $fishImage.setAttribute('src', imageList[0].src);
-      $fishImage.setAttribute('alt', imageList[0].alt);
-
-      $previousIcon.classList.remove('hidden');
-      $nextIcon.classList.remove('hidden');
-      $previousIcon.classList.add('view');
-      $nextIcon.classList.add('view');
-
-    }
-
-    handleView('fish');
-
-    $fishIcon.addEventListener('click', function (event) {
-
-      var inputFishId = parseInt($fishIcon.getAttribute('id'), 10);
-
-      // var pressedLiked = {
-      //   fishId: inputFishId,
-      //   isLiked: false,
-      //   image: 'blue'
-      // };
-
-      if (inputFishId === data.fishList[inputFishId].liked.fishId && data.fishList[inputFishId].liked.isLiked === false) {
-
-        $fishIcon.className = 'fish orange';
-        $fishIcon.src = 'images/fish-hook.png';
-        data.fishList[inputFishId].liked.isLiked = true;
-
-      } else if (inputFishId === data.fishList[inputFishId].liked.fishId && data.fishList[inputFishId].liked.isLiked === true) {
-
-        // data.liked[like].isLike = false;
-        // data.liked[like].image = 'images/fish icon.png';
-        $fishIcon.className = 'fish blue';
-        $fishIcon.src = 'images/fish icon.png';
-        data.fishList[inputFishId].liked = false;
-
+  if (data.fishList[$fishId].Biology === null) {
+    $fishBiology.textContent = 'No Data Available';
+    $fishBiology.setAttribute('class', 'no-li');
+  } else if (data.fishList[$fishId].Biology !== null) {
+    var biologyUL = data.fishList[$fishId].Biology.trim();
+    var biologyArray = biologyUL.split('\n');
+    for (var j = 0; j < biologyArray.length; j++) {
+      if (biologyArray[j] === ' <ul>' || biologyArray[j] === ' </ul>') {
+        biologyArray.splice(j, 1);
       }
 
-    });
+    }
 
-  });
-  xhr.send();
+    var biologyString = biologyArray.join(' ');
+    $fishBiologyList.innerHTML = biologyString;
+    var uls = document.querySelectorAll('ul.fish-biology-list > ul');
+    uls.forEach(ul => ul.classList.add('fish-biology-list'));
+  }
+
+  if (data.fishList[$fishId].Population === null) {
+    $fishPopulation.textContent = 'No Data Available';
+    $fishPopulation.setAttribute('class', 'population');
+  } else {
+    $fishPopulation.textContent = data.fishList[$fishId].Population;
+    $fishPopulation.setAttribute('class', 'population');
+  }
+
+  if (data.fishList[$fishId]['Image Gallery'] === null) {
+
+    imageList = [];
+    $fishImage.setAttribute('src', data.fishList[$fishId]['Species Illustration Photo'].src);
+    $fishImage.setAttribute('alt', data.fishList[$fishId]['Species Illustration Photo'].alt);
+
+    $previousIcon.classList.remove('view');
+    $nextIcon.classList.remove('view');
+    $previousIcon.classList.add('hidden');
+    $nextIcon.classList.add('hidden');
+
+  } else if (data.fishList[$fishId]['Image Gallery'].length === undefined) {
+    imageList = [];
+    $fishImage.setAttribute('src', data.fishList[$fishId]['Image Gallery'].src);
+    $fishImage.setAttribute('alt', data.fishList[$fishId]['Image Gallery'].alt);
+
+    $previousIcon.classList.remove('view');
+    $nextIcon.classList.remove('view');
+    $previousIcon.classList.add('hidden');
+    $nextIcon.classList.add('hidden');
+
+  } else if (data.fishList[$fishId]['Image Gallery'].length > 1) {
+
+    imageList = data.fishList[$fishId]['Image Gallery'];
+
+    $fishImage.setAttribute('src', imageList[0].src);
+    $fishImage.setAttribute('alt', imageList[0].alt);
+
+    $previousIcon.classList.remove('hidden');
+    $nextIcon.classList.remove('hidden');
+    $previousIcon.classList.add('view');
+    $nextIcon.classList.add('view');
+
+  }
+
+  handleView('fish');
+  $fishIcon.removeEventListener('click', handleFishLikeClick);
+  $fishIcon.addEventListener('click', handleFishLikeClick);
 }
 
 function previous() {
@@ -237,6 +216,36 @@ function next() {
   return setImg();
 
 }
+
+var handleFishLikeClick = function (event) {
+  var inputFishId = $fishIcon.getAttribute('id');
+
+  // var pressedLiked = {
+  //   fishId: inputFishId,
+  //   isLiked: false,
+  //   image: 'blue'
+  // };
+
+  if (inputFishId === data.fishList[inputFishId].liked.fishId && data.fishList[inputFishId].liked.isLiked === false) {
+
+    $fishIcon.className = 'fish orange';
+    $fishIcon.src = 'images/fish-hook.png';
+    data.fishList[inputFishId].liked.isLiked = true;
+
+  } else if (
+    inputFishId === data.fishList[inputFishId].liked.fishId &&
+    data.fishList[inputFishId].liked.isLiked === true
+  ) {
+
+    // data.liked[like].isLike = false;
+    // data.liked[like].image = 'images/fish icon.png';
+    $fishIcon.className = 'fish blue';
+    $fishIcon.src = 'images/fish icon.png';
+    data.fishList[inputFishId].liked.isLiked = false;
+
+  }
+
+};
 
 function setImg() {
   imageList = data.fishList[$fishId]['Image Gallery'];
