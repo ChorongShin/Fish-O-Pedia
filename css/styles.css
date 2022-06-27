@@ -26,7 +26,7 @@ header .logo {
 .home-header {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 3px;
   width: 100%;
   padding: 40px 100px;
   z-index: 1000;
@@ -601,7 +601,22 @@ span.red-heart {
   color: red;
 }
 
-@media only screen and (min-width: 414px) and (max-width: 576px) {
+@media only screen and (min-width: 390px) and (max-width: 576px) {
+  .home-header {
+    position: absolute;
+    right: 30px;
+    width: 100%;
+    padding: 40px 100px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .text {
+    right: 39px;
+    bottom: 57px;
+  }
+
   .container,
   .fish-container {
     max-width: 900px;
@@ -667,18 +682,6 @@ span.red-heart {
   .header {
     height: 70px;
     background-color: #0073c9;
-  }
-
-  .home-header, {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 40px 100px;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   button.toggle {
