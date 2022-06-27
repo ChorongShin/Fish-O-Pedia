@@ -36,7 +36,6 @@ $fishResult.addEventListener('click', fishDetails);
 $previousIcon.addEventListener('click', previous);
 $nextIcon.addEventListener('click', next);
 
-// fish list
 function getFishDataList() {
   var xhr = new XMLHttpRequest(name);
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
@@ -90,10 +89,6 @@ function getFishDataList() {
 }
 
 function fishDetails(event) {
-
-  // var closest = event.target.closest('ul > li');
-
-  // $fishId = parseInt(closest.getAttribute('id'), 10);
 
   // NOTE: this assumes path[4] is always the LI. Can't change the HTML
   $fishId = event.path[4].getAttribute('id');
@@ -220,12 +215,6 @@ function next() {
 var handleFishLikeClick = function (event) {
   var inputFishId = $fishIcon.getAttribute('id');
 
-  // var pressedLiked = {
-  //   fishId: inputFishId,
-  //   isLiked: false,
-  //   image: 'blue'
-  // };
-
   if (inputFishId === data.fishList[inputFishId].liked.fishId && data.fishList[inputFishId].liked.isLiked === false) {
 
     $fishIcon.className = 'fish orange';
@@ -237,8 +226,6 @@ var handleFishLikeClick = function (event) {
     data.fishList[inputFishId].liked.isLiked === true
   ) {
 
-    // data.liked[like].isLike = false;
-    // data.liked[like].image = 'images/fish icon.png';
     $fishIcon.className = 'fish blue';
     $fishIcon.src = 'images/fish icon.png';
     data.fishList[inputFishId].liked.isLiked = false;
@@ -304,7 +291,6 @@ searchClick.addEventListener('click', function (event) {
     fishNames.push(fishName);
 
   }
-  // console.dir($resultList.children.length);
 
 });
 
