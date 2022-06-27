@@ -419,7 +419,7 @@ img.fish-img {
   text-align: center;
   font-size: 1.7rem;
   position: relative;
-  left: 30px;
+  left: 8px;
   top: 50px;
   font-style: italic;
 }
@@ -429,26 +429,18 @@ img.fish-img {
   padding-top: 1rem;
 }
 
-div.fish-icon {
-  width: 180px;
-  height: 150px;
-  position: relative;
-  top: 13px;
-  right: 55px;
-}
-
 img.fish.blue {
-  border: 0;
-  width: 100%;
-  height: 100;
-  background: url("..images/fish icon.png");
+  position: relative;
+  right: 80px;
+  bottom: 24px;
 }
 
 img.fish.orange {
-  border: 0;
-  width: 100;
-  height: 100;
-  background: url("..images/fish-hook.png");
+  position: relative;
+  right: 80px;
+  top: 0;
+  width: 47%;
+  margin-bottom: 3rem;
 }
 
 div.table-row {
@@ -590,6 +582,23 @@ input.search-input:focus {
   font-size: 1.5rem;
   text-align: center;
   padding-top: 1.5rem;
+}
+
+div.fish-image-row {
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+p.like {
+  margin: 0;
+  text-align: center;
+  font-size: 2rem;
+}
+
+span.red-heart {
+  color: red;
 }
 
 @media only screen and (min-width: 414px) and (max-width: 576px) {
@@ -771,19 +780,38 @@ input.search-input:focus {
     justify-content: center;
   }
 
+  .column-one-third.fish-icon-div {
+    width: 100%;
+    margin-top: 30px;
+  }
+
   div.fish-image-row {
     justify-content: center;
   }
 
   div.fish-icon {
-    width: 100px;
-    height: 100px;
-    top: 50px;
-    left: 10px;
+    text-align: center;
+  }
+
+  img.fish.blue {
+    top: 30px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+
+  img.fish.orange {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 30px;
+    margin-bottom: 3.5rem;
   }
 
   div.press-like {
-    left: 3px;
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: 30px;
   }
 
   .like {
