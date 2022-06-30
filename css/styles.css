@@ -153,6 +153,7 @@ h3.sea {
   color: #111;
   letter-spacing: 2px;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .explore:hover {
