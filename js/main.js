@@ -1,30 +1,28 @@
-var targetUrl = encodeURIComponent('https://www.fishwatch.gov/api/species');
+const targetUrl = encodeURIComponent('https://www.fishwatch.gov/api/species');
 
-var $exploreButton = document.querySelector('.explore');
-var $views = document.querySelectorAll('div[data-view]');
-var $backHome = document.querySelector('a.back-home');
-var $header = document.querySelector('.header');
-var $fishList = document.querySelector('ul.fish-list');
-var $fishIcon = document.querySelector('img.fish');
-var $fishName = document.querySelector('p.title');
-var $fishImage = document.querySelector('img.fish-img');
-var $fishScientificName = document.querySelector('td.scientific-name');
-var $fishLocation = document.querySelector('td.location-li');
-var $fishLocationList = document.querySelector('ul.fish-location-list');
-var $fishPopulation = document.querySelector('td.population');
-var $fishBiology = document.querySelector('td.biology-li');
-var $fishBiologyList = document.querySelector('ul.fish-biology-list');
-var $previousIcon = document.querySelector('.fa-angle-left');
-var $nextIcon = document.querySelector('.fa-angle-right');
-var $backToList = document.querySelector('button.back-to-list');
-var $listClick = document.querySelector('a.list-click');
-var $searchInput = document.querySelector('input.search-input');
-var $resultList = document.querySelector('ul.result-list');
-var $fishResult = document.querySelector('ul.result-list');
-var searchClick = document.querySelector('a.search-click-two');
-var listClick = document.querySelector('a.list-click');
-var $noResult = document.querySelector('p.no-result');
-var $form = document.querySelector('form.form');
+const $exploreButton = document.querySelector('.explore');
+const $views = document.querySelectorAll('div[data-view]');
+const $backHome = document.querySelector('a.back-home');
+const $fishList = document.querySelector('ul.fish-list');
+const $fishIcon = document.querySelector('img.fish');
+const $fishName = document.querySelector('p.title');
+const $fishImage = document.querySelector('img.fish-img');
+const $fishScientificName = document.querySelector('td.scientific-name');
+const $fishLocation = document.querySelector('td.location-li');
+const $fishLocationList = document.querySelector('ul.fish-location-list'); const $fishPopulation = document.querySelector('td.population');
+const $fishBiology = document.querySelector('td.biology-li');
+const $fishBiologyList = document.querySelector('ul.fish-biology-list');
+const $previousIcon = document.querySelector('.fa-angle-left');
+const $nextIcon = document.querySelector('.fa-angle-right');
+const $backToList = document.querySelector('button.back-to-list');
+const $listClick = document.querySelector('a.list-click');
+const $searchInput = document.querySelector('input.search-input');
+const $resultList = document.querySelector('ul.result-list');
+const $fishResult = document.querySelector('ul.result-list');
+const searchClick = document.querySelector('a.search-click-two');
+const listClick = document.querySelector('a.list-click');
+const $noResult = document.querySelector('p.no-result');
+const $form = document.querySelector('form.form');
 
 var count = 0;
 var imageList = [];
@@ -89,6 +87,10 @@ function getFishDataList() {
 }
 
 function fishDetails(event) {
+
+  // var $fish = document.querySelector('ul.fish-list > li');
+  // $fishId = $fish.id;
+  // console.log('fishId', $fishId);
 
   // NOTE: this assumes path[4] is always the LI. Can't change the HTML
   $fishId = event.path[4].getAttribute('id');
@@ -271,7 +273,6 @@ $exploreButton.addEventListener('click', function (event) {
 
 $backHome.addEventListener('click', function () {
   handleView('show-case');
-  $header.classList.add('view');
 
 });
 
