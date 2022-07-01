@@ -21,10 +21,8 @@
   width: calc(100%/4);
 }
 
-.column-different {
-  width: 38.2%;
-  display: flex;
-  justify-content: flex-end;
+.column-fifth-eights {
+  width: calc(500% / 8);
 }
 
 .fish-column {

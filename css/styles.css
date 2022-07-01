@@ -2,6 +2,11 @@
   font-family: Poppins, sans-serif;
 }
 
+.showcase-two {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
 header .logo {
   font-size: 1.4em;
   font-weight: 800;
@@ -169,17 +174,6 @@ h3.sea {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.menu-two {
-  list-style-type: none;
-  margin-top: 1.5rem;
-}
-
-.nav {
-  display: inline;
-  margin-left: 2rem;
-  margin-right: 2rem;
 }
 
 .search-click-two,
@@ -378,9 +372,8 @@ div.title-div {
 }
 
 p.title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: white;
-  margin-top: 20px;
 }
 
 .fish-div {
@@ -433,14 +426,15 @@ img.fish.blue {
   position: relative;
   right: 80px;
   bottom: 24px;
+  width: 100%;
 }
 
 img.fish.orange {
   position: relative;
   right: 80px;
   top: 0;
-  width: 47%;
   margin-bottom: 3rem;
+  width: 100%;
 }
 
 div.table-row {
@@ -541,7 +535,7 @@ td.biology-li > ul ul > li {
 
 button.back-to-list {
   padding: 1.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-radius: 20px;
   border-style: none;
   background-color: #0073c9;
@@ -560,9 +554,9 @@ div.search-input {
 }
 
 input.search-input {
-  width: 500px;
+  width: 100%;
   height: 40px;
-  border: 1px solid #0073c9;
+  border: 3px solid #0073c9;
   font-size: 1.5rem;
   text-align: center;
 }
@@ -605,7 +599,55 @@ figure {
   margin: 3rem 0;
 }
 
+.column-fifth-eights {
+  width: calc(500% / 8);
+}
+
+li.nav {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+ul.menu-two {
+  display: flex;
+  justify-content: end;
+  list-style-type: none;
+  margin-top: 1.5rem;
+  padding-left: 0;
+}
+
 @media only screen and (min-width: 300px) and (max-width: 370px) {
+  a.search-click-two {
+    margin-right: 0.4rem;
+  }
+
+  i.fa-angle-right {
+    left: 9px;
+  }
+
+  i.fa-angle-left {
+    left: 23px;
+  }
+
+  li.nav {
+    font-size: 0.9rem;
+  }
+
+  .logo-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 10px solid #0073c9;
+  }
+
+  a.serch-click-two {
+    margin-right: 1rem;
+  }
+
+  header .logo {
+    font-size: 1rem;
+  }
+
   .text {
     right: 15px;
   }
@@ -628,9 +670,36 @@ figure {
     right: 0;
     height: 100%;
   }
+
+  img.fish.blue {
+    right: 0;
+    bottom: 0;
+    top: 49px;
+  }
+
+  img.fish.orange {
+    right: 0;
+    bottom: 0;
+    top: 60px;
+  }
 }
 
 @media only screen and (min-width: 371px) and (max-width: 414px) {
+  li.nav {
+    margin-right: 1rem;
+  }
+
+  a.search-click-two {
+    margin-right: 0.4rem;
+  }
+
+  .logo-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 8px solid #0073c9;
+  }
+
   .home-header {
     position: absolute;
     right: 25px;
@@ -645,11 +714,6 @@ figure {
     position: relative;
     z-index: 10;
     right: 30px;
-  }
-
-  .container,
-  .fish-container {
-    max-width: 900px;
   }
 
   .column-half {
@@ -702,13 +766,6 @@ figure {
     text-transform: uppercase;
   }
 
-  .logo-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 8px solid #0073c9;
-  }
-
   button.toggle {
     position: relative;
     width: 60px;
@@ -757,11 +814,6 @@ figure {
   p.quote {
     font-size: 1.2rem;
     text-align: center;
-  }
-
-  p.title {
-    font-size: 1.5rem;
-    margin-top: 26px;
   }
 
   h2.fish-head {
@@ -824,6 +876,7 @@ figure {
     bottom: 0;
     right: 0;
     left: 0;
+    width: 100%;
   }
 
   img.fish.orange {
@@ -832,6 +885,7 @@ figure {
     left: 0;
     top: 30px;
     margin-bottom: 3.5rem;
+    width: 100%;
   }
 
   div.press-like {
@@ -862,21 +916,6 @@ figure {
   input.search-input {
     width: 300px;
     height: 50px;
-  }
-
-  button.back-to-list {
-    padding: 1.5rem;
-    font-size: 1.2rem;
-  }
-
-  .menu-two {
-    padding-left: 0;
-  }
-
-  .nav {
-    margin-left: 0;
-    margin-right: 1rem;
-    font-size: 1rem;
   }
 
   .first-row {
