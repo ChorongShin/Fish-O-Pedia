@@ -5,6 +5,7 @@
 .showcase-two {
   display: flex;
   flex-wrap: nowrap;
+  margin-bottom: 3rem;
 }
 
 header .logo {
@@ -149,7 +150,7 @@ h3.sea {
 
 .explore {
   display: inline-block;
-  font-size: 1em;
+  font-size: 2rem;
   background: #fff;
   padding: 10px 30px;
   border-radius: 5px;
@@ -238,14 +239,25 @@ h3.sea {
   margin-top: 3rem;
 }
 
-.intro-video-div {
+/* .intro-video-div {
   background-color: #0e345a;
   width: 100%;
   height: 100%;
+} */
+
+.fish-intro {
+  margin-top: 3rem;
 }
 
 .intro-video {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fish-video {
+  padding: 0;
+  width: 50%;
 }
 
 h2.fish-head {
@@ -260,12 +272,11 @@ p.quote {
   font-size: 1.5rem;
 }
 
-.background-color {
+.fish-definition {
   background-color: #0e345a;
   color: white;
   text-align: center;
-  width: 100%;
-  height: 100%;
+  width: 50%;
 }
 
 blockquote p::before {
@@ -314,7 +325,7 @@ figcaption {
 }
 
 .fish-name {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   text-align: center;
   margin-top: 3rem;
 }
@@ -347,7 +358,8 @@ figcaption {
 ul.fish-list > li,
 ul.result-list > li {
   display: inline-block;
-  width: 100%;
+  width: 30%;
+  margin-left: 2rem;
 }
 
 ul.fish-list > li::after,
@@ -420,21 +432,27 @@ img.fish-img {
 .like {
   margin: 0;
   padding-top: 1rem;
+  text-align: center;
+  font-size: 1.7rem;
+  position: relative;
+  left: 53px;
+  top: 50px;
+  font-style: italic;
 }
 
 img.fish.blue {
   position: relative;
-  right: 80px;
-  bottom: 24px;
-  width: 100%;
+  right: 23px;
+  bottom: 0;
+  width: 33%;
 }
 
 img.fish.orange {
   position: relative;
-  right: 80px;
-  top: 0;
+  right: 23px;
+  top: 22px;
   margin-bottom: 3rem;
-  width: 100%;
+  width: 30%;
 }
 
 div.table-row {
@@ -581,14 +599,6 @@ input.search-input:focus {
 div.fish-image-row {
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-p.like {
-  margin: 0;
-  text-align: center;
-  font-size: 2rem;
 }
 
 span.red-heart {
@@ -616,17 +626,52 @@ ul.menu-two {
   padding-left: 0;
 }
 
-@media only screen and (min-width: 300px) and (max-width: 370px) {
+@media only screen and (min-width: 280px) and (max-width: 370px) {
+  header .logo {
+    font-size: 1rem;
+    margin-top: 11px;
+  }
+
+  .column-two-fifth {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .aquatic-life {
+    font-size: 2rem;
+  }
+
+  h2.fish-head {
+    margin-left: 0;
+    font-size: 2.2rem;
+  }
+
+  p.quote {
+    font-size: 1.1rem;
+  }
+
+  figcaption {
+    margin: 0;
+  }
+
+  .fish-video,
+  .fish-definition {
+    width: 100%;
+  }
+
   a.search-click-two {
     margin-right: 0.4rem;
   }
 
   i.fa-angle-right {
-    left: 9px;
+    left: 0;
+    top: 113px;
   }
 
   i.fa-angle-left {
-    left: 23px;
+    left: 29px;
+    top: 113px;
   }
 
   li.nav {
@@ -642,10 +687,6 @@ ul.menu-two {
 
   a.serch-click-two {
     margin-right: 1rem;
-  }
-
-  header .logo {
-    font-size: 1rem;
   }
 
   .text {
@@ -674,17 +715,55 @@ ul.menu-two {
   img.fish.blue {
     right: 0;
     bottom: 0;
-    top: 49px;
+    top: 21px;
+    width: 39%;
   }
 
   img.fish.orange {
     right: 0;
     bottom: 0;
-    top: 60px;
+    top: 42px;
+    width: 39%;
+  }
+
+  .like {
+    left: 0;
+    top: 0;
+    font-size: 1.2rem;
+  }
+
+  ul.fish-list > li {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .fish-div {
+    height: 180px;
+    width: 180px;
+  }
+
+  ul.result-list > li {
+    margin-left: 0;
+    width: 100%;
   }
 }
 
 @media only screen and (min-width: 371px) and (max-width: 414px) {
+  .fish-video,
+  .fish-definition {
+    width: 100%;
+  }
+
+  .column-two-fifth {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .like {
+    left: 0;
+  }
+
   li.nav {
     margin-right: 1rem;
   }
@@ -726,10 +805,6 @@ ul.menu-two {
 
   .column-one-eights {
     width: 10%;
-  }
-
-  .column-one-fourth {
-    width: 20%;
   }
 
   .column-different {
@@ -800,9 +875,6 @@ ul.menu-two {
 
   .intro-video-div {
     background-color: #0e345a;
-
-    /* width: 352px;
-    height: 199px; */
     width: 100%;
     height: 100%;
   }
@@ -838,13 +910,13 @@ ul.menu-two {
   }
 
   .fa-angle-left {
-    top: 113px;
-    left: 40px;
+    top: 132px;
+    left: 47px;
   }
 
   .fa-angle-right {
-    top: 113px;
-    left: 16px;
+    top: 132px;
+    left: 0;
   }
 
   .column-half.press-like-div {
@@ -867,35 +939,26 @@ ul.menu-two {
     justify-content: center;
   }
 
-  div.fish-icon {
-    text-align: center;
-  }
-
   img.fish.blue {
-    top: 30px;
+    top: 56px;
     bottom: 0;
     right: 0;
-    left: 0;
-    width: 100%;
+    left: 5px;
+    width: 38%;
   }
 
   img.fish.orange {
     right: 0;
     bottom: 0;
-    left: 0;
-    top: 30px;
-    margin-bottom: 3.5rem;
-    width: 100%;
+    left: 5px;
+    top: 56px;
+    width: 38%;
   }
 
   div.press-like {
     text-align: center;
     font-size: 1.3rem;
     margin-top: 30px;
-  }
-
-  .like {
-    padding-top: 0;
   }
 
   table {
@@ -927,11 +990,130 @@ ul.menu-two {
   }
 }
 
+@media only screen and (min-width: 415px) and (max-width: 899px) {
+  header .logo {
+    margin-top: 11px;
+  }
+
+  .column-two-fifth {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .fish-list {
+    padding: 0;
+  }
+
+  ul.fish-list > li {
+    width: 42%;
+    margin: 1rem;
+  }
+
+  .fish-video,
+  .fish-definition {
+    width: 100%;
+  }
+
+  .like {
+    top: 0;
+    left: 0;
+  }
+
+  img.fish.blue {
+    right: 0;
+    width: 28%;
+  }
+
+  img.fish.orange {
+    right: 0;
+    width: 28%;
+    margin-bottom: 1rem;
+  }
+
+  .fa-angle-left {
+    top: 175px;
+    left: 70px;
+  }
+
+  .fa-angle-right {
+    top: 170px;
+    right: 0;
+  }
+
+  .fish-div {
+    width: 350px;
+    height: 300px;
+  }
+
+  table {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+
+  ul.result-list {
+    padding: 0;
+  }
+
+  ul.result-list > li {
+    width: 40%;
+    margin: 1rem;
+  }
+}
+
 @media only screen and (min-width: 900px) and (max-width: 1024px) {
   h2.fish-head {
     margin-top: 0;
     margin-bottom: 0;
     font-size: 2rem;
+  }
+
+  .fish-list {
+    padding-right: 71px;
+  }
+
+  ul.fish-list > li {
+    width: 46%;
+    padding: 0;
+  }
+
+  img.fish.blue {
+    left: 4px;
+    top: 3px;
+    width: 50%;
+  }
+
+  img.fish.orange {
+    left: 25px;
+    top: 23px;
+    width: 50%;
+  }
+
+  table {
+    margin: 0 3rem;
+  }
+
+  .fa-angle-left {
+    top: 177px;
+    left: 200px;
+  }
+
+  .fa-angle-right {
+    top: 172px;
+    right: 61px;
+  }
+
+  ul.result-list > li {
+    width: 46%;
+  }
+
+  form.form {
+    width: 50%;
+  }
+
+  input.search-input {
+    font-size: 2rem;
+    height: 61px;
   }
 }
 
@@ -939,16 +1121,43 @@ ul.menu-two {
   h2.fish-head {
     margin-top: 0;
   }
+
+  input.search-input: {
+    height: 55px;
+    font-size: 2rem;
+  }
+
+  form.form {
+    width: 50%;
+  }
 }
 
 @media only screen and (min-width: 1113px) and (max-width: 1366px) {
   h2.fish-head {
     margin-top: 0;
   }
+
+  input.search-input: {
+    height: 55px;
+    font-size: 2rem;
+  }
+
+  form.form {
+    width: 50%;
+  }
 }
 
 @media only screen and (min-width: 1367px) and (max-width: 1920px) {
   h2.fish-head {
     font-size: 5rem;
+  }
+
+  input.search-input: {
+    height: 55px;
+    font-size: 2rem;
+  }
+
+  form.form {
+    width: 50%;
   }
 }

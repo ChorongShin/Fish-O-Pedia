@@ -21,6 +21,14 @@
   width: calc(100%/4);
 }
 
+.column-one-fifth {
+  width: calc(100%/5);
+}
+
+.column-two-fifth {
+  width: calc(200%/5);
+}
+
 .column-fifth-eights {
   width: calc(500% / 8);
 }
