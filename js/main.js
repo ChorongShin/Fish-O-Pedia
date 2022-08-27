@@ -9,7 +9,8 @@ const $fishName = document.querySelector('p.title');
 const $fishImage = document.querySelector('img.fish-img');
 const $fishScientificName = document.querySelector('td.scientific-name');
 const $fishLocation = document.querySelector('td.location-li');
-const $fishLocationList = document.querySelector('ul.fish-location-list'); const $fishPopulation = document.querySelector('td.population');
+const $fishLocationList = document.querySelector('ul.fish-location-list');
+const $fishPopulation = document.querySelector('td.population');
 const $fishBiology = document.querySelector('td.biology-li');
 const $fishBiologyList = document.querySelector('ul.fish-biology-list');
 const $previousIcon = document.querySelector('.fa-angle-left');
@@ -23,6 +24,11 @@ const searchClick = document.querySelector('a.search-click-two');
 const listClick = document.querySelector('a.list-click');
 const $noResult = document.querySelector('p.no-result');
 const $form = document.querySelector('form.form');
+const $menu = document.querySelector('.menu');
+const $menuItems = document.querySelectorAll('.menu-item');
+const $hamburger = document.querySelector('.hamburger');
+const $closeIcon = document.querySelector('.close-icon');
+const $menuIcon = document.querySelector('.menu-icon');
 
 let count = 0;
 let imageList = [];
@@ -33,20 +39,10 @@ $fishResult.addEventListener('click', event => {
   const closest = event.target.closest('ul > li');
   $fishId = Number(closest.getAttribute('id'));
 
-  // var $fish = document.querySelector('ul.fish-list > li');
-  // $fishId = $fish.id;
-  // console.log('fishId', $fishId);
-
-  // NOTE: this assumes path[4] is always the LI. Can't change the HTML
-  // $fishId = event.path[4].getAttribute('id');
-
-  // if we've never visited here, then liked is undefined, then
-  // we should define with default values
   if (data.fishList[$fishId].liked === undefined) {
     data.fishList[$fishId].liked = { fishId: $fishId, isLiked: false };
   }
 
-  // make fish orange or blue based on whether it was liked
   if (data.fishList[$fishId].liked.isLiked) {
     $fishIcon.className = 'fish orange';
     $fishIcon.src = 'images/fish-hook.png';
@@ -85,9 +81,7 @@ $fishResult.addEventListener('click', event => {
       if (biologyArray[j] === ' <ul>' || biologyArray[j] === ' </ul>') {
         biologyArray.splice(j, 1);
       }
-
     }
-
     const biologyString = biologyArray.join(' ');
     $fishBiologyList.innerHTML = biologyString;
     const uls = document.querySelectorAll('ul.fish-biology-list > ul');
@@ -192,7 +186,6 @@ function getFishDataList() {
       learnMoreCard.append(learnText);
       $fishList.append($fish);
     }
-
   });
 
   xhr.send();
@@ -202,20 +195,12 @@ $fishList.addEventListener('click', event => {
   const closest = event.target.closest('ul > li');
   $fishId = Number(closest.getAttribute('id'));
 
-  // var $fish = document.querySelector('ul.fish-list > li');
-  // $fishId = $fish.id;
-  // console.log('fishId', $fishId);
-
-  // NOTE: this assumes path[4] is always the LI. Can't change the HTML
-  // $fishId = event.path[4].getAttribute('id');
-
   // if we've never visited here, then liked is undefined, then
   // we should define with default values
   if (data.fishList[$fishId].liked === undefined) {
     data.fishList[$fishId].liked = { fishId: $fishId, isLiked: false };
   }
 
-  // make fish orange or blue based on whether it was liked
   if (data.fishList[$fishId].liked.isLiked) {
     $fishIcon.className = 'fish orange';
     $fishIcon.src = 'images/fish-hook.png';
@@ -375,23 +360,19 @@ $listClick.addEventListener('click', function () {
 
 $backToList.addEventListener('click', function (event) {
   handleView('list');
-
 });
 
 $exploreButton.addEventListener('click', function (event) {
   handleView('list');
   getFishDataList();
-
 });
 
 $backHome.addEventListener('click', function () {
   handleView('show-case');
-
 });
 
 listClick.addEventListener('click', function (event) {
   handleView('list');
-
 });
 
 searchClick.addEventListener('click', function (event) {
@@ -403,9 +384,7 @@ searchClick.addEventListener('click', function (event) {
   for (let i = 0; i < fishData.length; i++) {
     const fishName = fishData[i]['Species Name'].toLowerCase();
     fishNames.push(fishName);
-
   }
-
 });
 
 $form.addEventListener('submit', function (event) {
@@ -454,9 +433,7 @@ $form.addEventListener('submit', function (event) {
       fishCard.append(learnMoreCard);
       learnMoreCard.append(learnText);
       $resultList.append($fish);
-
     }
-
   }
 
   if ($resultList.children.length === 0) {
@@ -481,3 +458,21 @@ function handleView(viewData) {
     }
   }
 }
+
+function toggleMenu() {
+  if ($menu.classList.contains('show-menu')) {
+    $menu.classList.remove('show-menu');
+    $closeIcon.style.display = 'none';
+    $menuIcon.style.display = 'block';
+  } else {
+    $menu.classList.add('show-menu');
+    $closeIcon.style.display = 'block';
+    $menuIcon.style.display = 'none';
+  }
+}
+
+$hamburger.addEventListener('click', toggleMenu);
+
+$menuItems.forEach(menuItem => {
+  menuItem.addEventListener('click', toggleMenu);
+});
