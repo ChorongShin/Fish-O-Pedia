@@ -1,5 +1,6 @@
 const targetUrl = encodeURIComponent('https://www.fishwatch.gov/api/species');
 
+const $header = document.querySelector('header');
 const $exploreButton = document.querySelector('.explore');
 const $views = document.querySelectorAll('div[data-view]');
 const $backHome = document.querySelector('a.back-home');
@@ -21,9 +22,10 @@ const $searchInput = document.querySelector('input.search-input');
 const $resultList = document.querySelector('ul.result-list');
 const $fishResult = document.querySelector('ul.result-list');
 const searchClick = document.querySelector('a.search-click-two');
-const listClick = document.querySelector('a.list-click');
 const $noResult = document.querySelector('p.no-result');
 const $form = document.querySelector('form.form');
+const $seeMore = document.querySelector('.see-more');
+const $mainMenu = document.querySelector('.main-menu');
 
 let count = 0;
 let imageList = [];
@@ -348,26 +350,24 @@ function setImg() {
   }
 }
 
+$seeMore.addEventListener('click', () => handleView('sea-life'));
+
 $listClick.addEventListener('click', function () {
-  handleView('list');
+  handleView('sea-life');
   $form.reset();
 });
 
-$backToList.addEventListener('click', function (event) {
-  handleView('list');
-});
-
-$exploreButton.addEventListener('click', function (event) {
-  handleView('list');
+$backToList.addEventListener('click', () => handleView('sea-life'));
+$mainMenu.addEventListener('click', () => handleView('main'));
+$exploreButton.addEventListener('click', () => {
+  handleView('main');
+  $header.className = 'header';
   getFishDataList();
 });
 
-$backHome.addEventListener('click', function () {
+$backHome.addEventListener('click', () => {
   handleView('show-case');
-});
-
-listClick.addEventListener('click', function (event) {
-  handleView('list');
+  $header.className = 'hidden';
 });
 
 searchClick.addEventListener('click', function (event) {
@@ -453,3 +453,18 @@ function handleView(viewData) {
     }
   }
 }
+
+const $hamburger = document.querySelector('.hamburger');
+const $navMenu = document.querySelector('.nav-menu');
+
+$hamburger.addEventListener('click', () => {
+  $hamburger.classList.toggle('active');
+  $navMenu.classList.toggle('active');
+});
+
+document.querySelectorAll('.nav-link').forEach(n => {
+  n.addEventListener('click', () => {
+    $hamburger.classList.remove('active');
+    $navMenu.classList.remove('active');
+  });
+});

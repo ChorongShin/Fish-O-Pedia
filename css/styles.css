@@ -2,47 +2,109 @@
   font-family: Poppins, sans-serif;
 }
 
-.showcase-two {
+li {
+  list-style: none;
+}
+
+.navbar {
+  min-height: 70px;
   display: flex;
-  flex-wrap: nowrap;
-  margin-bottom: 3rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+}
+
+.nav-link {
+  transition: 0.7s ease;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: dodgerblue;
 }
 
 .hamburger {
-  position: fixed;
-  z-index: 100;
-  top: 1rem;
-  right: 1rem;
-  padding: 4px;
-  border: black solid 1px;
-  background: white;
+  display: none;
   cursor: pointer;
 }
 
-.close-icon {
-  display: none;
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
 }
 
-.menu {
-  position: fixed;
-  transform: translateY(-100%);
-  transition: transform 0.2s;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 99;
-  background: black;
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    position: fixed;
+    top: 18px;
+    right: 16px;
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    gap: 0;
+    flex-direction: column;
+    background-color: #262626;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+  }
+
+  .nav-item {
+    margin: 16px;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+}
+
+.see-more {
+  width: calc((100% / 3) - 8px);
+  padding: 16px;
+  background-color: #2085c5;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  border-radius: 3px;
+  font-size: 1rem;
   color: white;
-  list-style: none;
-  padding-top: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
 }
 
-.show-menu {
-  transform: translateY(0);
+.see-more:hover {
+  box-shadow: 0 1px 9px rgba(0, 0, 0, 0.2);
 }
 
-header .logo {
+.logo {
   font-size: 1.4em;
   font-weight: 800;
   color: #fff;
@@ -58,7 +120,7 @@ header .logo {
   border: 15px solid #0073c9;
 }
 
-.header-two {
+.header {
   width: 100%;
   height: 70px;
   background-color: #0073c9;
@@ -74,51 +136,6 @@ header .logo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-button.toggle {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  background: url("https://i.ibb.co/HrfVRcx/menu.png");
-  background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: center;
-  cursor: pointer;
-  border: none;
-}
-
-button.toggle.active {
-  background: url("https://i.ibb.co/rt3HybH/close.png");
-  background-repeat: no-repeat;
-  background-size: 25px;
-  background-position: center;
-  cursor: pointer;
-  border: none;
-}
-
-button.button-toggle {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  background: url("https://i.ibb.co/HrfVRcx/menu.png");
-  background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: center;
-  cursor: pointer;
-  border: none;
-}
-
-button.button-toggle.active {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  background: url("https://i.ibb.co/HrfVRcx/menu.png");
-  background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: center;
-  cursor: pointer;
-  border: none;
 }
 
 .showcase {
@@ -165,7 +182,7 @@ button.button-toggle.active {
 }
 
 h2.never {
-  font-size: 5em;
+  font-size: 3rem;
   font-weight: 800;
   color: #fff;
   line-height: 1em;
@@ -175,7 +192,7 @@ h2.never {
 
 h3.sea {
   margin-top: 0;
-  font-size: 4em;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #fff;
   line-height: 1em;
@@ -655,9 +672,9 @@ ul.menu-two {
 }
 
 @media only screen and (min-width: 280px) and (max-width: 370px) {
-  header .logo {
+  .logo {
     font-size: 1rem;
-    margin-top: 11px;
+    margin-top: 25px;
   }
 
   .column-two-fifth {
@@ -843,8 +860,8 @@ ul.menu-two {
     padding: 0;
   }
 
-  header .logo {
-    font-size: 14px;
+  .logo {
+    font-size: 1.2rem;
     font-weight: 800;
     color: #fff;
     line-height: 1em;
@@ -1013,8 +1030,8 @@ ul.menu-two {
 }
 
 @media only screen and (min-width: 415px) and (max-width: 899px) {
-  header .logo {
-    margin-top: 11px;
+  .logo {
+    margin-top: 21px;
   }
 
   .column-two-fifth {
