@@ -9,7 +9,7 @@ li {
 .navbar {
   min-height: 70px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 0 24px;
 }
@@ -18,7 +18,9 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 60px;
+  z-index: 255;
+  padding-left: 0;
+  gap: 26px;
 }
 
 .nav-link {
@@ -45,10 +47,15 @@ li {
   background-color: white;
 }
 
+.nav-item {
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 768px) {
   .hamburger {
     display: block;
-    position: fixed;
+    position: absolute;
     top: 18px;
     right: 16px;
   }
@@ -98,10 +105,16 @@ li {
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.15rem;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
 }
 
 .see-more:hover {
   box-shadow: 0 1px 9px rgba(0, 0, 0, 0.2);
+}
+
+.three-fish {
+  padding-left: 0;
 }
 
 .logo {
@@ -298,6 +311,7 @@ h3.sea {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 0;
 }
 
 .fish-video {
@@ -391,7 +405,8 @@ figcaption {
 }
 
 .fish-list,
-.result-list {
+.result-list,
+.three-fish {
   list-style-type: none;
   width: 100%;
   justify-content: center;
@@ -401,14 +416,16 @@ figcaption {
 }
 
 ul.fish-list > li,
-ul.result-list > li {
+ul.result-list > li,
+ul.three-fish > li {
   display: inline-block;
   width: 23%;
   margin-left: 2rem;
 }
 
 ul.fish-list > li::after,
-ul.result-list > li::after {
+ul.result-list > li::after,
+ul.three-fish > li::after {
   cursor: pointer;
 }
 
@@ -674,7 +691,6 @@ ul.menu-two {
 @media only screen and (min-width: 280px) and (max-width: 370px) {
   .logo {
     font-size: 1rem;
-    margin-top: 25px;
   }
 
   .column-two-fifth {
@@ -777,7 +793,9 @@ ul.menu-two {
     font-size: 1.2rem;
   }
 
-  ul.fish-list > li {
+  ul.fish-list > li,
+  ul.result-list > li,
+  ul.three-fish > li {
     width: 100%;
     margin-left: 0;
   }
@@ -785,11 +803,6 @@ ul.menu-two {
   .fish-div {
     height: 180px;
     width: 180px;
-  }
-
-  ul.result-list > li {
-    margin-left: 0;
-    width: 100%;
   }
 }
 
@@ -934,7 +947,8 @@ ul.menu-two {
   }
 
   ul.fish-list > li,
-  ul.result-list > li {
+  ul.result-list > li,
+  ul.three-fish > li {
     width: 254px;
     margin-left: 7px;
   }
@@ -1031,7 +1045,9 @@ ul.menu-two {
 
 @media only screen and (min-width: 415px) and (max-width: 899px) {
   .logo {
-    margin-top: 21px;
+    margin-top: 29px;
+    margin-left: 2rem;
+    font-size: 1.3rem;
   }
 
   .column-two-fifth {
@@ -1040,11 +1056,15 @@ ul.menu-two {
     justify-content: center;
   }
 
-  .fish-list {
+  .fish-list,
+  .result-list,
+  .three-fish {
     padding: 0;
   }
 
-  ul.fish-list > li {
+  ul.fish-list > li,
+  ul.result-list > li,
+  ul.three-fish > li {
     width: 42%;
     margin: 1rem;
   }
@@ -1089,15 +1109,6 @@ ul.menu-two {
     margin-left: 3rem;
     margin-right: 3rem;
   }
-
-  ul.result-list {
-    padding: 0;
-  }
-
-  ul.result-list > li {
-    width: 40%;
-    margin: 1rem;
-  }
 }
 
 @media only screen and (min-width: 900px) and (max-width: 1024px) {
@@ -1107,11 +1118,15 @@ ul.menu-two {
     font-size: 2rem;
   }
 
-  .fish-list {
+  .fish-list,
+  .three-fish,
+  .result-list {
     padding-right: 71px;
   }
 
-  ul.fish-list > li {
+  ul.fish-list > li,
+  ul.result-list > li,
+  ul.three-fish > li {
     width: 46%;
     padding: 0;
   }
@@ -1140,10 +1155,6 @@ ul.menu-two {
   .fa-angle-right {
     top: 172px;
     right: 61px;
-  }
-
-  ul.result-list > li {
-    width: 46%;
   }
 
   form.form {

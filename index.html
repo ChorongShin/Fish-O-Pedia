@@ -32,24 +32,32 @@
           </div>
         </div>
         <div class="column-half">
-          <nav class="navbar">
-            <ul class="nav-menu">
-              <li class="nav-item">
-                <a class="nav-link main-menu" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link search-click-two" href="#">Search</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link list-click" href="#">Fish List</a>
-              </li>
-            </ul>
-            <div class="hamburger">
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
+          <div class="row">
+            <div class="column-one-fourth"></div>
+            <div class="column-three-fourth">
+              <nav class="navbar">
+                <ul class="nav-menu">
+                  <li class="nav-item">
+                    <a class="nav-link main-menu" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link search-click-two" href="#">Search</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link list-click" href="#">Fish List</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link favorite-click" href="#">Favroties</a>
+                  </li>
+                </ul>
+                <div class="hamburger">
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                </div>
+              </nav>
             </div>
-          </nav>
+          </div>
         </div>
       </div>
     </div>
@@ -70,7 +78,6 @@
     </section>
   </div>
 
-
   <div class="hidden" data-view="main">
     <div class="container">
       <div class="row fish-intro">
@@ -85,7 +92,9 @@
                 They breathe using special organs called gills.
               </p>
             </blockquote>
-            <figcaption>—NATIONAL GEOGRAPHIC KIDS</figcaption>
+            <figcaption>
+              —NATIONAL GEOGRAPHIC KIDS
+            </figcaption>
           </figure>
         </div>
       </div>
@@ -213,6 +222,19 @@
     </div>
   </div>
 
+  <div class="hidden" data-view="favorite">
+    <div class="container">
+      <div class="row">
+        <div class="column-full">
+          <p class="aquatic-life">Saved Favorite Fish</p>
+        </div>
+      </div>
+      <div class="row fish-cards">
+        <ul class="favorite-list">
+        </ul>
+      </div>
+    </div>
+  </div>
 
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

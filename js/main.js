@@ -21,16 +21,70 @@ const $listClick = document.querySelector('a.list-click');
 const $searchInput = document.querySelector('input.search-input');
 const $resultList = document.querySelector('ul.result-list');
 const $fishResult = document.querySelector('ul.result-list');
-const searchClick = document.querySelector('a.search-click-two');
+const $searchClick = document.querySelector('a.search-click-two');
 const $noResult = document.querySelector('p.no-result');
 const $form = document.querySelector('form.form');
 const $seeMore = document.querySelector('.see-more');
 const $mainMenu = document.querySelector('.main-menu');
+const $threeFish = document.querySelector('ul.three-fish');
+const $favorite = document.querySelector('a.favorite-click');
 
 let count = 0;
 let imageList = [];
 let $fishId;
 const fishNames = [];
+
+function getFishDataList(number, list) {
+  const xhr = new XMLHttpRequest(name);
+  xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+
+    data.fishList = xhr.response;
+    for (let fishId = 0; fishId < number; fishId++) {
+
+      const $fish = document.createElement('li');
+      $fish.setAttribute('id', fishId);
+      data.fishList[fishId].id = fishId;
+
+      const fishColumn = document.createElement('div');
+      fishColumn.setAttribute('class', 'fish-column');
+
+      const fishCard = document.createElement('div');
+      fishCard.setAttribute('class', 'fish-card');
+
+      const fishCardImage = document.createElement('div');
+      fishCardImage.setAttribute('class', 'fish-card-image');
+
+      const fishImage = document.createElement('img');
+      fishImage.setAttribute('src', xhr.response[fishId]['Species Illustration Photo'].src);
+      fishImage.setAttribute('alt', xhr.response[fishId]['Species Illustration Photo'].title);
+
+      const fishName = document.createElement('p');
+      fishName.setAttribute('class', 'fish-name');
+      fishName.textContent = xhr.response[fishId]['Species Name'];
+
+      const learnMoreCard = document.createElement('div');
+      learnMoreCard.setAttribute('class', 'learn-more-card');
+
+      const learnText = document.createElement('a');
+      learnText.setAttribute('class', 'learn-text');
+      learnText.setAttribute('href', '#');
+      learnText.textContent = 'LEARN MORE';
+
+      $fish.append(fishColumn);
+      fishColumn.append(fishCard);
+      fishCard.append(fishCardImage);
+      fishCardImage.append(fishImage);
+      fishCard.append(fishName);
+      fishCard.append(learnMoreCard);
+      learnMoreCard.append(learnText);
+      list.append($fish);
+    }
+  });
+
+  xhr.send();
+}
 
 $fishResult.addEventListener('click', event => {
   const closest = event.target.closest('ul > li');
@@ -136,59 +190,8 @@ $fishResult.addEventListener('click', event => {
 $previousIcon.addEventListener('click', previous);
 $nextIcon.addEventListener('click', next);
 
-function getFishDataList() {
-  const xhr = new XMLHttpRequest(name);
-  xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-
-    data.fishList = xhr.response;
-    for (let fishId = 0; fishId < 100; fishId++) {
-
-      const $fish = document.createElement('li');
-      $fish.setAttribute('id', fishId);
-      data.fishList[fishId].id = fishId;
-
-      const fishColumn = document.createElement('div');
-      fishColumn.setAttribute('class', 'fish-column');
-
-      const fishCard = document.createElement('div');
-      fishCard.setAttribute('class', 'fish-card');
-
-      const fishCardImage = document.createElement('div');
-      fishCardImage.setAttribute('class', 'fish-card-image');
-
-      const fishImage = document.createElement('img');
-      fishImage.setAttribute('src', xhr.response[fishId]['Species Illustration Photo'].src);
-      fishImage.setAttribute('alt', xhr.response[fishId]['Species Illustration Photo'].title);
-
-      const fishName = document.createElement('p');
-      fishName.setAttribute('class', 'fish-name');
-      fishName.textContent = xhr.response[fishId]['Species Name'];
-
-      const learnMoreCard = document.createElement('div');
-      learnMoreCard.setAttribute('class', 'learn-more-card');
-
-      const learnText = document.createElement('a');
-      learnText.setAttribute('class', 'learn-text');
-      learnText.setAttribute('href', '#');
-      learnText.textContent = 'LEARN MORE';
-
-      $fish.append(fishColumn);
-      fishColumn.append(fishCard);
-      fishCard.append(fishCardImage);
-      fishCardImage.append(fishImage);
-      fishCard.append(fishName);
-      fishCard.append(learnMoreCard);
-      learnMoreCard.append(learnText);
-      $fishList.append($fish);
-    }
-  });
-
-  xhr.send();
-}
-
 $fishList.addEventListener('click', event => {
+
   const closest = event.target.closest('ul > li');
   $fishId = Number(closest.getAttribute('id'));
 
@@ -350,10 +353,14 @@ function setImg() {
   }
 }
 
-$seeMore.addEventListener('click', () => handleView('sea-life'));
+$seeMore.addEventListener('click', () => {
+  handleView('sea-life');
+  getFishDataList(104, $fishList);
+});
 
 $listClick.addEventListener('click', function () {
   handleView('sea-life');
+  getFishDataList(104, $fishList);
   $form.reset();
 });
 
@@ -362,7 +369,7 @@ $mainMenu.addEventListener('click', () => handleView('main'));
 $exploreButton.addEventListener('click', () => {
   handleView('main');
   $header.className = 'header';
-  getFishDataList();
+  getFishDataList(3, $threeFish);
 });
 
 $backHome.addEventListener('click', () => {
@@ -370,7 +377,7 @@ $backHome.addEventListener('click', () => {
   $header.className = 'hidden';
 });
 
-searchClick.addEventListener('click', function (event) {
+$searchClick.addEventListener('click', () => {
   $resultList.innerHTML = '';
   handleView('search');
 
@@ -382,13 +389,17 @@ searchClick.addEventListener('click', function (event) {
   }
 });
 
+$favorite.addEventListener('click', () => {
+  handleView('favorite');
+});
+
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
   $resultList.innerHTML = '';
 
   const searchValue = $searchInput.value.toLowerCase();
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 104; i++) {
 
     if (fishNames[i].indexOf(searchValue) > -1) {
 
