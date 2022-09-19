@@ -28,11 +28,29 @@ const $seeMore = document.querySelector('.see-more');
 const $mainMenu = document.querySelector('.main-menu');
 const $threeFish = document.querySelector('ul.three-fish');
 const $favorite = document.querySelector('a.favorite-click');
+const $favoriteList = document.querySelector('ul.favorite-list');
+const $noFav = document.querySelector('p.no-fav');
 
 let count = 0;
 let imageList = [];
 let $fishId;
 const fishNames = [];
+
+window.addEventListener('DOMContentLoaded', event => {
+  event.preventDefault();
+  getFishDataList(104, $fishList);
+  getFishDataList(3, $threeFish);
+
+  const ids = data.liked.map(like => like['Species Name']);
+
+  // console.log('ids:', ids);
+  const filteredFish = data.liked.filter((name, index) => !ids.includes('Species Name', index + 1));
+  // console.log('filteredFish:', filteredFish);
+  for (let i = 0; i < filteredFish.length; i++) {
+    const favorite = favoriteFish(filteredFish[i]);
+    $favoriteList.appendChild(favorite);
+  }
+});
 
 function getFishDataList(number, list) {
   const xhr = new XMLHttpRequest(name);
@@ -86,112 +104,7 @@ function getFishDataList(number, list) {
   xhr.send();
 }
 
-$fishResult.addEventListener('click', event => {
-  const closest = event.target.closest('ul > li');
-  $fishId = Number(closest.getAttribute('id'));
-
-  if (data.fishList[$fishId].liked === undefined) {
-    data.fishList[$fishId].liked = { fishId: $fishId, isLiked: false };
-  }
-
-  if (data.fishList[$fishId].liked.isLiked) {
-    $fishIcon.className = 'fish orange';
-    $fishIcon.src = 'images/fish-hook.png';
-  } else {
-    $fishIcon.className = 'fish blue';
-    $fishIcon.src = 'images/fish icon.png';
-  }
-
-  $fishIcon.setAttribute('id', $fishId);
-
-  $fishName.textContent = data.fishList[$fishId]['Species Name'];
-  $fishScientificName.textContent = data.fishList[$fishId]['Scientific Name'];
-
-  if (data.fishList[$fishId].Location === null) {
-    $fishLocation.textContent = 'No Data Available';
-    $fishLocation.setAttribute('class', 'no-li');
-  } else {
-    const locationUL = data.fishList[$fishId].Location.trim();
-    const locationArray = locationUL.split('\n');
-    for (let i = 0; i < locationArray.length; i++) {
-      if (locationArray[i] === '<ul>' || locationArray[i] === '</ul>') {
-        locationArray.splice(i, 1);
-      }
-    }
-    const locationString = locationArray.join(' ');
-    $fishLocationList.innerHTML = locationString;
-  }
-
-  if (data.fishList[$fishId].Biology === null) {
-    $fishBiology.textContent = 'No Data Available';
-    $fishBiology.setAttribute('class', 'no-li');
-  } else if (data.fishList[$fishId].Biology !== null) {
-    const biologyUL = data.fishList[$fishId].Biology.trim();
-    const biologyArray = biologyUL.split('\n');
-    for (let j = 0; j < biologyArray.length; j++) {
-      if (biologyArray[j] === ' <ul>' || biologyArray[j] === ' </ul>') {
-        biologyArray.splice(j, 1);
-      }
-    }
-    const biologyString = biologyArray.join(' ');
-    $fishBiologyList.innerHTML = biologyString;
-    const uls = document.querySelectorAll('ul.fish-biology-list > ul');
-    uls.forEach(ul => ul.classList.add('fish-biology-list'));
-  }
-
-  if (data.fishList[$fishId].Population === null) {
-    $fishPopulation.textContent = 'No Data Available';
-    $fishPopulation.setAttribute('class', 'population');
-  } else {
-    $fishPopulation.textContent = data.fishList[$fishId].Population;
-    $fishPopulation.setAttribute('class', 'population');
-  }
-
-  if (data.fishList[$fishId]['Image Gallery'] === null) {
-
-    imageList = [];
-    $fishImage.setAttribute('src', data.fishList[$fishId]['Species Illustration Photo'].src);
-    $fishImage.setAttribute('alt', data.fishList[$fishId]['Species Illustration Photo'].alt);
-
-    $previousIcon.classList.remove('view');
-    $nextIcon.classList.remove('view');
-    $previousIcon.classList.add('hidden');
-    $nextIcon.classList.add('hidden');
-
-  } else if (data.fishList[$fishId]['Image Gallery'].length === undefined) {
-    imageList = [];
-    $fishImage.setAttribute('src', data.fishList[$fishId]['Image Gallery'].src);
-    $fishImage.setAttribute('alt', data.fishList[$fishId]['Image Gallery'].alt);
-
-    $previousIcon.classList.remove('view');
-    $nextIcon.classList.remove('view');
-    $previousIcon.classList.add('hidden');
-    $nextIcon.classList.add('hidden');
-
-  } else if (data.fishList[$fishId]['Image Gallery'].length > 1) {
-
-    imageList = data.fishList[$fishId]['Image Gallery'];
-
-    $fishImage.setAttribute('src', imageList[0].src);
-    $fishImage.setAttribute('alt', imageList[0].alt);
-
-    $previousIcon.classList.remove('hidden');
-    $nextIcon.classList.remove('hidden');
-    $previousIcon.classList.add('view');
-    $nextIcon.classList.add('view');
-
-  }
-
-  handleView('fish');
-  $fishIcon.removeEventListener('click', handleFishLikeClick);
-  $fishIcon.addEventListener('click', handleFishLikeClick);
-});
-
-$previousIcon.addEventListener('click', previous);
-$nextIcon.addEventListener('click', next);
-
-$fishList.addEventListener('click', event => {
-
+function getFish(event) {
   const closest = event.target.closest('ul > li');
   $fishId = Number(closest.getAttribute('id'));
 
@@ -239,9 +152,7 @@ $fishList.addEventListener('click', event => {
       if (biologyArray[j] === ' <ul>' || biologyArray[j] === ' </ul>') {
         biologyArray.splice(j, 1);
       }
-
     }
-
     const biologyString = biologyArray.join(' ');
     $fishBiologyList.innerHTML = biologyString;
     const uls = document.querySelectorAll('ul.fish-biology-list > ul');
@@ -288,14 +199,31 @@ $fishList.addEventListener('click', event => {
     $nextIcon.classList.remove('hidden');
     $previousIcon.classList.add('view');
     $nextIcon.classList.add('view');
-
   }
+}
 
+$fishResult.addEventListener('click', event => {
+  getFish(event);
   handleView('fish');
   $fishIcon.removeEventListener('click', handleFishLikeClick);
   $fishIcon.addEventListener('click', handleFishLikeClick);
 });
 
+$threeFish.addEventListener('click', event => {
+  getFish(event);
+  handleView('fish');
+  $fishIcon.removeEventListener('click', handleFishLikeClick);
+  $fishIcon.addEventListener('click', handleFishLikeClick);
+});
+
+$fishList.addEventListener('click', event => {
+  getFish(event);
+  handleView('fish');
+  $fishIcon.removeEventListener('click', handleFishLikeClick);
+  $fishIcon.addEventListener('click', handleFishLikeClick);
+});
+
+$previousIcon.addEventListener('click', previous);
 function previous() {
   if (count <= 0) {
     count = imageList.length;
@@ -304,6 +232,7 @@ function previous() {
   return setImg();
 }
 
+$nextIcon.addEventListener('click', next);
 function next() {
   if (count >= imageList.length - 1) {
     count = -1;
@@ -321,6 +250,7 @@ const handleFishLikeClick = function (event) {
     $fishIcon.className = 'fish orange';
     $fishIcon.src = 'images/fish-hook.png';
     data.fishList[inputFishId].liked.isLiked = true;
+    data.liked.push(data.fishList[inputFishId]);
 
   } else if (
     inputFishId === data.fishList[inputFishId].liked.fishId &&
@@ -330,7 +260,6 @@ const handleFishLikeClick = function (event) {
     $fishIcon.className = 'fish blue';
     $fishIcon.src = 'images/fish icon.png';
     data.fishList[inputFishId].liked.isLiked = false;
-
   }
 
 };
@@ -355,12 +284,10 @@ function setImg() {
 
 $seeMore.addEventListener('click', () => {
   handleView('sea-life');
-  getFishDataList(104, $fishList);
 });
 
-$listClick.addEventListener('click', function () {
+$listClick.addEventListener('click', () => {
   handleView('sea-life');
-  getFishDataList(104, $fishList);
   $form.reset();
 });
 
@@ -369,7 +296,9 @@ $mainMenu.addEventListener('click', () => handleView('main'));
 $exploreButton.addEventListener('click', () => {
   handleView('main');
   $header.className = 'header';
-  getFishDataList(3, $threeFish);
+  if (data.fishList.length === 0) {
+    getFishDataList(3, $threeFish);
+  }
 });
 
 $backHome.addEventListener('click', () => {
@@ -387,10 +316,6 @@ $searchClick.addEventListener('click', () => {
     const fishName = fishData[i]['Species Name'].toLowerCase();
     fishNames.push(fishName);
   }
-});
-
-$favorite.addEventListener('click', () => {
-  handleView('favorite');
 });
 
 $form.addEventListener('submit', function (event) {
@@ -479,3 +404,44 @@ document.querySelectorAll('.nav-link').forEach(n => {
     $navMenu.classList.remove('active');
   });
 });
+
+$favorite.addEventListener('click', event => {
+  if (data.liked.length === 0) {
+    $noFav.classList.remove('hidden');
+  }
+
+  // const ids = data.liked.map(like => like.id);
+  // console.log('ids:', ids);
+  // const filteredFish = data.liked.filter(({ id }, index) => !ids.includes(id, index + 1));
+  // console.log('filteredFish:', filteredFish);
+
+  // const $favoriteFish = document.createElement('li');
+  // for (let i = 0; i < filteredFish.length; i++) {
+  //   $favoriteFish.setAttribute('id', i);
+  //   const $favImage = document.createElement('img');
+  //   $favImage.setAttribute('class', 'circle');
+  //   $favImage.setAttribute('src', filteredFish[i]['Species Illustration Photo'].src);
+  //   $favImage.setAttribute('alt', filteredFish[i]['Species Illustration Photo'].alt);
+
+  //   $favoriteFish.append($favImage);
+  // }
+
+  // $favoriteList.append($favoriteFish);
+  handleView('favorite');
+});
+
+// DOM tree for favorite fish list
+function favoriteFish(e) {
+  // console.log('e:', e.liked.fishId);
+  const $favoriteFish = document.createElement('li');
+
+  $favoriteFish.setAttribute('id', e.liked.fishId);
+  const $favImage = document.createElement('img');
+  $favImage.setAttribute('class', 'circle');
+  $favImage.setAttribute('src', e['Species Illustration Photo'].src);
+  $favImage.setAttribute('alt', e['Species Illustration Photo'].alt);
+
+  $favoriteFish.appendChild($favImage);
+
+  return $favoriteFish;
+}

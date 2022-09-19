@@ -2,6 +2,10 @@
   font-family: Poppins, sans-serif;
 }
 
+.fish-logo {
+  width: 20%;
+}
+
 li {
   list-style: none;
 }
@@ -688,6 +692,18 @@ ul.menu-two {
   padding-left: 0;
 }
 
+.circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.no-fav {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
 @media only screen and (min-width: 280px) and (max-width: 370px) {
   .logo {
     font-size: 1rem;
@@ -800,13 +816,25 @@ ul.menu-two {
     margin-left: 0;
   }
 
+  .fish-list,
+  .result-list,
+  .three-fish {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
   .fish-div {
     height: 180px;
     width: 180px;
   }
+
+  .see-more {
+    width: 52%;
+    padding: 16px;
+  }
 }
 
-@media only screen and (min-width: 371px) and (max-width: 414px) {
+@media only screen and (min-width: 371px) and (max-width: 436px) {
   .fish-video,
   .fish-definition {
     width: 100%;
@@ -953,6 +981,16 @@ ul.menu-two {
     margin-left: 7px;
   }
 
+  .fish-list,
+  .result-list,
+  .three-fish {
+    padding: 0;
+  }
+
+  .see-more {
+    width: 52%;
+  }
+
   .column-angle-div {
     width: 100%;
   }
@@ -1043,11 +1081,11 @@ ul.menu-two {
   }
 }
 
-@media only screen and (min-width: 415px) and (max-width: 899px) {
+@media only screen and (min-width: 437px) and (max-width: 670px) {
   .logo {
-    margin-top: 29px;
-    margin-left: 2rem;
-    font-size: 1.3rem;
+    margin-top: 31px;
+    margin-left: 3rem;
+    font-size: 17px;
   }
 
   .column-two-fifth {
@@ -1077,27 +1115,28 @@ ul.menu-two {
   .like {
     top: 0;
     left: 0;
+    padding-bottom: 3rem;
   }
 
   img.fish.blue {
     right: 0;
-    width: 28%;
+    width: 75%;
   }
 
   img.fish.orange {
     right: 0;
-    width: 28%;
+    width: 75%;
     margin-bottom: 1rem;
   }
 
   .fa-angle-left {
     top: 175px;
-    left: 70px;
+    left: 60px;
   }
 
   .fa-angle-right {
     top: 170px;
-    right: 0;
+    right: -2px;
   }
 
   .fish-div {
@@ -1111,17 +1150,29 @@ ul.menu-two {
   }
 }
 
-@media only screen and (min-width: 900px) and (max-width: 1024px) {
+@media only screen and (min-width: 671px) and (max-width: 911px) {
+  .logo {
+    margin-left: 1rem;
+  }
+
   h2.fish-head {
     margin-top: 0;
     margin-bottom: 0;
     font-size: 2rem;
   }
 
+  .navbar {
+    padding: 0 13px;
+  }
+
+  .nav-menu {
+    gap: 14px;
+  }
+
   .fish-list,
   .three-fish,
   .result-list {
-    padding-right: 71px;
+    padding-right: 30px;
   }
 
   ul.fish-list > li,
@@ -1149,12 +1200,12 @@ ul.menu-two {
 
   .fa-angle-left {
     top: 177px;
-    left: 200px;
+    left: 110px;
   }
 
   .fa-angle-right {
     top: 172px;
-    right: 61px;
+    right: 17px;
   }
 
   form.form {
@@ -1165,9 +1216,22 @@ ul.menu-two {
     font-size: 2rem;
     height: 61px;
   }
+
+  .like {
+    top: 0;
+    padding-top: 0;
+  }
 }
 
-@media only screen and (min-width: 1025px) and (max-width: 1112px) {
+@media only screen and (min-width: 912px) and (max-width: 1129px) {
+  .fish-logo {
+    width: 20%;
+  }
+
+  .nav-menu {
+    gap: 25px;
+  }
+
   h2.fish-head {
     margin-top: 0;
   }
@@ -1180,9 +1244,22 @@ ul.menu-two {
   form.form {
     width: 50%;
   }
+
+  .like {
+    top: 0;
+    padding-top: 0;
+  }
+
+  .fa-angle-left {
+    left: 228px;
+  }
 }
 
-@media only screen and (min-width: 1113px) and (max-width: 1366px) {
+@media only screen and (min-width: 1130px) and (max-width: 1360px) {
+  .fish-logo {
+    width: 16%;
+  }
+
   h2.fish-head {
     margin-top: 0;
   }
@@ -1195,9 +1272,21 @@ ul.menu-two {
   form.form {
     width: 50%;
   }
+
+  img.fish.orange {
+    width: 33%;
+  }
+
+  .like {
+    top: 0;
+  }
 }
 
-@media only screen and (min-width: 1367px) and (max-width: 1920px) {
+@media only screen and (min-width: 1361px) and (max-width: 1446px) {
+  .fish-logo {
+    width: 17%;
+  }
+
   h2.fish-head {
     font-size: 5rem;
   }
@@ -1209,5 +1298,100 @@ ul.menu-two {
 
   form.form {
     width: 50%;
+  }
+
+  img.fish.orange {
+    right: 79px;
+    width: 33%;
+  }
+
+  img.fish.blue {
+    right: 108px;
+  }
+
+  .like {
+    top: 0;
+  }
+}
+
+@media only screen and (min-width: 1447px) and (max-width: 1920px) {
+  .fish-logo {
+    width: 17%;
+  }
+
+  h2.fish-head {
+    font-size: 5rem;
+  }
+
+  input.search-input: {
+    height: 55px;
+    font-size: 2rem;
+  }
+
+  form.form {
+    width: 50%;
+  }
+
+  .fa-angle-left {
+    left: 500px;
+  }
+
+  .fa-angle-right {
+    right: 260px;
+  }
+
+  img.fish.orange {
+    right: 79px;
+    width: 33%;
+  }
+
+  img.fish.blue {
+    right: 108px;
+  }
+
+  .like {
+    top: 0;
+  }
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
