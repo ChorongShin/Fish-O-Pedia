@@ -5,7 +5,6 @@ const $exploreButton = document.querySelector('.explore');
 const $views = document.querySelectorAll('div[data-view]');
 const $backHome = document.querySelector('a.back-home');
 const $fishList = document.querySelector('ul.fish-list');
-const $fishIcon = document.querySelector('img.fish');
 const $fishName = document.querySelector('p.title');
 const $fishImage = document.querySelector('img.fish-img');
 const $fishScientificName = document.querySelector('td.scientific-name');
@@ -30,6 +29,17 @@ const $threeFish = document.querySelector('ul.three-fish');
 const $favorite = document.querySelector('a.favorite-click');
 const $favoriteList = document.querySelector('ul.favorite-list');
 const $noFav = document.querySelector('p.no-fav');
+const $loader = document.querySelector('.lds-facebook');
+const $errorMessage = document.querySelector('h2.error-message');
+const $hamburger = document.querySelector('.hamburger');
+const $navMenu = document.querySelector('.nav-menu');
+const $overlayBox = document.querySelector('.overlay-box');
+const $modal = document.querySelector('.modal');
+const $cancelButton = document.querySelector('.cancel-button');
+const $confirmButton = document.querySelector('.confirm-button');
+const $addIcon = document.querySelector('i.fa-square-plus');
+const $question = document.querySelector('p.question');
+const $questionColumn = document.querySelector('.cancel');
 
 let count = 0;
 let imageList = [];
@@ -41,26 +51,33 @@ window.addEventListener('DOMContentLoaded', event => {
   getFishDataList(104, $fishList);
   getFishDataList(3, $threeFish);
 
-  const ids = data.liked.map(like => like['Species Name']);
-
-  // console.log('ids:', ids);
-  const filteredFish = data.liked.filter((name, index) => !ids.includes('Species Name', index + 1));
-  // console.log('filteredFish:', filteredFish);
-  for (let i = 0; i < filteredFish.length; i++) {
-    const favorite = favoriteFish(filteredFish[i]);
-    $favoriteList.appendChild(favorite);
+  for (let i = 0; i < data.likes.length; i++) {
+    $favoriteList.prepend(favFishList(data.likes[i]));
   }
 });
 
+$exploreButton.addEventListener('click', () => {
+  handleView('main');
+  $header.className = 'header';
+});
+
 function getFishDataList(number, list) {
-  const xhr = new XMLHttpRequest(name);
+  const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
 
     data.fishList = xhr.response;
-    for (let fishId = 0; fishId < number; fishId++) {
 
+    // console.log('status:', xhr.status);
+    if (xhr.status === 200) {
+      $loader.className = 'lds-facebook hidden';
+    } else {
+      $errorMessage.className = 'error-message';
+    }
+    // three fish data on the home page
+    data.fishList = xhr.response;
+    for (let fishId = 0; fishId < number; fishId++) {
       const $fish = document.createElement('li');
       $fish.setAttribute('id', fishId);
       data.fishList[fishId].id = fishId;
@@ -100,29 +117,19 @@ function getFishDataList(number, list) {
       list.append($fish);
     }
   });
-
   xhr.send();
+
 }
 
 function getFish(event) {
+  if (event.target.tagName === 'I') {
+    return;
+  }
+
   const closest = event.target.closest('ul > li');
   $fishId = Number(closest.getAttribute('id'));
 
-  // if we've never visited here, then liked is undefined, then
-  // we should define with default values
-  if (data.fishList[$fishId].liked === undefined) {
-    data.fishList[$fishId].liked = { fishId: $fishId, isLiked: false };
-  }
-
-  if (data.fishList[$fishId].liked.isLiked) {
-    $fishIcon.className = 'fish orange';
-    $fishIcon.src = 'images/fish-hook.png';
-  } else {
-    $fishIcon.className = 'fish blue';
-    $fishIcon.src = 'images/fish icon.png';
-  }
-
-  $fishIcon.setAttribute('id', $fishId);
+  $addIcon.setAttribute('id', $fishId);
 
   $fishName.textContent = data.fishList[$fishId]['Species Name'];
   $fishScientificName.textContent = data.fishList[$fishId]['Scientific Name'];
@@ -205,22 +212,36 @@ function getFish(event) {
 $fishResult.addEventListener('click', event => {
   getFish(event);
   handleView('fish');
-  $fishIcon.removeEventListener('click', handleFishLikeClick);
-  $fishIcon.addEventListener('click', handleFishLikeClick);
 });
 
 $threeFish.addEventListener('click', event => {
   getFish(event);
   handleView('fish');
-  $fishIcon.removeEventListener('click', handleFishLikeClick);
-  $fishIcon.addEventListener('click', handleFishLikeClick);
 });
 
 $fishList.addEventListener('click', event => {
   getFish(event);
   handleView('fish');
-  $fishIcon.removeEventListener('click', handleFishLikeClick);
-  $fishIcon.addEventListener('click', handleFishLikeClick);
+});
+
+$favoriteList.addEventListener('click', event => {
+  if (event.target.tagName !== 'I') {
+    getFish(event);
+    handleView('fish');
+  }
+
+  // if (data.likes.length === 0) {
+  //   $noFav.classList.remove('hidden');
+  // } else {
+  //   $noFav.classList.add('hidden');
+  // }
+
+  if ($favoriteList.children.length === 0) {
+    $noFav.classList.remove('hidden');
+  } else {
+    $noFav.classList.add('hidden');
+  }
+
 });
 
 $previousIcon.addEventListener('click', previous);
@@ -241,28 +262,6 @@ function next() {
   return setImg();
 
 }
-
-const handleFishLikeClick = function (event) {
-  const inputFishId = Number($fishIcon.getAttribute('id'));
-
-  if (inputFishId === data.fishList[inputFishId].liked.fishId && data.fishList[inputFishId].liked.isLiked === false) {
-
-    $fishIcon.className = 'fish orange';
-    $fishIcon.src = 'images/fish-hook.png';
-    data.fishList[inputFishId].liked.isLiked = true;
-    data.liked.push(data.fishList[inputFishId]);
-
-  } else if (
-    inputFishId === data.fishList[inputFishId].liked.fishId &&
-    data.fishList[inputFishId].liked.isLiked === true
-  ) {
-
-    $fishIcon.className = 'fish blue';
-    $fishIcon.src = 'images/fish icon.png';
-    data.fishList[inputFishId].liked.isLiked = false;
-  }
-
-};
 
 function setImg() {
   imageList = data.fishList[$fishId]['Image Gallery'];
@@ -293,13 +292,6 @@ $listClick.addEventListener('click', () => {
 
 $backToList.addEventListener('click', () => handleView('sea-life'));
 $mainMenu.addEventListener('click', () => handleView('main'));
-$exploreButton.addEventListener('click', () => {
-  handleView('main');
-  $header.className = 'header';
-  if (data.fishList.length === 0) {
-    getFishDataList(3, $threeFish);
-  }
-});
 
 $backHome.addEventListener('click', () => {
   handleView('show-case');
@@ -379,20 +371,6 @@ $form.addEventListener('submit', function (event) {
   $form.reset();
 });
 
-function handleView(viewData) {
-  data.view = viewData;
-  for (let i = 0; i < $views.length; i++) {
-    if ($views[i].getAttribute('data-view') === viewData) {
-      $views[i].className = 'view';
-    } else {
-      $views[i].className = 'view hidden';
-    }
-  }
-}
-
-const $hamburger = document.querySelector('.hamburger');
-const $navMenu = document.querySelector('.nav-menu');
-
 $hamburger.addEventListener('click', () => {
   $hamburger.classList.toggle('active');
   $navMenu.classList.toggle('active');
@@ -406,42 +384,153 @@ document.querySelectorAll('.nav-link').forEach(n => {
 });
 
 $favorite.addEventListener('click', event => {
-  if (data.liked.length === 0) {
+  if ($favoriteList.children.length === 0) {
     $noFav.classList.remove('hidden');
+  } else {
+    $noFav.classList.add('hidden');
   }
-
-  // const ids = data.liked.map(like => like.id);
-  // console.log('ids:', ids);
-  // const filteredFish = data.liked.filter(({ id }, index) => !ids.includes(id, index + 1));
-  // console.log('filteredFish:', filteredFish);
-
-  // const $favoriteFish = document.createElement('li');
-  // for (let i = 0; i < filteredFish.length; i++) {
-  //   $favoriteFish.setAttribute('id', i);
-  //   const $favImage = document.createElement('img');
-  //   $favImage.setAttribute('class', 'circle');
-  //   $favImage.setAttribute('src', filteredFish[i]['Species Illustration Photo'].src);
-  //   $favImage.setAttribute('alt', filteredFish[i]['Species Illustration Photo'].alt);
-
-  //   $favoriteFish.append($favImage);
-  // }
-
-  // $favoriteList.append($favoriteFish);
   handleView('favorite');
 });
 
-// DOM tree for favorite fish list
-function favoriteFish(e) {
-  // console.log('e:', e.liked.fishId);
-  const $favoriteFish = document.createElement('li');
+$addIcon.addEventListener('click', () => {
+  $overlayBox.className = 'overlay-box on';
+  $modal.className = 'modal view';
+});
 
-  $favoriteFish.setAttribute('id', e.liked.fishId);
-  const $favImage = document.createElement('img');
-  $favImage.setAttribute('class', 'circle');
-  $favImage.setAttribute('src', e['Species Illustration Photo'].src);
-  $favImage.setAttribute('alt', e['Species Illustration Photo'].alt);
+$cancelButton.addEventListener('click', () => {
+  $overlayBox.className = 'overlay-box';
+  $modal.className = 'modal hidden';
+});
 
-  $favoriteFish.appendChild($favImage);
+$favoriteList.addEventListener('click', event => {
+  if (event.target.tagName !== 'I') {
+    return;
+  }
 
-  return $favoriteFish;
+  const closestElement = event.target.closest('.favorite-fish');
+  const currentFish = Number(closestElement.id);
+  for (let i = 0; i < data.likes.length; i++) {
+    const fish = data.likes[i].id;
+
+    if (fish === currentFish) {
+      data.likes.splice(i, 1);
+      closestElement.remove();
+      break;
+    }
+  }
+  if ($favoriteList.children.length === 0) {
+    $noFav.classList.remove('hidden');
+  } else {
+    $noFav.classList.add('hidden');
+  }
+});
+
+$addIcon.addEventListener('click', event => {
+  const iconId = Number(event.target.id);
+
+  for (let i = data.likes.length - 1; i >= 0; i--) {
+    if (iconId === Number(data.likes[i].id)) {
+      $question.textContent = 'This fish is already added.';
+      $confirmButton.className = 'confirm-button hide';
+      $questionColumn.style.width = '100%';
+    } else {
+      $question.textContent = 'Are you sure you want to add this fish to your favorite list?';
+      $confirmButton.className = 'confirm-button';
+      $questionColumn.style.width = '50%';
+    }
+  }
+});
+
+$confirmButton.addEventListener('click', addItem);
+
+function addItem(event) {
+  const favFish = {
+    speciesName: '',
+    src: '',
+    title: '',
+    id: '',
+    isLiked: false,
+    likedId: data.nextLikedId
+  };
+
+  favFish.likedId = data.nextLikedId;
+  favFish.id = $fishId;
+  favFish.speciesName = data.fishList[$fishId]['Species Name'];
+  favFish.src = data.fishList[$fishId]['Species Illustration Photo'].src;
+  favFish.title = data.fishList[$fishId]['Species Illustration Photo'].title;
+  favFish.isLiked = true;
+
+  data.likes.unshift(favFish);
+  const newFavorite = favFishList(data.likes[0]);
+  $favoriteList.prepend(newFavorite);
+  data.nextLikedId++;
+
+  $overlayBox.className = 'overlay-box';
+  $modal.className = 'modal hidden';
+  if ($favoriteList.children.length === 0) {
+    $noFav.classList.remove('hidden');
+  } else {
+    $noFav.classList.add('hidden');
+  }
+  handleView('favorite');
+
+}
+
+// DOM tree for Favorite Fish List
+function favFishList(e) {
+  const $fish = document.createElement('li');
+  $fish.setAttribute('id', e.id);
+  $fish.setAttribute('class', 'favorite-fish');
+  const fishColumn = document.createElement('div');
+  fishColumn.setAttribute('class', 'fish-column');
+
+  const fishCard = document.createElement('div');
+  fishCard.setAttribute('class', 'fish-card');
+
+  const fishCardImage = document.createElement('div');
+  fishCardImage.setAttribute('class', 'fish-card-image');
+
+  const fishImage = document.createElement('img');
+  fishImage.setAttribute('src', e.src);
+  fishImage.setAttribute('alt', e.title);
+
+  const fishName = document.createElement('p');
+  fishName.setAttribute('class', 'fish-name');
+  fishName.textContent = e.speciesName;
+
+  const learnMoreCard = document.createElement('div');
+  learnMoreCard.setAttribute('class', 'learn-more-card');
+
+  const deleteIcon = document.createElement('span');
+  deleteIcon.setAttribute('class', 'delete-icon');
+  const icon = document.createElement('i');
+  icon.setAttribute('class', 'fa-solid fa-trash-can fa-2xl');
+  deleteIcon.append(icon);
+
+  const learnText = document.createElement('a');
+  learnText.setAttribute('class', 'learn-text');
+  learnText.setAttribute('href', '#');
+  learnText.textContent = 'LEARN MORE';
+
+  $fish.append(fishColumn);
+  fishColumn.append(fishCard);
+  fishCard.append(fishCardImage);
+  fishCardImage.append(fishImage);
+  fishCard.append(fishName);
+  fishCard.append(learnMoreCard);
+  learnMoreCard.append(learnText);
+  fishCardImage.append(deleteIcon);
+
+  return $fish;
+}
+
+function handleView(viewData) {
+  data.view = viewData;
+  for (let i = 0; i < $views.length; i++) {
+    if ($views[i].getAttribute('data-view') === viewData) {
+      $views[i].className = 'view';
+    } else {
+      $views[i].className = 'view hidden';
+    }
+  }
 }

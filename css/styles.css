@@ -2,6 +2,98 @@
   font-family: Poppins, sans-serif;
 }
 
+.hide {
+  display: none;
+}
+
+.add-icon {
+  margin-top: 1.8rem;
+  margin-left: 1.3rem;
+}
+
+.modal.view {
+  display: block;
+}
+
+.overlay-box {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay-box.on {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(0 0 0 / 50%);
+}
+
+.question {
+  font-size: 1.2rem;
+  margin: 0 1rem;
+}
+
+.question-column-half {
+  width: 50%;
+  margin-top: 2rem;
+}
+
+.cancel-button {
+  font-size: 0.9rem;
+  padding: 8px 15px;
+  background-color: rgb(220, 38, 37);
+  color: white;
+  border-radius: 5px;
+  border-style: none;
+}
+
+.confirm-button {
+  font-size: 0.9rem;
+  padding: 8px 15px;
+  background-color: rgb(189 189 189);
+  color: black;
+  border-radius: 5px;
+  border-style: none;
+}
+
+.open-modal {
+  font-family: sans-serif;
+  width: 400px;
+  height: 184px;
+  padding-top: 1.5rem;
+  text-align: center;
+  border-radius: 5px;
+  position: absolute;
+  top: 52%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+}
+
+.delete-icon {
+  color: black;
+  position: relative;
+  display: flex;
+  justify-content: end;
+  bottom: 87%;
+  right: 8%;
+}
+
+i,
+a,
+button {
+  cursor: pointer;
+}
+
+h2.error-message {
+  text-align: center;
+}
+
 .fish-logo {
   width: 20%;
 }
@@ -410,7 +502,8 @@ figcaption {
 
 .fish-list,
 .result-list,
-.three-fish {
+.three-fish,
+.favorite-list {
   list-style-type: none;
   width: 100%;
   justify-content: center;
@@ -421,7 +514,8 @@ figcaption {
 
 ul.fish-list > li,
 ul.result-list > li,
-ul.three-fish > li {
+ul.three-fish > li,
+ul.favorite-list > li {
   display: inline-block;
   width: 23%;
   margin-left: 2rem;
@@ -429,7 +523,8 @@ ul.three-fish > li {
 
 ul.fish-list > li::after,
 ul.result-list > li::after,
-ul.three-fish > li::after {
+ul.three-fish > li::after,
+ul.favorite-list > li::after {
   cursor: pointer;
 }
 
@@ -617,6 +712,15 @@ td.biology-li > ul ul > li {
   background-size: 13px;
 }
 
+button.add {
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  border-radius: 20px;
+  border-style: none;
+  background-color: red;
+  color: white;
+}
+
 button.back-to-list {
   padding: 1.5rem;
   font-size: 1.5rem;
@@ -702,6 +806,80 @@ ul.menu-two {
 .no-fav {
   text-align: center;
   font-size: 1.3rem;
+}
+
+.load-overlay {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.load-overlay.on {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(0 0 0 / 72%);
+}
+
+/* .lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+} */
+
+.lds-facebook {
+  max-width: 5em;
+  max-height: 5em;
+  margin: auto;
+  position: absolute;
+  top: 77px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: yellow;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
+  }
 }
 
 @media only screen and (min-width: 280px) and (max-width: 370px) {
@@ -811,14 +989,16 @@ ul.menu-two {
 
   ul.fish-list > li,
   ul.result-list > li,
-  ul.three-fish > li {
+  ul.three-fish > li,
+  ul.favorite-list > li {
     width: 100%;
     margin-left: 0;
   }
 
   .fish-list,
   .result-list,
-  .three-fish {
+  .three-fish,
+  .favorite-list {
     padding-right: 30px;
     padding-left: 30px;
   }
@@ -976,14 +1156,16 @@ ul.menu-two {
 
   ul.fish-list > li,
   ul.result-list > li,
-  ul.three-fish > li {
+  ul.three-fish > li,
+  ul.favorite-list > li {
     width: 254px;
     margin-left: 7px;
   }
 
   .fish-list,
   .result-list,
-  .three-fish {
+  .three-fish,
+  .favorite-list {
     padding: 0;
   }
 
@@ -1096,13 +1278,15 @@ ul.menu-two {
 
   .fish-list,
   .result-list,
-  .three-fish {
+  .three-fish,
+  .favorite-list {
     padding: 0;
   }
 
   ul.fish-list > li,
   ul.result-list > li,
-  ul.three-fish > li {
+  ul.three-fish > li,
+  ul.favorite-list > li {
     width: 42%;
     margin: 1rem;
   }
@@ -1171,13 +1355,15 @@ ul.menu-two {
 
   .fish-list,
   .three-fish,
-  .result-list {
+  .result-list,
+  .favorite-list {
     padding-right: 30px;
   }
 
   ul.fish-list > li,
   ul.result-list > li,
-  ul.three-fish > li {
+  ul.three-fish > li,
+  ul.favorite-list > li {
     width: 46%;
     padding: 0;
   }
@@ -1351,47 +1537,5 @@ ul.menu-two {
 
   .like {
     top: 0;
-  }
-}
-
-.lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid #fff;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent;
-}
-
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
   }
 }

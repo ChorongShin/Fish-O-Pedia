@@ -2,7 +2,8 @@
 let data = {
   view: 'show-case',
   fishList: [],
-  liked: []
+  likes: [],
+  nextLikedId: 1
 };
 
 const previousDataJSON = localStorage.getItem('javascript-local-storage');

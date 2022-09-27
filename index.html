@@ -16,6 +16,7 @@
 </head>
 
 <body>
+  <div class="load-overlay"></div>
   <header class="header hidden">
     <div class="container">
       <div class="row">
@@ -104,6 +105,14 @@
         </div>
       </div>
       <div class="row fish-cards">
+        <div class="load-container">
+          <div class="lds-facebook hidden">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <h2 class="error-message hidden">Unexpected network error occurred. Please try again!</h2>
+        </div>
         <ul class="three-fish">
         </ul>
         <button class="see-more">SEE MORE</button>
@@ -113,11 +122,15 @@
   </div>
 
   <div class="hidden" data-view="fish">
+    <div class="overlay-box"></div>
     <div class="fish-container">
       <div class="fish-row">
         <div class="column-full">
           <div class="title-div">
             <p class="title">Crimson Jobfish</p>
+            <span class="add-icon">
+              <i class="fa-solid fa-square-plus fa-2xl"></i>
+            </span>
           </div>
         </div>
       </div>
@@ -136,19 +149,6 @@
           <span class="angle-right">
             <i class="fa-solid fa-angle-right fa-2xl"></i>
           </span>
-        </div>
-      </div>
-      <div class="row fish-image-row">
-        <div class="column-one-sixth"></div>
-        <div class="column-half press-like-div">
-          <div class="press-like">
-            <p class="like">&ldquo;If you like the fish, <br>click it to express like!&rdquo;</p>
-          </div>
-        </div>
-        <div class="column-one-third fish-icon-div">
-          <div class="fish-icon">
-            <img src="images/fish icon.png" alt="fish" class="fish blue">
-          </div>
         </div>
       </div>
       <div class="row table-row">
@@ -183,6 +183,24 @@
       <div class="row">
         <div class="column-full list-button-div">
           <button class="back-to-list" type="button">Go Back to Fish List</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal hidden">
+    <div class="open-modal">
+      <div class="row">
+        <div class="column-full">
+          <p class="question">Are you sure you want to add this fish to your favorite list?</p>
+        </div>
+      </div>
+      <div class="row cancel-confirm">
+        <div class="question-column-half cancel">
+          <button type="button" class="cancel-button">CANCEL</button>
+        </div>
+        <div class="question-column-half confirm">
+          <button type="button" class="confirm-button">CONFIRM</button>
         </div>
       </div>
     </div>
@@ -224,13 +242,14 @@
   </div>
 
   <div class="hidden" data-view="favorite">
+    <div class="overlay-box-two"></div>
     <div class="container">
       <div class="row">
         <div class="column-full">
           <p class="aquatic-life">Saved Favorite Fish</p>
         </div>
       </div>
-      <div class="row">
+      <div class="row fish-cards-two">
         <div class="column-full">
           <p class="no-fav hidden">No Fish Is Saved. Look for Your Favorite Fish!</p>
         </div>
@@ -239,6 +258,8 @@
       </div>
     </div>
   </div>
+
+
 
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
