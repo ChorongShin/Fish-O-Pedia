@@ -333,57 +333,6 @@ h3.sea {
   color: white;
 }
 
-.menu-toggle {
-  position: relative;
-  overflow: hidden;
-  visibility: hidden;
-}
-
-.menu-toggle ul li {
-  list-style: none;
-  margin-top: 1rem;
-  border: 1px solid black;
-  padding: 0.3rem 0.5rem;
-  width: 160px;
-  text-align: center;
-}
-
-.menu-toggle ul li a {
-  text-decoration: none;
-  font-size: 15px;
-  color: #111;
-}
-
-.menu-toggle ul.open {
-  visibility: visible;
-  margin-top: 48px;
-  display: flex;
-  justify-content: center;
-}
-
-.menu ul {
-  position: relative;
-  overflow: hidden;
-  visibility: hidden;
-}
-
-.menu ul li {
-  list-style: none;
-  margin-top: 1rem;
-  border: 1px solid black;
-  padding: 2rem;
-}
-
-.menu ul li a {
-  text-decoration: none;
-  font-size: 24px;
-  color: #111;
-}
-
-.menu ul.open {
-  visibility: visible;
-}
-
 .first-row {
   margin-top: 3rem;
 }
@@ -570,41 +519,6 @@ img.fish-img {
   right: 89px;
 }
 
-.press-like {
-  text-align: center;
-  font-size: 1.7rem;
-  position: relative;
-  left: 8px;
-  top: 50px;
-  font-style: italic;
-}
-
-.like {
-  margin: 0;
-  padding-top: 1rem;
-  text-align: center;
-  font-size: 1.7rem;
-  position: relative;
-  left: 53px;
-  top: 50px;
-  font-style: italic;
-}
-
-img.fish.blue {
-  position: relative;
-  right: 23px;
-  bottom: 0;
-  width: 33%;
-}
-
-img.fish.orange {
-  position: relative;
-  right: 23px;
-  top: 22px;
-  margin-bottom: 3rem;
-  width: 30%;
-}
-
 div.table-row {
   margin-top: 2rem;
   margin-bottom: 3rem;
@@ -755,41 +669,8 @@ input.search-input:focus {
   padding-top: 1.5rem;
 }
 
-div.fish-image-row {
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-span.red-heart {
-  color: red;
-}
-
 figure {
   margin: 3rem 0;
-}
-
-.column-fifth-eights {
-  width: calc(500% / 8);
-}
-
-li.nav {
-  display: inline-block;
-  margin-right: 1rem;
-}
-
-ul.menu-two {
-  display: flex;
-  justify-content: end;
-  list-style-type: none;
-  margin-top: 1.5rem;
-  padding-left: 0;
-}
-
-.circle {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: red;
 }
 
 .no-fav {
@@ -869,12 +750,6 @@ ul.menu-two {
     font-size: 1rem;
   }
 
-  .column-two-fifth {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   .aquatic-life {
     font-size: 2rem;
   }
@@ -911,10 +786,6 @@ ul.menu-two {
     top: 113px;
   }
 
-  li.nav {
-    font-size: 0.9rem;
-  }
-
   .logo-img {
     width: 80px;
     height: 80px;
@@ -947,26 +818,6 @@ ul.menu-two {
     position: relative;
     right: 0;
     height: 100%;
-  }
-
-  img.fish.blue {
-    right: 0;
-    bottom: 0;
-    top: 21px;
-    width: 39%;
-  }
-
-  img.fish.orange {
-    right: 0;
-    bottom: 0;
-    top: 42px;
-    width: 39%;
-  }
-
-  .like {
-    left: 0;
-    top: 0;
-    font-size: 1.2rem;
   }
 
   ul.fish-list > li,
@@ -1002,20 +853,6 @@ ul.menu-two {
     width: 100%;
   }
 
-  .column-two-fifth {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .like {
-    left: 0;
-  }
-
-  li.nav {
-    margin-right: 1rem;
-  }
-
   a.search-click-two {
     margin-right: 0.4rem;
   }
@@ -1047,18 +884,6 @@ ul.menu-two {
     width: 100%;
   }
 
-  .column-one-third, {
-    width: 100%;
-  }
-
-  .column-one-eights {
-    width: 10%;
-  }
-
-  .column-different {
-    width: 36.2%;
-  }
-
   .fish-column {
     padding: 0;
   }
@@ -1087,38 +912,6 @@ ul.menu-two {
     color: #fff;
     line-height: 1em;
     text-transform: uppercase;
-  }
-
-  button.toggle {
-    position: relative;
-    width: 60px;
-    height: 60px;
-    background-repeat: no-repeat;
-    background-size: 30px;
-    background-position: center;
-    cursor: pointer;
-    border: none;
-    left: 50px;
-  }
-
-  .menu-toggle ul li {
-    list-style: none;
-    margin-top: 1rem;
-    padding: 0.3rem;
-    width: 150px;
-    text-align: center;
-    padding-top: 3rem;
-    border: none;
-  }
-
-  .menu-toggle ul li a {
-    text-decoration: none;
-    font-size: 24px;
-    color: #111;
-  }
-
-  .menu-toggle ul.open {
-    margin: 0 2.5rem 0 0;
   }
 
   .intro-video {
@@ -1155,10 +948,6 @@ ul.menu-two {
     width: 52%;
   }
 
-  .column-angle-div {
-    width: 100%;
-  }
-
   .fish-div {
     height: 200px;
     width: 260px;
@@ -1174,46 +963,10 @@ ul.menu-two {
     left: 0;
   }
 
-  .column-half.press-like-div {
-    background-color: white;
-    width: 100%;
-  }
-
-  .column-one-fourth.fish-icon-div {
+  .column-one-fourth {
     width: 100%;
     display: flex;
     justify-content: center;
-  }
-
-  .column-one-third.fish-icon-div {
-    width: 100%;
-    margin-top: 30px;
-  }
-
-  div.fish-image-row {
-    justify-content: center;
-  }
-
-  img.fish.blue {
-    top: 56px;
-    bottom: 0;
-    right: 0;
-    left: 5px;
-    width: 38%;
-  }
-
-  img.fish.orange {
-    right: 0;
-    bottom: 0;
-    left: 5px;
-    top: 56px;
-    width: 38%;
-  }
-
-  div.press-like {
-    text-align: center;
-    font-size: 1.3rem;
-    margin-top: 30px;
   }
 
   table {
@@ -1252,12 +1005,6 @@ ul.menu-two {
     font-size: 17px;
   }
 
-  .column-two-fifth {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   .fish-list,
   .result-list,
   .three-fish,
@@ -1276,23 +1023,6 @@ ul.menu-two {
   .fish-video,
   .fish-definition {
     width: 100%;
-  }
-
-  .like {
-    top: 0;
-    left: 0;
-    padding-bottom: 3rem;
-  }
-
-  img.fish.blue {
-    right: 0;
-    width: 75%;
-  }
-
-  img.fish.orange {
-    right: 0;
-    width: 75%;
-    margin-bottom: 1rem;
   }
 
   .fa-angle-left {
@@ -1350,18 +1080,6 @@ ul.menu-two {
     padding: 0;
   }
 
-  img.fish.blue {
-    left: 4px;
-    top: 3px;
-    width: 50%;
-  }
-
-  img.fish.orange {
-    left: 25px;
-    top: 23px;
-    width: 50%;
-  }
-
   table {
     margin: 0 3rem;
   }
@@ -1383,11 +1101,6 @@ ul.menu-two {
   input.search-input {
     font-size: 2rem;
     height: 61px;
-  }
-
-  .like {
-    top: 0;
-    padding-top: 0;
   }
 }
 
@@ -1413,11 +1126,6 @@ ul.menu-two {
     width: 50%;
   }
 
-  .like {
-    top: 0;
-    padding-top: 0;
-  }
-
   .fa-angle-left {
     left: 228px;
   }
@@ -1440,14 +1148,6 @@ ul.menu-two {
   form.form {
     width: 50%;
   }
-
-  img.fish.orange {
-    width: 33%;
-  }
-
-  .like {
-    top: 0;
-  }
 }
 
 @media only screen and (min-width: 1361px) and (max-width: 1446px) {
@@ -1466,19 +1166,6 @@ ul.menu-two {
 
   form.form {
     width: 50%;
-  }
-
-  img.fish.orange {
-    right: 79px;
-    width: 33%;
-  }
-
-  img.fish.blue {
-    right: 108px;
-  }
-
-  .like {
-    top: 0;
   }
 }
 
@@ -1506,18 +1193,5 @@ ul.menu-two {
 
   .fa-angle-right {
     right: 260px;
-  }
-
-  img.fish.orange {
-    right: 79px;
-    width: 33%;
-  }
-
-  img.fish.blue {
-    right: 108px;
-  }
-
-  .like {
-    top: 0;
   }
 }
