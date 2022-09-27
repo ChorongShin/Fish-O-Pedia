@@ -435,7 +435,7 @@ $addIcon.addEventListener('click', event => {
       $questionColumn.style.width = '100%';
       $questionColumn.style.marginTop = '3rem';
     } else {
-      $question.textContent = 'Add this fish to your favorite list?';
+      $question.textContent = 'Would you like to add this fish to your favorite list?';
       $confirmButton.className = 'confirm-button';
       $questionColumn.style.width = '50%';
       $questionColumn.style.marginTop = '2rem';
