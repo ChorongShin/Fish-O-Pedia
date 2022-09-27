@@ -1,16 +1,17 @@
 /* exported data fish */
-var data = {
+let data = {
   view: 'show-case',
   fishList: [],
-  liked: []
+  likes: [],
+  nextLikedId: 1
 };
 
-var previousDataJSON = localStorage.getItem('entry-local-storage');
+const previousDataJSON = localStorage.getItem('javascript-local-storage');
 if (previousDataJSON !== null) {
   data = JSON.parse(previousDataJSON);
 }
 
 window.addEventListener('beforeunload', function (event) {
-  var dataJSON = JSON.stringify(data);
+  const dataJSON = JSON.stringify(data);
   this.localStorage.setItem('javascript-local-storage', dataJSON);
 });

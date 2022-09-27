@@ -29,8 +29,8 @@
   width: calc(200%/5);
 }
 
-.column-fifth-eights {
-  width: calc(500% / 8);
+.column-third-eights {
+  width: calc(300%/8);
 }
 
 .fish-column {
@@ -77,4 +77,8 @@
 
 .column-special {
   width: 9%;
+}
+
+.column-three-fourth {
+  width: calc(300%/4);
 }
