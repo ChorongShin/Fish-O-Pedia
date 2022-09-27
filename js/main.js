@@ -56,11 +56,7 @@ window.addEventListener('DOMContentLoaded', event => {
   }
 });
 
-$exploreButton.addEventListener('click', () => {
-  handleView('main');
-  $header.className = 'header';
-});
-
+// Save fish data and load fish list from API
 function getFishDataList(number, list) {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
@@ -69,13 +65,12 @@ function getFishDataList(number, list) {
 
     data.fishList = xhr.response;
 
-    // console.log('status:', xhr.status);
     if (xhr.status === 200) {
       $loader.className = 'lds-facebook hidden';
     } else {
       $errorMessage.className = 'error-message';
     }
-    // three fish data on the home page
+
     data.fishList = xhr.response;
     for (let fishId = 0; fishId < number; fishId++) {
       const $fish = document.createElement('li');
@@ -121,6 +116,7 @@ function getFishDataList(number, list) {
 
 }
 
+// DOM Tree for fish details
 function getFish(event) {
   if (event.target.tagName === 'I') {
     return;
@@ -209,41 +205,6 @@ function getFish(event) {
   }
 }
 
-$fishResult.addEventListener('click', event => {
-  getFish(event);
-  handleView('fish');
-});
-
-$threeFish.addEventListener('click', event => {
-  getFish(event);
-  handleView('fish');
-});
-
-$fishList.addEventListener('click', event => {
-  getFish(event);
-  handleView('fish');
-});
-
-$favoriteList.addEventListener('click', event => {
-  if (event.target.tagName !== 'I') {
-    getFish(event);
-    handleView('fish');
-  }
-
-  // if (data.likes.length === 0) {
-  //   $noFav.classList.remove('hidden');
-  // } else {
-  //   $noFav.classList.add('hidden');
-  // }
-
-  if ($favoriteList.children.length === 0) {
-    $noFav.classList.remove('hidden');
-  } else {
-    $noFav.classList.add('hidden');
-  }
-
-});
-
 $previousIcon.addEventListener('click', previous);
 function previous() {
   if (count <= 0) {
@@ -281,6 +242,41 @@ function setImg() {
   }
 }
 
+// 'click' event listener to see page content
+$exploreButton.addEventListener('click', () => {
+  handleView('main');
+  $header.className = 'header';
+});
+
+$fishResult.addEventListener('click', event => {
+  getFish(event);
+  handleView('fish');
+});
+
+$threeFish.addEventListener('click', event => {
+  getFish(event);
+  handleView('fish');
+});
+
+$fishList.addEventListener('click', event => {
+  getFish(event);
+  handleView('fish');
+});
+
+$favoriteList.addEventListener('click', event => {
+  if (event.target.tagName !== 'I') {
+    getFish(event);
+    handleView('fish');
+  }
+
+  if ($favoriteList.children.length === 0) {
+    $noFav.classList.remove('hidden');
+  } else {
+    $noFav.classList.add('hidden');
+  }
+
+});
+
 $seeMore.addEventListener('click', () => {
   handleView('sea-life');
 });
@@ -310,6 +306,7 @@ $searchClick.addEventListener('click', () => {
   }
 });
 
+// Search and result
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
   $resultList.innerHTML = '';
@@ -371,18 +368,7 @@ $form.addEventListener('submit', function (event) {
   $form.reset();
 });
 
-$hamburger.addEventListener('click', () => {
-  $hamburger.classList.toggle('active');
-  $navMenu.classList.toggle('active');
-});
-
-document.querySelectorAll('.nav-link').forEach(n => {
-  n.addEventListener('click', () => {
-    $hamburger.classList.remove('active');
-    $navMenu.classList.remove('active');
-  });
-});
-
+// If there is no favorite fish, "no fish" message will show up.
 $favorite.addEventListener('click', event => {
   if ($favoriteList.children.length === 0) {
     $noFav.classList.remove('hidden');
@@ -392,16 +378,7 @@ $favorite.addEventListener('click', event => {
   handleView('favorite');
 });
 
-$addIcon.addEventListener('click', () => {
-  $overlayBox.className = 'overlay-box on';
-  $modal.className = 'modal view';
-});
-
-$cancelButton.addEventListener('click', () => {
-  $overlayBox.className = 'overlay-box';
-  $modal.className = 'modal hidden';
-});
-
+// See user's favorite fish on the list
 $favoriteList.addEventListener('click', event => {
   if (event.target.tagName !== 'I') {
     return;
@@ -425,9 +402,9 @@ $favoriteList.addEventListener('click', event => {
   }
 });
 
+// User can find out if he/she added a fish to his/her favorite list
 $addIcon.addEventListener('click', event => {
   const iconId = Number(event.target.id);
-
   for (let i = data.likes.length - 1; i >= 0; i--) {
     if (iconId === Number(data.likes[i].id)) {
       $question.textContent = 'This fish is already added.';
@@ -443,8 +420,8 @@ $addIcon.addEventListener('click', event => {
   }
 });
 
+// Add fish to user's favorite list
 $confirmButton.addEventListener('click', addItem);
-
 function addItem(event) {
   const favFish = {
     speciesName: '',
@@ -469,16 +446,27 @@ function addItem(event) {
 
   $overlayBox.className = 'overlay-box';
   $modal.className = 'modal hidden';
+
   if ($favoriteList.children.length === 0) {
     $noFav.classList.remove('hidden');
   } else {
     $noFav.classList.add('hidden');
   }
-  handleView('favorite');
 
+  handleView('favorite');
 }
 
-// DOM tree for Favorite Fish List
+$addIcon.addEventListener('click', () => {
+  $overlayBox.className = 'overlay-box on';
+  $modal.className = 'modal view';
+});
+
+$cancelButton.addEventListener('click', () => {
+  $overlayBox.className = 'overlay-box';
+  $modal.className = 'modal hidden';
+});
+
+// DOM tree for user's favorite fish list
 function favFishList(e) {
   const $fish = document.createElement('li');
   $fish.setAttribute('id', e.id);
@@ -526,6 +514,7 @@ function favFishList(e) {
   return $fish;
 }
 
+// View Swapping
 function handleView(viewData) {
   data.view = viewData;
   for (let i = 0; i < $views.length; i++) {
@@ -536,3 +525,16 @@ function handleView(viewData) {
     }
   }
 }
+
+// Hamburger menu
+$hamburger.addEventListener('click', () => {
+  $hamburger.classList.toggle('active');
+  $navMenu.classList.toggle('active');
+});
+
+document.querySelectorAll('.nav-link').forEach(n => {
+  n.addEventListener('click', () => {
+    $hamburger.classList.remove('active');
+    $navMenu.classList.remove('active');
+  });
+});
