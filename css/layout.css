@@ -21,22 +21,6 @@
   width: calc(100%/4);
 }
 
-.column-one-fifth {
-  width: calc(100%/5);
-}
-
-.column-two-fifth {
-  width: calc(200%/5);
-}
-
-.column-third-eights {
-  width: calc(300%/8);
-}
-
-.fish-column {
-  margin-top: 3rem;
-}
-
 .column-full {
   width: 100%;
 }
@@ -45,38 +29,12 @@
   width: 50%;
 }
 
-.column-one-third {
-  width: calc(100%/3);
-}
-
 .column-two-third {
   width: calc(200%/3);
 }
 
-.column-angle-div {
-  width: 15%;
-}
-
-.column-two-fourth {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-}
-
 .column-one-sixth {
   width: calc(100%/6);
-}
-
-.column-one-eights {
-  width: calc(100%/8);
-}
-
-.empty {
-  height: 30px;
-}
-
-.column-special {
-  width: 9%;
 }
 
 .column-three-fourth {
