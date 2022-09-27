@@ -433,10 +433,12 @@ $addIcon.addEventListener('click', event => {
       $question.textContent = 'This fish is already added.';
       $confirmButton.className = 'confirm-button hide';
       $questionColumn.style.width = '100%';
+      $questionColumn.style.marginTop = '3rem';
     } else {
-      $question.textContent = 'Are you sure you want to add this fish to your favorite list?';
+      $question.textContent = 'Add this fish to your favorite list?';
       $confirmButton.className = 'confirm-button';
       $questionColumn.style.width = '50%';
+      $questionColumn.style.marginTop = '2rem';
     }
   }
 });
