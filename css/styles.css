@@ -848,6 +848,12 @@ figure {
 }
 
 @media only screen and (min-width: 371px) and (max-width: 436px) {
+  .column-one-fourth {
+    width: 22%;
+    display: flex;
+    justify-content: center;
+  }
+
   .fish-video,
   .fish-definition {
     width: 100%;
@@ -961,12 +967,6 @@ figure {
   .fa-angle-right {
     top: 132px;
     left: 0;
-  }
-
-  .column-one-fourth {
-    width: 100%;
-    display: flex;
-    justify-content: center;
   }
 
   table {
