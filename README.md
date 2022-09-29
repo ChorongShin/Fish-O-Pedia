@@ -11,7 +11,7 @@ I am a certified scuba diver since 2016 and love meeting the undersea world. I h
 * [FishWatch.gov Species Content API](https://www.fishwatch.gov/developers)
 
 ## Live Demo
-Explore Fish O’ Pedia at [chorongshin.github.io/Fish-O-Pedia/](chorongshin.github.io/Fish-O-Pedia/)
+Explore Fish O’ Pedia at [chorongshin.github.io/Fish-O-Pedia/](https://chorongshin.github.io/Fish-O-Pedia/)
 
 ## Features
 * User can view a list of over 100 fish
