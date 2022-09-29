@@ -31,6 +31,6 @@ https://user-images.githubusercontent.com/91721272/193128752-a589d61c-0962-4181-
 ## Getting Started
 1. Clone the repository
 ```
-git clone git@github.com:ChorongShin/Fish-O-Pedia.git
+  git clone git@github.com:ChorongShin/Fish-O-Pedia.git
 ```
 2. Start the project. Once started you can view the application by opening index.html in your browser.
