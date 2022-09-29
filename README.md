@@ -28,3 +28,9 @@ https://user-images.githubusercontent.com/91721272/193128752-a589d61c-0962-4181-
 ## Stretch Feature
 * User can receive a random fish fact of the day
 
+## Getting Started
+1. Clone the repository
+```
+git clone git@github.com:ChorongShin/Fish-O-Pedia.git
+```
+2. Start the project. Once started you can view the application by opening index.html in your browser.
