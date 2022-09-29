@@ -8,4 +8,4 @@ I am a certified scuba diver since 2016 and love meeting the undersea world. I h
 * HTML5
 * CSS3
 * JavaScript ES5/ES6
-* FishWatch.gov Species Content API : https://www.fishwatch.gov/developers
+* [FishWatch.gov Species Content API](https://www.fishwatch.gov/developers)
